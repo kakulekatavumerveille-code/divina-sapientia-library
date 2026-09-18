@@ -1003,6 +1003,24 @@ header{
 .pdf-controls input{
     -webkit-tap-highlight-color:transparent;
 }
+.pdf-controls.is-hidden{
+    display:none !important;
+}
+#pdfArea.is-pinching{
+    overflow:hidden;
+    cursor:grabbing;
+}
+#pdfPages{
+    transform-origin:0 0;
+    transform-style:flat;
+    will-change:transform;
+}
+.pdf-page-canvas{
+    /* Le canvas est affiché à sa taille PDF exacte : pas de redimensionnement CSS. */
+    image-rendering:auto;
+    text-rendering:geometricPrecision;
+}
+
 .pdf-page-jump{
     display:flex;
     align-items:center;
@@ -1258,6 +1276,19 @@ header{
             title="Zoom avant">
 
             +
+
+        </button>
+
+        <button
+            id="pdfToolbarToggle"
+            class="viewer-btn"
+            onclick="togglePDFToolbar()"
+            title="Afficher ou masquer les contrôles PDF"
+            aria-label="Afficher ou masquer les contrôles PDF"
+            aria-pressed="false"
+            style="display:none">
+
+            ☰
 
         </button>
 
@@ -1604,6 +1635,19 @@ const pdfPageIndicator =
     document.getElementById(
         "pdfPageIndicator"
     );
+
+const pdfControls =
+    document.getElementById(
+        "pdfControls"
+    );
+
+const pdfToolbarToggle =
+    document.getElementById(
+        "pdfToolbarToggle"
+    );
+
+let pdfToolbarVisible =
+    localStorage.getItem("divinaPdfToolbar") !== "hidden";
 
 
 const gridButton =
@@ -3434,9 +3478,14 @@ async function renderPDFPage(
 
             // Sur-échantillonnage pour conserver des textes nets après zoom.
             // La limite évite une consommation mémoire excessive sur les gros PDF.
+            // Rendu adaptatif haute définition : priorité à la netteté du texte,
+            // avec une limite sûre pour éviter les erreurs mémoire sur les grands PDF.
+            const deviceDPR = window.devicePixelRatio || 1;
+            const pagePixels = viewport.width * viewport.height;
+            const memorySafeDPR = pagePixels > 6000000 ? 2.5 : 4;
             const dpr = Math.min(
-                Math.max(window.devicePixelRatio || 1, 2),
-                3.5
+                Math.max(deviceDPR, 2),
+                memorySafeDPR
             );
 
 
@@ -3487,6 +3536,12 @@ async function renderPDFPage(
 
             viewport:
                 viewport,
+
+            intent:
+                "display",
+
+            enableWebGL:
+                true,
 
             transform:[
                 dpr,
@@ -4717,12 +4772,37 @@ document.addEventListener(
 ========================================================= */
 
 updateViewButtons();
+applyPDFToolbarVisibility();
 
 
 loadLibrary();
 
 
 
+
+function applyPDFToolbarVisibility(){
+    if (!pdfControls || !pdfToolbarToggle) return;
+    pdfControls.classList.toggle("is-hidden", !pdfToolbarVisible);
+    pdfToolbarToggle.style.display =
+        currentPDF ? "flex" : "none";
+    pdfToolbarToggle.setAttribute(
+        "aria-pressed",
+        String(pdfToolbarVisible)
+    );
+    pdfToolbarToggle.textContent = pdfToolbarVisible ? "☰" : "☰";
+    pdfToolbarToggle.title = pdfToolbarVisible
+        ? "Masquer les contrôles PDF"
+        : "Afficher les contrôles PDF";
+}
+
+window.togglePDFToolbar = function(){
+    pdfToolbarVisible = !pdfToolbarVisible;
+    localStorage.setItem(
+        "divinaPdfToolbar",
+        pdfToolbarVisible ? "visible" : "hidden"
+    );
+    applyPDFToolbarVisibility();
+};
 
 /* =========================================================
    COUCHE D'INTERACTION PRO : PAGE DIRECTE + PINCH FLUIDE
@@ -4769,6 +4849,7 @@ const originalOpenPDF = openPDF;
 openPDF = async function(url){
     await originalOpenPDF(url);
     syncPDFPageField(1);
+    applyPDFToolbarVisibility();
 };
 
 const originalResetViewer = resetViewer;
@@ -4778,6 +4859,8 @@ resetViewer = function(){
         pdfPages.style.transformOrigin = "0 0";
     }
     pdfPinch = null;
+    if (pdfControls) pdfControls.classList.remove("is-hidden");
+    if (pdfToolbarToggle) pdfToolbarToggle.style.display = "none";
     syncPDFPageField(1);
     originalResetViewer();
 };
@@ -4808,16 +4891,23 @@ function applyPinchPreview(){
     if (!pdfPinch) return;
 
     const relativeScale = pdfPinch.scale / pdfPinch.startScale;
-    // Le point touché au début reste sous le centre des doigts.
-    // Le déplacement du centre des doigts est également conservé.
+    // Coordonnée écran exacte du foyer : le point PDF ne glisse jamais.
     const tx = pdfPinch.midX + pdfPinch.startScrollLeft
-        - relativeScale * pdfPinch.focalX;
+        - (pdfPinch.focalX * relativeScale);
     const ty = pdfPinch.midY + pdfPinch.startScrollTop
-        - relativeScale * pdfPinch.focalY;
+        - (pdfPinch.focalY * relativeScale);
 
     pdfPages.style.transformOrigin = "0 0";
     pdfPages.style.transform =
         `translate3d(${tx}px, ${ty}px, 0) scale(${relativeScale})`;
+
+    // Empêche le navigateur de modifier la référence pendant le geste.
+    if (pdfArea.scrollLeft !== pdfPinch.startScrollLeft) {
+        pdfArea.scrollLeft = pdfPinch.startScrollLeft;
+    }
+    if (pdfArea.scrollTop !== pdfPinch.startScrollTop) {
+        pdfArea.scrollTop = pdfPinch.startScrollTop;
+    }
 }
 
 // Pinch précis : aucun scroll natif ne vient concurrencer le zoom.
