@@ -965,6 +965,74 @@ header{
 
 }
 
+
+/* =========================================================
+   AMÉLIORATIONS LECTEUR PRO
+========================================================= */
+#pdfArea{
+    scrollbar-gutter:stable;
+    padding-bottom:calc(112px + env(safe-area-inset-bottom));
+    overscroll-behavior:contain;
+    touch-action:pan-x pan-y;
+}
+#pdfPages{
+    transform-origin:0 0;
+    will-change:transform;
+    backface-visibility:hidden;
+}
+.pdf-page-container{
+    contain:layout paint;
+}
+.pdf-page-canvas{
+    image-rendering:auto;
+    backface-visibility:hidden;
+}
+.pdf-controls{
+    position:fixed;
+    left:50%;
+    bottom:calc(14px + env(safe-area-inset-bottom));
+    z-index:1100;
+    transform:translateX(-50%) translateZ(0);
+    max-width:calc(100vw - 20px);
+    padding:8px;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    isolation:isolate;
+}
+.pdf-controls button,
+.pdf-controls input{
+    -webkit-tap-highlight-color:transparent;
+}
+.pdf-page-jump{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+#pdfPageInput{
+    width:52px;
+    height:38px;
+    border:0;
+    border-radius:7px;
+    padding:0 5px;
+    background:#fff;
+    color:#172033;
+    text-align:center;
+    font-size:14px;
+    font-weight:600;
+    outline:none;
+}
+#pdfPageInput:focus{
+    box-shadow:0 0 0 2px #65a9ff;
+}
+@media(max-width:600px){
+    .pdf-controls{gap:4px; bottom:calc(8px + env(safe-area-inset-bottom));}
+    .pdf-controls button{width:36px;height:36px;}
+    #pdfPageInput{height:36px;width:46px;}
+}
+
 </style>
 
 </head>
@@ -1274,12 +1342,23 @@ header{
                 </button>
 
 
+                <label class="pdf-page-jump" title="Aller directement à une page">
+                    <input
+                        id="pdfPageInput"
+                        type="number"
+                        inputmode="numeric"
+                        min="1"
+                        value="1"
+                        aria-label="Numéro de page">
+                    <span>/</span>
+                    <span id="pdfPageTotal">1</span>
+                </label>
+
                 <div
                     id="pdfPageIndicator"
-                    class="pdf-page-indicator">
-
+                    class="pdf-page-indicator"
+                    style="display:none">
                     1 / 1
-
                 </div>
 
 
@@ -4642,6 +4721,148 @@ updateViewButtons();
 
 loadLibrary();
 
+
+
+
+/* =========================================================
+   COUCHE D'INTERACTION PRO : PAGE DIRECTE + PINCH FLUIDE
+========================================================= */
+const pdfPageInput = document.getElementById("pdfPageInput");
+const pdfPageTotal = document.getElementById("pdfPageTotal");
+let pdfPinch = null;
+let pdfPinchCommit = null;
+let pdfPinchRaf = 0;
+
+function syncPDFPageField(page = currentPDFPage){
+    if (!pdfPageInput || !pdfPageTotal) return;
+    const total = currentPDF ? currentPDF.numPages : 1;
+    pdfPageInput.max = String(total);
+    pdfPageInput.value = String(Math.max(1, Math.min(total, page || 1)));
+    pdfPageTotal.textContent = String(total);
+}
+
+if (pdfPageInput){
+    const jump = () => {
+        if (!currentPDF) return;
+        const page = Math.max(1, Math.min(currentPDF.numPages,
+            Number.parseInt(pdfPageInput.value, 10) || 1));
+        pdfPageInput.value = String(page);
+        scrollToPDFPage(page);
+        renderPDFPage(page);
+    };
+    pdfPageInput.addEventListener("change", jump);
+    pdfPageInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") { event.preventDefault(); jump(); pdfPageInput.blur(); }
+    });
+}
+
+const originalUpdatePDFPageIndicator = updatePDFPageIndicator;
+updatePDFPageIndicator = function(){
+    originalUpdatePDFPageIndicator();
+    syncPDFPageField(currentPDFPage);
+};
+
+const originalOpenPDF = openPDF;
+openPDF = async function(url){
+    await originalOpenPDF(url);
+    syncPDFPageField(1);
+};
+
+const originalResetViewer = resetViewer;
+resetViewer = function(){
+    if (pdfPages) pdfPages.style.transform = "none";
+    pdfPinch = null;
+    syncPDFPageField(1);
+    originalResetViewer();
+};
+
+// Navigation précise dans le conteneur PDF (au lieu de scrollIntoView qui peut déplacer la page).
+scrollToPDFPage = function(pageNumber){
+    if (!currentPDF) return;
+    const page = Math.max(1, Math.min(currentPDF.numPages, Number(pageNumber) || 1));
+    const container = document.querySelector(`.pdf-page-container[data-page="${page}"]`);
+    if (!container) return;
+    const top = container.offsetTop - 18;
+    pdfArea.scrollTo({top: Math.max(0, top), behavior:"smooth"});
+    renderPDFPage(page);
+    syncPDFPageField(page);
+};
+
+function applyPinchPreview(){
+    if (!pdfPinch) return;
+    const dx = pdfPinch.midX - pdfPinch.startMidX;
+    const dy = pdfPinch.midY - pdfPinch.startMidY;
+    const scale = pdfPinch.scale;
+    // Le document est transformé immédiatement : aucune attente de rendu pendant le geste.
+    pdfPages.style.transformOrigin = `${pdfPinch.originX}px ${pdfPinch.originY}px`;
+    pdfPages.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`;
+}
+
+// Ces listeners sont ajoutés en capture pour prendre le contrôle du geste avant le scroll natif.
+pdfArea.addEventListener("touchstart", event => {
+    if (event.touches.length !== 2 || !currentPDF) return;
+    const a = event.touches[0], b = event.touches[1];
+    const rect = pdfArea.getBoundingClientRect();
+    const midX = (a.clientX + b.clientX) / 2 - rect.left;
+    const midY = (a.clientY + b.clientY) / 2 - rect.top;
+    pdfPinch = {
+        startDistance:getTouchDistance(a,b),
+        startScale:currentPDFScale,
+        scale:1,
+        startMidX:midX,
+        startMidY:midY,
+        midX, midY,
+        originX:midX,
+        originY:midY + pdfArea.scrollTop
+    };
+    pdfArea.classList.add("is-pinching");
+}, {passive:false, capture:true});
+
+pdfArea.addEventListener("touchmove", event => {
+    if (!pdfPinch || event.touches.length !== 2) return;
+    event.preventDefault();
+    const a = event.touches[0], b = event.touches[1];
+    const rect = pdfArea.getBoundingClientRect();
+    pdfPinch.scale = Math.max(.5, Math.min(5,
+        pdfPinch.startScale * getTouchDistance(a,b) / pdfPinch.startDistance));
+    pdfPinch.midX = (a.clientX + b.clientX) / 2 - rect.left;
+    pdfPinch.midY = (a.clientY + b.clientY) / 2 - rect.top;
+    if (!pdfPinchRaf) pdfPinchRaf = requestAnimationFrame(() => {
+        pdfPinchRaf = 0;
+        applyPinchPreview();
+    });
+}, {passive:false, capture:true});
+
+async function finishPDFPinch(){
+    if (!pdfPinch) return;
+    const finalScale = pdfPinch.scale;
+    pdfPinch = null;
+    pdfArea.classList.remove("is-pinching");
+    pdfPages.style.transform = "none";
+    pdfPages.style.transformOrigin = "0 0";
+    if (Math.abs(finalScale - currentPDFScale) < .01) return;
+    const page = getCurrentVisiblePDFPage();
+    currentPDFScale = finalScale;
+    document.querySelectorAll(".pdf-page-container").forEach(container => {
+        delete container.dataset.rendered;
+        delete container.dataset.rendering;
+        container.innerHTML = '<div class="pdf-placeholder">Chargement…</div>';
+    });
+    await renderNearbyPDFPages();
+    requestAnimationFrame(() => scrollToPDFPage(page));
+}
+pdfArea.addEventListener("touchend", finishPDFPinch, {passive:true, capture:true});
+pdfArea.addEventListener("touchcancel", finishPDFPinch, {passive:true, capture:true});
+
+// Le clavier reste utilisable comme dans un lecteur de bureau.
+document.addEventListener("keydown", event => {
+    if (!viewer.classList.contains("active") || !currentPDF) return;
+    if (event.target === pdfPageInput) return;
+    if (event.key === "ArrowRight" || event.key === "PageDown") { event.preventDefault(); goNextPDFPage(); }
+    if (event.key === "ArrowLeft" || event.key === "PageUp") { event.preventDefault(); goPreviousPDFPage(); }
+    if (event.key === "Home") { event.preventDefault(); scrollToPDFPage(1); }
+    if (event.key === "End") { event.preventDefault(); scrollToPDFPage(currentPDF.numPages); }
+}, {passive:false});
 
 </script>
 
