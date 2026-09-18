@@ -3432,11 +3432,11 @@ async function renderPDFPage(
             });
 
 
-        const dpr =
-            Math.min(
-                window.devicePixelRatio ||
-                1,
-                2
+            // Sur-échantillonnage pour conserver des textes nets après zoom.
+            // La limite évite une consommation mémoire excessive sur les gros PDF.
+            const dpr = Math.min(
+                Math.max(window.devicePixelRatio || 1, 2),
+                3.5
             );
 
 
@@ -4730,7 +4730,6 @@ loadLibrary();
 const pdfPageInput = document.getElementById("pdfPageInput");
 const pdfPageTotal = document.getElementById("pdfPageTotal");
 let pdfPinch = null;
-let pdfPinchCommit = null;
 let pdfPinchRaf = 0;
 
 function syncPDFPageField(page = currentPDFPage){
@@ -4752,7 +4751,11 @@ if (pdfPageInput){
     };
     pdfPageInput.addEventListener("change", jump);
     pdfPageInput.addEventListener("keydown", event => {
-        if (event.key === "Enter") { event.preventDefault(); jump(); pdfPageInput.blur(); }
+        if (event.key === "Enter") {
+            event.preventDefault();
+            jump();
+            pdfPageInput.blur();
+        }
     });
 }
 
@@ -4770,98 +4773,183 @@ openPDF = async function(url){
 
 const originalResetViewer = resetViewer;
 resetViewer = function(){
-    if (pdfPages) pdfPages.style.transform = "none";
+    if (pdfPages) {
+        pdfPages.style.transform = "none";
+        pdfPages.style.transformOrigin = "0 0";
+    }
     pdfPinch = null;
     syncPDFPageField(1);
     originalResetViewer();
 };
 
-// Navigation précise dans le conteneur PDF (au lieu de scrollIntoView qui peut déplacer la page).
+// Navigation sans scrollIntoView : le header et la barre fixe ne déplacent pas la page.
 scrollToPDFPage = function(pageNumber){
     if (!currentPDF) return;
     const page = Math.max(1, Math.min(currentPDF.numPages, Number(pageNumber) || 1));
     const container = document.querySelector(`.pdf-page-container[data-page="${page}"]`);
     if (!container) return;
-    const top = container.offsetTop - 18;
-    pdfArea.scrollTo({top: Math.max(0, top), behavior:"smooth"});
+    pdfArea.scrollTo({
+        top: Math.max(0, container.offsetTop - 18),
+        behavior: "smooth"
+    });
     renderPDFPage(page);
     syncPDFPageField(page);
 };
 
-function applyPinchPreview(){
-    if (!pdfPinch) return;
-    const dx = pdfPinch.midX - pdfPinch.startMidX;
-    const dy = pdfPinch.midY - pdfPinch.startMidY;
-    const scale = pdfPinch.scale;
-    // Le document est transformé immédiatement : aucune attente de rendu pendant le geste.
-    pdfPages.style.transformOrigin = `${pdfPinch.originX}px ${pdfPinch.originY}px`;
-    pdfPages.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`;
+function getPDFTouchCenter(a, b){
+    const rect = pdfArea.getBoundingClientRect();
+    return {
+        x: (a.clientX + b.clientX) / 2 - rect.left,
+        y: (a.clientY + b.clientY) / 2 - rect.top
+    };
 }
 
-// Ces listeners sont ajoutés en capture pour prendre le contrôle du geste avant le scroll natif.
+function applyPinchPreview(){
+    if (!pdfPinch) return;
+
+    const relativeScale = pdfPinch.scale / pdfPinch.startScale;
+    // Le point touché au début reste sous le centre des doigts.
+    // Le déplacement du centre des doigts est également conservé.
+    const tx = pdfPinch.midX + pdfPinch.startScrollLeft
+        - relativeScale * pdfPinch.focalX;
+    const ty = pdfPinch.midY + pdfPinch.startScrollTop
+        - relativeScale * pdfPinch.focalY;
+
+    pdfPages.style.transformOrigin = "0 0";
+    pdfPages.style.transform =
+        `translate3d(${tx}px, ${ty}px, 0) scale(${relativeScale})`;
+}
+
+// Pinch précis : aucun scroll natif ne vient concurrencer le zoom.
 pdfArea.addEventListener("touchstart", event => {
     if (event.touches.length !== 2 || !currentPDF) return;
-    const a = event.touches[0], b = event.touches[1];
-    const rect = pdfArea.getBoundingClientRect();
-    const midX = (a.clientX + b.clientX) / 2 - rect.left;
-    const midY = (a.clientY + b.clientY) / 2 - rect.top;
+    event.stopImmediatePropagation();
+
+    const a = event.touches[0];
+    const b = event.touches[1];
+    const center = getPDFTouchCenter(a, b);
+    const startScrollLeft = pdfArea.scrollLeft;
+    const startScrollTop = pdfArea.scrollTop;
+
     pdfPinch = {
-        startDistance:getTouchDistance(a,b),
-        startScale:currentPDFScale,
-        scale:1,
-        startMidX:midX,
-        startMidY:midY,
-        midX, midY,
-        originX:midX,
-        originY:midY + pdfArea.scrollTop
+        startDistance: getTouchDistance(a, b),
+        startScale: currentPDFScale,
+        scale: currentPDFScale,
+        startMidX: center.x,
+        startMidY: center.y,
+        midX: center.x,
+        midY: center.y,
+        startScrollLeft,
+        startScrollTop,
+        // Coordonnée dans le document rendu, sous le point de contact initial.
+        focalX: center.x + startScrollLeft,
+        focalY: center.y + startScrollTop
     };
+
     pdfArea.classList.add("is-pinching");
+    event.preventDefault();
 }, {passive:false, capture:true});
 
 pdfArea.addEventListener("touchmove", event => {
     if (!pdfPinch || event.touches.length !== 2) return;
+    event.stopImmediatePropagation();
     event.preventDefault();
-    const a = event.touches[0], b = event.touches[1];
-    const rect = pdfArea.getBoundingClientRect();
+
+    const a = event.touches[0];
+    const b = event.touches[1];
+    const center = getPDFTouchCenter(a, b);
+
     pdfPinch.scale = Math.max(.5, Math.min(5,
-        pdfPinch.startScale * getTouchDistance(a,b) / pdfPinch.startDistance));
-    pdfPinch.midX = (a.clientX + b.clientX) / 2 - rect.left;
-    pdfPinch.midY = (a.clientY + b.clientY) / 2 - rect.top;
-    if (!pdfPinchRaf) pdfPinchRaf = requestAnimationFrame(() => {
-        pdfPinchRaf = 0;
-        applyPinchPreview();
-    });
+        pdfPinch.startScale *
+        getTouchDistance(a, b) / pdfPinch.startDistance));
+    pdfPinch.midX = center.x;
+    pdfPinch.midY = center.y;
+
+    if (!pdfPinchRaf) {
+        pdfPinchRaf = requestAnimationFrame(() => {
+            pdfPinchRaf = 0;
+            applyPinchPreview();
+        });
+    }
 }, {passive:false, capture:true});
 
-async function finishPDFPinch(){
+async function finishPDFPinch(event){
+    if (event) event.stopImmediatePropagation();
     if (!pdfPinch) return;
-    const finalScale = pdfPinch.scale;
+
+    if (pdfPinchRaf) {
+        cancelAnimationFrame(pdfPinchRaf);
+        pdfPinchRaf = 0;
+    }
+    applyPinchPreview();
+
+    const pinch = pdfPinch;
+    const finalScale = pinch.scale;
+    const finalMidX = pinch.midX;
+    const finalMidY = pinch.midY;
+    const page = getCurrentVisiblePDFPage();
+
     pdfPinch = null;
     pdfArea.classList.remove("is-pinching");
     pdfPages.style.transform = "none";
     pdfPages.style.transformOrigin = "0 0";
-    if (Math.abs(finalScale - currentPDFScale) < .01) return;
-    const page = getCurrentVisiblePDFPage();
+
+    if (Math.abs(finalScale - currentPDFScale) < .005) return;
+
+    // Compensation exacte : le même point du PDF reste sous les doigts
+    // lorsque les canvases haute résolution remplacent l’aperçu CSS.
+    const ratio = finalScale / pinch.startScale;
+    const targetScrollLeft = Math.max(0,
+        (pinch.focalX * ratio) - finalMidX);
+    const targetScrollTop = Math.max(0,
+        (pinch.focalY * ratio) - finalMidY);
+
     currentPDFScale = finalScale;
     document.querySelectorAll(".pdf-page-container").forEach(container => {
         delete container.dataset.rendered;
         delete container.dataset.rendering;
-        container.innerHTML = '<div class="pdf-placeholder">Chargement…</div>';
+        container.innerHTML =
+            '<div class="pdf-placeholder">Chargement…</div>';
     });
-    await renderNearbyPDFPages();
-    requestAnimationFrame(() => scrollToPDFPage(page));
-}
-pdfArea.addEventListener("touchend", finishPDFPinch, {passive:true, capture:true});
-pdfArea.addEventListener("touchcancel", finishPDFPinch, {passive:true, capture:true});
 
-// Le clavier reste utilisable comme dans un lecteur de bureau.
+    await renderNearbyPDFPages();
+
+    // On applique la position après le nouveau layout, sans scrollIntoView.
+    requestAnimationFrame(() => {
+        pdfArea.scrollTo({
+            left: targetScrollLeft,
+            top: targetScrollTop,
+            behavior: "instant"
+        });
+        updatePDFPageIndicator();
+    });
+}
+
+pdfArea.addEventListener("touchend", finishPDFPinch,
+    {passive:true, capture:true});
+pdfArea.addEventListener("touchcancel", finishPDFPinch,
+    {passive:true, capture:true});
+
+// Navigation clavier de bureau.
 document.addEventListener("keydown", event => {
     if (!viewer.classList.contains("active") || !currentPDF) return;
     if (event.target === pdfPageInput) return;
-    if (event.key === "ArrowRight" || event.key === "PageDown") { event.preventDefault(); goNextPDFPage(); }
-    if (event.key === "ArrowLeft" || event.key === "PageUp") { event.preventDefault(); goPreviousPDFPage(); }
-    if (event.key === "Home") { event.preventDefault(); scrollToPDFPage(1); }
-    if (event.key === "End") { event.preventDefault(); scrollToPDFPage(currentPDF.numPages); }
+    if (event.key === "ArrowRight" || event.key === "PageDown") {
+        event.preventDefault();
+        goNextPDFPage();
+    }
+    if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        goPreviousPDFPage();
+    }
+    if (event.key === "Home") {
+        event.preventDefault();
+        scrollToPDFPage(1);
+    }
+    if (event.key === "End") {
+        event.preventDefault();
+        scrollToPDFPage(currentPDF.numPages);
+    }
 }, {passive:false});
 
 </script>
