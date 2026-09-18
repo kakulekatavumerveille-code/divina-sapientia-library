@@ -1013,6 +1013,10 @@ header{
     overflow:hidden;
     cursor:grabbing;
 }
+#pdfArea.is-panning{
+    cursor:grabbing;
+    user-select:none;
+}
 #pdfPages{
     transform-origin:0 0;
     transform-style:flat;
@@ -4960,6 +4964,7 @@ const pdfPageInput = document.getElementById("pdfPageInput");
 const pdfPageTotal = document.getElementById("pdfPageTotal");
 let pdfPinch = null;
 let pdfPinchRaf = 0;
+let pdfPan = null;
 
 function syncPDFPageField(page = currentPDFPage){
     if (!pdfPageInput || !pdfPageTotal) return;
@@ -5008,6 +5013,8 @@ resetViewer = function(){
         pdfPages.style.transformOrigin = "0 0";
     }
     pdfPinch = null;
+    pdfPan = null;
+    if (pdfArea) pdfArea.classList.remove("is-panning");
     if (pdfControls) pdfControls.classList.remove("is-hidden");
     if (pdfArea) pdfArea.classList.remove("toolbar-hidden");
     if (pdfToolbarToggle) pdfToolbarToggle.style.display = "none";
@@ -5059,6 +5066,60 @@ function applyPinchPreview(){
         pdfArea.scrollTop = pdfPinch.startScrollTop;
     }
 }
+
+/* =========================================================
+   PANORAMIQUE PDF : UN DOIGT GAUCHE / DROITE
+========================================================= */
+pdfArea.addEventListener("touchstart", event => {
+    if (event.touches.length !== 1 || !currentPDF || pdfPinch) return;
+
+    const touch = event.touches[0];
+    pdfPan = {
+        startX: touch.clientX,
+        startY: touch.clientY,
+        startScrollLeft: pdfArea.scrollLeft,
+        startScrollTop: pdfArea.scrollTop,
+        lockedAxis: null
+    };
+}, {passive:true, capture:true});
+
+pdfArea.addEventListener("touchmove", event => {
+    if (!pdfPan || event.touches.length !== 1 || pdfPinch) return;
+
+    const touch = event.touches[0];
+    const dx = touch.clientX - pdfPan.startX;
+    const dy = touch.clientY - pdfPan.startY;
+
+    if (!pdfPan.lockedAxis && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+        // Verrouille le geste sur l’axe dominant pour ne pas gêner le scroll vertical.
+        pdfPan.lockedAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    }
+
+    if (pdfPan.lockedAxis !== "x") return;
+
+    const maxScrollLeft = Math.max(
+        0,
+        pdfArea.scrollWidth - pdfArea.clientWidth
+    );
+    if (maxScrollLeft <= 0) return;
+
+    event.preventDefault();
+    pdfArea.classList.add("is-panning");
+    pdfArea.scrollLeft = Math.max(
+        0,
+        Math.min(maxScrollLeft, pdfPan.startScrollLeft - dx)
+    );
+}, {passive:false, capture:true});
+
+function stopPDFPan(){
+    pdfPan = null;
+    pdfArea.classList.remove("is-panning");
+}
+
+pdfArea.addEventListener("touchend", stopPDFPan,
+    {passive:true, capture:true});
+pdfArea.addEventListener("touchcancel", stopPDFPan,
+    {passive:true, capture:true});
 
 // Pinch précis : aucun scroll natif ne vient concurrencer le zoom.
 pdfArea.addEventListener("touchstart", event => {
