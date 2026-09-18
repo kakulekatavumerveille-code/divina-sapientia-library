@@ -24,7 +24,12 @@ html,
 body{
     margin:0;
     padding:0;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:#f4f6f9;
     color:#172033;
 }
@@ -42,11 +47,16 @@ input{
 header{
     background:#172b4d;
     color:white;
+
     padding:18px 16px;
+
     position:sticky;
     top:0;
+
     z-index:50;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,.15);
 }
 
 .header-inner{
@@ -79,11 +89,17 @@ header{
 .search-box{
     display:flex;
     align-items:center;
+
     background:white;
+
     border-radius:12px;
+
     border:1px solid #dce2ea;
+
     overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.05);
 }
 
 .search-icon{
@@ -93,10 +109,14 @@ header{
 
 #search{
     flex:1;
+
     border:0;
     outline:0;
+
     padding:14px 8px;
+
     font-size:16px;
+
     background:white;
 }
 
@@ -107,21 +127,31 @@ header{
 
 .tools{
     max-width:1200px;
+
     margin:0 auto;
+
     padding:0 12px 12px;
 
     display:flex;
+
     gap:8px;
+
     flex-wrap:wrap;
 }
 
 .tool{
     background:white;
+
     border:1px solid #dce2ea;
+
     border-radius:9px;
+
     padding:9px 12px;
+
     font-size:14px;
+
     cursor:pointer;
+
     white-space:nowrap;
 }
 
@@ -131,7 +161,9 @@ header{
 
 .tool.active{
     background:#172b4d;
+
     color:white;
+
     border-color:#172b4d;
 }
 
@@ -141,37 +173,54 @@ header{
 ========================================================= */
 
 #resultInfo{
+
     max-width:1200px;
+
     margin:auto;
+
     padding:0 12px 8px;
+
     font-size:13px;
+
     color:#657084;
 }
 
 
 /* =========================================================
-   BREADCRUMB
+   FIL D'ARIANE
 ========================================================= */
 
 .breadcrumb{
+
     max-width:1200px;
+
     margin:auto;
+
     padding:10px 12px;
 
     display:flex;
+
     align-items:center;
+
     gap:6px;
+
     flex-wrap:wrap;
 
     font-size:14px;
 }
 
 .breadcrumb button{
+
     border:0;
+
     background:none;
+
     color:#1769aa;
+
     cursor:pointer;
+
     padding:3px;
+
     font-size:14px;
 }
 
@@ -185,37 +234,54 @@ header{
 ========================================================= */
 
 .container{
+
     max-width:1200px;
+
     margin:auto;
+
     padding:0 12px 40px;
 }
 
 .section-title{
+
     font-size:18px;
+
     font-weight:bold;
+
     margin:8px 0 12px;
 }
 
 
 /* =========================================================
-   MODE GRILLE
+   GRILLE
 ========================================================= */
 
 .grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(160px,1fr)
+        );
+
     gap:12px;
 }
 
 
 /* =========================================================
-   CARTE GRILLE
+   CARTE
 ========================================================= */
 
 .card{
+
     background:white;
+
     border:1px solid #e0e5ec;
+
     border-radius:13px;
+
     padding:15px;
 
     min-height:125px;
@@ -228,8 +294,11 @@ header{
         border-color .15s;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
@@ -238,25 +307,38 @@ header{
 }
 
 .card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.08);
+
     border-color:#b8c7db;
 }
 
 .icon{
+
     font-size:42px;
+
     margin-bottom:9px;
 }
 
 .card-name{
+
     font-size:14px;
+
     font-weight:600;
+
     word-break:break-word;
 }
 
 .card-info{
+
     margin-top:6px;
+
     font-size:11px;
+
     color:#7c8797;
 }
 
@@ -275,19 +357,18 @@ header{
 ========================================================= */
 
 .grid.list-view{
+
     display:flex;
+
     flex-direction:column;
+
     gap:7px;
 }
-
-
-/* =========================================================
-   CARTE EN MODE LISTE
-========================================================= */
 
 .grid.list-view .card{
 
     width:100%;
+
     min-height:64px;
 
     padding:9px 12px;
@@ -296,7 +377,10 @@ header{
 
     display:grid;
 
-    grid-template-columns:48px minmax(0,1fr) auto;
+    grid-template-columns:
+        48px
+        minmax(0,1fr)
+        auto;
 
     align-items:center;
 
@@ -307,11 +391,9 @@ header{
     transform:none;
 }
 
-
 .grid.list-view .card:hover{
     transform:none;
 }
-
 
 .grid.list-view .icon{
 
@@ -320,9 +402,7 @@ header{
     margin:0;
 
     text-align:center;
-
 }
-
 
 .grid.list-view .card-name{
 
@@ -333,9 +413,7 @@ header{
     text-overflow:ellipsis;
 
     white-space:nowrap;
-
 }
-
 
 .grid.list-view .card-info{
 
@@ -348,18 +426,6 @@ header{
     text-align:right;
 
     white-space:nowrap;
-
-}
-
-
-/* =========================================================
-   RECHERCHE EN LISTE
-========================================================= */
-
-.grid.list-view .folder .card-info{
-
-    display:block;
-
 }
 
 
@@ -368,14 +434,17 @@ header{
 ========================================================= */
 
 .empty{
+
     text-align:center;
+
     padding:50px 15px;
+
     color:#7c8797;
 }
 
 
 /* =========================================================
-   VIEWER PLEIN ÉCRAN
+   VIEWER GLOBAL
 ========================================================= */
 
 #viewer{
@@ -391,7 +460,6 @@ header{
     display:none;
 
     flex-direction:column;
-
 }
 
 #viewer.active{
@@ -421,6 +489,7 @@ header{
 
     gap:8px;
 
+    z-index:30;
 }
 
 .viewer-title{
@@ -436,7 +505,6 @@ header{
     text-overflow:ellipsis;
 
     font-size:14px;
-
 }
 
 .viewer-btn{
@@ -457,6 +525,11 @@ header{
 
     cursor:pointer;
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
 .viewer-btn:hover{
@@ -481,7 +554,6 @@ header{
     align-items:center;
 
     justify-content:center;
-
 }
 
 
@@ -506,7 +578,6 @@ header{
     touch-action:none;
 
     cursor:grab;
-
 }
 
 #imageViewer.dragging{
@@ -520,8 +591,10 @@ header{
 
 #audioViewer{
 
-    width:min(700px,90%);
-
+    width:min(
+        700px,
+        90%
+    );
 }
 
 
@@ -540,12 +613,11 @@ header{
     height:auto;
 
     outline:none;
-
 }
 
 
 /* =========================================================
-   PDF
+   PDF VIEWER CONTINU
 ========================================================= */
 
 #pdfArea{
@@ -554,37 +626,132 @@ header{
 
     inset:0;
 
-    overflow:auto;
-
     display:none;
 
-    touch-action:none;
+    overflow:auto;
 
     background:#525252;
 
+    -webkit-overflow-scrolling:touch;
+
+    overscroll-behavior:contain;
+
+    touch-action:pan-x pan-y;
+
+    padding:18px 0 100px;
 }
 
-#pdfCanvas{
+
+/*
+   Conteneur de toutes les pages
+*/
+
+#pdfPages{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+
+/* =========================================================
+   PAGE PDF
+========================================================= */
+
+.pdf-page-container{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    width:100%;
+
+    min-height:50px;
+}
+
+
+/* =========================================================
+   CANVAS PDF
+========================================================= */
+
+.pdf-page-canvas{
 
     display:block;
 
-    margin:20px auto;
-
     background:white;
 
-    box-shadow:0 3px 15px rgba(0,0,0,.4);
+    box-shadow:
+        0 3px 15px rgba(0,0,0,.4);
 
-    transform-origin:top center;
+    max-width:none;
 
+    user-select:none;
+
+    -webkit-user-select:none;
 }
 
-.pdf-message{
+
+/* =========================================================
+   NUMÉRO DE PAGE
+========================================================= */
+
+.pdf-page-number{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    bottom:8px;
+
+    background:
+        rgba(20,25,32,.78);
 
     color:white;
 
-    text-align:center;
+    font-size:11px;
 
-    padding:40px;
+    padding:4px 8px;
+
+    border-radius:10px;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   PLACEHOLDER PDF
+========================================================= */
+
+.pdf-placeholder{
+
+    width:90%;
+
+    max-width:700px;
+
+    min-height:120px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#777;
+
+    background:#eee;
+
+    border-radius:4px;
 
 }
 
@@ -599,9 +766,10 @@ header{
 
     left:50%;
 
-    bottom:15px;
+    bottom:14px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     display:flex;
 
@@ -609,14 +777,17 @@ header{
 
     gap:6px;
 
-    background:rgba(20,25,32,.92);
+    background:
+        rgba(20,25,32,.94);
 
     padding:7px;
 
     border-radius:12px;
 
-    z-index:10;
+    z-index:20;
 
+    box-shadow:
+        0 3px 15px rgba(0,0,0,.35);
 }
 
 .pdf-controls button{
@@ -636,19 +807,24 @@ header{
     font-size:18px;
 
     cursor:pointer;
-
 }
 
-.pdf-page{
+.pdf-controls button:hover{
+
+    background:#46505e;
+}
+
+.pdf-page-indicator{
 
     color:white;
 
     font-size:13px;
 
-    padding:0 6px;
+    min-width:55px;
+
+    text-align:center;
 
     white-space:nowrap;
-
 }
 
 
@@ -662,6 +838,23 @@ header{
 
     font-size:15px;
 
+    text-align:center;
+}
+
+
+/* =========================================================
+   MESSAGE ERREUR PDF
+========================================================= */
+
+.pdf-error{
+
+    color:white;
+
+    text-align:center;
+
+    padding:40px;
+
+    line-height:1.6;
 }
 
 
@@ -680,12 +873,20 @@ header{
     }
 
     .grid{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
         gap:9px;
     }
 
     .card{
+
         min-height:115px;
+
         padding:11px;
     }
 
@@ -698,8 +899,11 @@ header{
     }
 
     .tools{
+
         overflow-x:auto;
+
         flex-wrap:nowrap;
+
         padding-bottom:9px;
     }
 
@@ -707,13 +911,15 @@ header{
         flex-shrink:0;
     }
 
-    .pdf-controls{
-        bottom:8px;
-    }
-
     .grid.list-view .card{
-        grid-template-columns:42px minmax(0,1fr) auto;
+
+        grid-template-columns:
+            42px
+            minmax(0,1fr)
+            auto;
+
         min-height:60px;
+
         padding:8px;
     }
 
@@ -729,11 +935,19 @@ header{
         font-size:11px;
     }
 
+    .pdf-controls{
+
+        bottom:8px;
+
+        max-width:
+            calc(100% - 16px);
+    }
+
 }
 
 
 /* =========================================================
-   TRÈS PETITS ÉCRANS
+   TRÈS PETIT ÉCRAN
 ========================================================= */
 
 @media(max-width:380px){
@@ -743,7 +957,10 @@ header{
     }
 
     .grid.list-view .card{
-        grid-template-columns:40px minmax(0,1fr);
+
+        grid-template-columns:
+            40px
+            minmax(0,1fr);
     }
 
 }
@@ -765,16 +982,22 @@ header{
     <div class="header-inner">
 
         <div class="title">
+
             📚 Bibliothèque Divina Sapientia
+
         </div>
 
         <div class="subtitle">
-            Partitions, documents, images, audios et vidéos
+
+            Partitions, documents, images,
+            audios et vidéos
+
         </div>
 
     </div>
 
 </header>
+
 
 
 <!-- =======================================================
@@ -793,12 +1016,12 @@ header{
             id="search"
             type="search"
             placeholder="Rechercher dans toute la bibliothèque..."
-            autocomplete="off"
-        >
+            autocomplete="off">
 
     </div>
 
 </div>
+
 
 
 <!-- =======================================================
@@ -807,7 +1030,6 @@ header{
 
 <div class="tools">
 
-    <!-- TRI -->
 
     <button
         class="tool"
@@ -845,8 +1067,6 @@ header{
     </button>
 
 
-    <!-- AFFICHAGE -->
-
     <button
         id="gridButton"
         class="tool active"
@@ -867,8 +1087,6 @@ header{
     </button>
 
 
-    <!-- ACTUALISATION -->
-
     <button
         class="tool"
         onclick="refreshLibrary()">
@@ -877,7 +1095,9 @@ header{
 
     </button>
 
+
 </div>
+
 
 
 <!-- =======================================================
@@ -885,6 +1105,7 @@ header{
 ======================================================= -->
 
 <div id="resultInfo"></div>
+
 
 
 <!-- =======================================================
@@ -897,8 +1118,9 @@ header{
 </div>
 
 
+
 <!-- =======================================================
-     CONTENU
+     BIBLIOTHÈQUE
 ======================================================= -->
 
 <main class="container">
@@ -921,15 +1143,15 @@ header{
 </main>
 
 
+
 <!-- =======================================================
-     VIEWER
+     VIEWER PLEIN ÉCRAN
 ======================================================= -->
 
-<div
-    id="viewer">
+<div id="viewer">
 
 
-    <!-- HEADER VIEWER -->
+    <!-- HEADER -->
 
     <div class="viewer-header">
 
@@ -965,7 +1187,7 @@ header{
             id="viewerZoomIn"
             class="viewer-btn"
             onclick="zoomIn()"
-            title="Zoom">
+            title="Zoom avant">
 
             +
 
@@ -973,6 +1195,7 @@ header{
 
 
     </div>
+
 
 
     <!-- CORPS -->
@@ -989,6 +1212,7 @@ header{
         </div>
 
 
+
         <!-- IMAGE -->
 
         <img
@@ -998,6 +1222,7 @@ header{
             alt="">
 
 
+
         <!-- AUDIO -->
 
         <audio
@@ -1005,7 +1230,9 @@ header{
             controls
             controlsList="nodownload"
             style="display:none">
+
         </audio>
+
 
 
         <!-- VIDEO -->
@@ -1017,7 +1244,9 @@ header{
             disablePictureInPicture
             playsinline
             style="display:none">
+
         </video>
+
 
 
         <!-- PDF -->
@@ -1026,16 +1255,19 @@ header{
             id="pdfArea">
 
 
-            <canvas
-                id="pdfCanvas">
-            </canvas>
+            <div
+                id="pdfPages">
+            </div>
 
 
-            <div class="pdf-controls">
+            <div
+                id="pdfControls"
+                class="pdf-controls">
 
 
                 <button
-                    onclick="previousPage()">
+                    onclick="goPreviousPDFPage()"
+                    title="Page précédente">
 
                     ‹
 
@@ -1043,8 +1275,8 @@ header{
 
 
                 <div
-                    id="pdfPage"
-                    class="pdf-page">
+                    id="pdfPageIndicator"
+                    class="pdf-page-indicator">
 
                     1 / 1
 
@@ -1052,7 +1284,8 @@ header{
 
 
                 <button
-                    onclick="nextPage()">
+                    onclick="goNextPDFPage()"
+                    title="Page suivante">
 
                     ›
 
@@ -1060,7 +1293,8 @@ header{
 
 
                 <button
-                    onclick="zoomOut()">
+                    onclick="zoomOut()"
+                    title="Zoom arrière">
 
                     −
 
@@ -1068,7 +1302,8 @@ header{
 
 
                 <button
-                    onclick="zoomIn()">
+                    onclick="zoomIn()"
+                    title="Zoom avant">
 
                     +
 
@@ -1076,7 +1311,8 @@ header{
 
 
                 <button
-                    onclick="fitPDF()">
+                    onclick="fitPDF()"
+                    title="Adapter à la largeur">
 
                     ↔
 
@@ -1091,10 +1327,13 @@ header{
 
     </div>
 
-
 </div>
 
 
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
 
 <script type="module">
 
@@ -1126,19 +1365,20 @@ const R2_BASE =
 
 
 /* =========================================================
-   VARIABLES
+   VARIABLES BIBLIOTHÈQUE
 ========================================================= */
 
 let library = {
 
-    folders: [],
+    folders:[],
 
-    files: []
+    files:[]
 
 };
 
 
-let currentFolder = "";
+let currentFolder =
+    "";
 
 
 let sortMode =
@@ -1153,13 +1393,49 @@ let viewMode =
     ) || "grid";
 
 
-let currentPDF = null;
+
+/* =========================================================
+   VARIABLES VIEWER
+========================================================= */
+
+let currentPDF =
+    null;
 
 
-let currentPage = 1;
+let currentPDFUrl =
+    "";
 
 
-let pdfScale = 1;
+let currentPDFPage =
+    1;
+
+
+let currentPDFScale =
+    1;
+
+
+let pdfRendering =
+    false;
+
+
+let pdfRenderQueue = [];
+
+
+
+/* =========================================================
+   VARIABLES IMAGE
+========================================================= */
+
+let imageScale =
+    1;
+
+
+let imageX =
+    0;
+
+
+let imageY =
+    0;
 
 
 
@@ -1239,15 +1515,15 @@ const pdfArea =
     );
 
 
-const pdfCanvas =
+const pdfPages =
     document.getElementById(
-        "pdfCanvas"
+        "pdfPages"
     );
 
 
-const pdfPage =
+const pdfPageIndicator =
     document.getElementById(
-        "pdfPage"
+        "pdfPageIndicator"
     );
 
 
@@ -1271,7 +1547,8 @@ const listButton =
 window.setView =
 function(mode){
 
-    viewMode = mode;
+    viewMode =
+        mode;
 
 
     localStorage.setItem(
@@ -1291,7 +1568,10 @@ function(mode){
 
 function updateViewButtons(){
 
-    if(viewMode === "grid"){
+    if(
+        viewMode ===
+        "grid"
+    ){
 
         gridButton.classList.add(
             "active"
@@ -1301,7 +1581,8 @@ function updateViewButtons(){
             "active"
         );
 
-    }else{
+    }
+    else{
 
         gridButton.classList.remove(
             "active"
@@ -1318,7 +1599,7 @@ function updateViewButtons(){
 
 
 /* =========================================================
-   CHARGER LA BIBLIOTHÈQUE
+   CHARGER BIBLIOTHÈQUE
 ========================================================= */
 
 async function loadLibrary(){
@@ -1336,10 +1617,12 @@ async function loadLibrary(){
             );
 
 
-        if(!response.ok){
+        if(
+            !response.ok
+        ){
 
             throw new Error(
-                "Impossible de charger bibliotheque.json"
+                "bibliotheque.json inaccessible"
             );
 
         }
@@ -1354,10 +1637,12 @@ async function loadLibrary(){
 
         render();
 
+    }
+    catch(error){
 
-    }catch(error){
-
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         grid.innerHTML = `
@@ -1366,6 +1651,11 @@ async function loadLibrary(){
 
                 ❌ Impossible de charger
                 la bibliothèque.
+
+                <br><br>
+
+                Vérifiez votre connexion
+                Internet.
 
             </div>
 
@@ -1383,15 +1673,21 @@ async function loadLibrary(){
 
 function getURL(key){
 
-    return R2_BASE +
+    return (
+
+        R2_BASE +
 
         key
-        .split("/")
-        .map(
-            part =>
-                encodeURIComponent(part)
-        )
-        .join("/");
+            .split("/")
+            .map(
+                part =>
+                    encodeURIComponent(
+                        part
+                    )
+            )
+            .join("/")
+
+    );
 
 }
 
@@ -1403,33 +1699,74 @@ function getURL(key){
 
 function formatSize(bytes){
 
-    if(bytes < 1024)
-
-        return bytes + " o";
-
-
-    if(bytes < 1024 * 1024)
+    if(
+        bytes < 1024
+    ){
 
         return (
-            bytes / 1024
-        ).toFixed(1) + " Ko";
+            bytes +
+            " o"
+        );
+
+    }
 
 
-    if(bytes < 1024 * 1024 * 1024)
+    if(
+        bytes <
+        1024 * 1024
+    ){
 
         return (
-            bytes /
-            1024 /
-            1024
-        ).toFixed(1) + " Mo";
+
+            (
+                bytes /
+                1024
+            ).toFixed(1)
+
+            +
+            " Ko"
+
+        );
+
+    }
+
+
+    if(
+        bytes <
+        1024 *
+        1024 *
+        1024
+    ){
+
+        return (
+
+            (
+                bytes /
+                1024 /
+                1024
+            ).toFixed(1)
+
+            +
+            " Mo"
+
+        );
+
+    }
 
 
     return (
-        bytes /
-        1024 /
-        1024 /
-        1024
-    ).toFixed(2) + " Go";
+
+        (
+            bytes /
+            1024 /
+            1024 /
+            1024
+        ).toFixed(2)
+
+        +
+        " Go"
+
+    );
 
 }
 
@@ -1483,7 +1820,8 @@ function getIcon(type){
 window.setSort =
 function(mode){
 
-    sortMode = mode;
+    sortMode =
+        mode;
 
 
     localStorage.setItem(
@@ -1497,10 +1835,6 @@ function(mode){
 };
 
 
-
-/* =========================================================
-   COMPARATEUR
-========================================================= */
 
 function compareItems(a,b){
 
@@ -1586,9 +1920,11 @@ function globalSearch(term){
         .toLowerCase();
 
 
-    if(!term)
+    if(!term){
 
         return null;
+
+    }
 
 
     const files =
@@ -1623,8 +1959,10 @@ function globalSearch(term){
             folder =>
 
                 folder
-                .toLowerCase()
-                .includes(term)
+                    .toLowerCase()
+                    .includes(
+                        term
+                    )
         );
 
 
@@ -1641,7 +1979,7 @@ function globalSearch(term){
 
 
 /* =========================================================
-   AFFICHAGE PRINCIPAL
+   RENDU PRINCIPAL
 ========================================================= */
 
 function render(){
@@ -1649,8 +1987,6 @@ function render(){
     const term =
         search.value.trim();
 
-
-    /* RECHERCHE */
 
     if(term){
 
@@ -1680,12 +2016,16 @@ function render(){
                 compareItems(
                     {
                         name:
-                            getFolderName(a),
+                            getFolderName(
+                                a
+                            ),
                         size:0
                     },
                     {
                         name:
-                            getFolderName(b),
+                            getFolderName(
+                                b
+                            ),
                         size:0
                     }
                 )
@@ -1704,7 +2044,8 @@ function render(){
 
     grid.classList.toggle(
         "list-view",
-        viewMode === "list"
+        viewMode ===
+        "list"
     );
 
 
@@ -1792,7 +2133,6 @@ function render(){
 
                 </div>
 
-
                 <div class="card-name">
 
                     ${escapeHTML(
@@ -1800,7 +2140,6 @@ function render(){
                     )}
 
                 </div>
-
 
                 <div class="card-info">
 
@@ -1832,8 +2171,10 @@ function render(){
 
 
     if(
+
         sortedFolders.length === 0 &&
         sortedFiles.length === 0
+
     ){
 
         grid.innerHTML = `
@@ -1872,7 +2213,7 @@ function render(){
 
 
 /* =========================================================
-   RECHERCHE
+   RÉSULTATS RECHERCHE
 ========================================================= */
 
 function renderGlobalSearch(
@@ -1914,7 +2255,8 @@ function renderGlobalSearch(
 
     grid.classList.toggle(
         "list-view",
-        viewMode === "list"
+        viewMode ===
+        "list"
     );
 
 
@@ -1927,7 +2269,8 @@ function renderGlobalSearch(
                     b,
                     "fr",
                     {
-                        sensitivity:"base"
+                        sensitivity:
+                            "base"
                     }
                 )
         )
@@ -2022,7 +2365,6 @@ function renderGlobalSearch(
 
                     </div>
 
-
                     <div class="card-name">
 
                         ${escapeHTML(
@@ -2030,7 +2372,6 @@ function renderGlobalSearch(
                         )}
 
                     </div>
-
 
                     <div class="card-info">
 
@@ -2078,8 +2419,10 @@ function renderGlobalSearch(
 
 
     if(
+
         results.files.length === 0 &&
         results.folders.length === 0
+
     ){
 
         grid.innerHTML = `
@@ -2100,7 +2443,7 @@ function renderGlobalSearch(
 
 
 /* =========================================================
-   DOSSIERS DU NIVEAU ACTUEL
+   DOSSIERS ACTUELS
 ========================================================= */
 
 function getCurrentFolders(){
@@ -2126,9 +2469,11 @@ function getCurrentFolders(){
             !folder.startsWith(
                 prefix
             )
-        )
+        ){
 
             continue;
+
+        }
 
 
         const rest =
@@ -2138,8 +2483,10 @@ function getCurrentFolders(){
 
 
         if(
+
             rest &&
             !rest.includes("/")
+
         ){
 
             folders.push(
@@ -2158,7 +2505,7 @@ function getCurrentFolders(){
 
 
 /* =========================================================
-   FICHIERS DU NIVEAU ACTUEL
+   FICHIERS ACTUELS
 ========================================================= */
 
 function getCurrentFiles(){
@@ -2167,7 +2514,8 @@ function getCurrentFiles(){
         file =>
 
             (
-                file.folder || ""
+                file.folder ||
+                ""
             ) ===
             currentFolder
     );
@@ -2228,9 +2576,13 @@ function renderBreadcrumb(){
     );
 
 
-    if(!currentFolder)
+    if(
+        !currentFolder
+    ){
 
         return;
+
+    }
 
 
     const parts =
@@ -2239,14 +2591,12 @@ function renderBreadcrumb(){
         );
 
 
-    let path = "";
+    let path =
+        "";
 
 
     parts.forEach(
-        (
-            part,
-            index
-        ) => {
+        part => {
 
             const separator =
                 document.createElement(
@@ -2348,7 +2698,7 @@ function escapeHTML(
 
 
 /* =========================================================
-   OUVRIR UN FICHIER
+   OUVRIR VIEWER
 ========================================================= */
 
 async function openViewer(
@@ -2380,7 +2730,9 @@ async function openViewer(
     try{
 
 
-        /* IMAGE */
+        /* =================================================
+           IMAGE
+        ================================================= */
 
         if(
             file.type ===
@@ -2407,7 +2759,9 @@ async function openViewer(
         }
 
 
-        /* AUDIO */
+        /* =================================================
+           AUDIO
+        ================================================= */
 
         if(
             file.type ===
@@ -2434,7 +2788,9 @@ async function openViewer(
         }
 
 
-        /* VIDEO */
+        /* =================================================
+           VIDEO
+        ================================================= */
 
         if(
             file.type ===
@@ -2461,7 +2817,9 @@ async function openViewer(
         }
 
 
-        /* PDF */
+        /* =================================================
+           PDF
+        ================================================= */
 
         if(
             file.type ===
@@ -2478,7 +2836,9 @@ async function openViewer(
         }
 
 
-        /* AUTRES */
+        /* =================================================
+           AUTRES FICHIERS
+        ================================================= */
 
         loading.innerHTML = `
 
@@ -2547,7 +2907,6 @@ function resetViewer(){
 
     audioViewer.pause();
 
-
     audioViewer.removeAttribute(
         "src"
     );
@@ -2555,10 +2914,33 @@ function resetViewer(){
 
     videoViewer.pause();
 
-
     videoViewer.removeAttribute(
         "src"
     );
+
+
+    pdfPages.innerHTML =
+        "";
+
+
+    currentPDF =
+        null;
+
+
+    currentPDFUrl =
+        "";
+
+
+    currentPDFPage =
+        1;
+
+
+    currentPDFScale =
+        1;
+
+
+    pdfRenderQueue =
+        [];
 
 }
 
@@ -2577,10 +2959,6 @@ function(){
 
 
     resetViewer();
-
-
-    currentPDF =
-        null;
 
 };
 
@@ -2602,6 +2980,10 @@ async function openPDF(
         "block";
 
 
+    currentPDFUrl =
+        url;
+
+
     try{
 
         currentPDF =
@@ -2612,23 +2994,45 @@ async function openPDF(
                 .promise;
 
 
-        currentPage =
+        currentPDFPage =
             1;
 
 
-        pdfScale =
-            1;
+        /*
+           Calcul initial :
+           largeur de l'écran
+        */
+
+        currentPDFScale =
+            await calculateFitScale();
 
 
         loading.style.display =
             "none";
 
 
-        await renderPDFPage();
+        /*
+           Prépare toutes les pages
+        */
+
+        createPDFPageContainers();
+
+
+        /*
+           Rend progressivement
+           les pages visibles
+        */
+
+        setupPDFLazyRendering();
+
+
+        await renderVisiblePDFPages();
+
+
+        updatePDFPageIndicator();
+
 
     }
-
-
     catch(error){
 
         console.error(
@@ -2637,9 +3041,9 @@ async function openPDF(
         );
 
 
-        pdfArea.innerHTML = `
+        pdfPages.innerHTML = `
 
-            <div class="pdf-message">
+            <div class="pdf-error">
 
                 ❌ Impossible
                 d'afficher ce PDF.
@@ -2654,6 +3058,10 @@ async function openPDF(
 
         `;
 
+
+        loading.style.display =
+            "none";
+
     }
 
 }
@@ -2661,88 +3069,722 @@ async function openPDF(
 
 
 /* =========================================================
-   RENDRE PAGE PDF
+   CALCULER ZOOM ADAPTÉ À L'ÉCRAN
 ========================================================= */
 
-async function renderPDFPage(){
+async function calculateFitScale(){
 
-    if(!currentPDF)
+    if(
+        !currentPDF
+    ){
 
-        return;
+        return 1;
+
+    }
 
 
     const page =
         await currentPDF.getPage(
-            currentPage
+            1
         );
 
 
     const viewport =
         page.getViewport({
-            scale:pdfScale
+            scale:1
         });
 
 
-    const dpr =
-        window.devicePixelRatio ||
-        1;
+    const availableWidth =
+        pdfArea.clientWidth -
+        20;
 
 
-    pdfCanvas.width =
-        viewport.width *
-        dpr;
+    let scale =
+        availableWidth /
+        viewport.width;
 
 
-    pdfCanvas.height =
-        viewport.height *
-        dpr;
+    /*
+       Empêche un zoom initial
+       excessivement grand
+    */
 
-
-    pdfCanvas.style.width =
-        viewport.width +
-        "px";
-
-
-    pdfCanvas.style.height =
-        viewport.height +
-        "px";
-
-
-    const context =
-        pdfCanvas.getContext(
-            "2d"
+    scale =
+        Math.max(
+            0.5,
+            Math.min(
+                scale,
+                2.5
+            )
         );
 
 
-    const renderContext = {
+    return scale;
 
-        canvasContext:
-            context,
-
-        viewport:
-            viewport,
-
-        transform:[
-            dpr,
-            0,
-            0,
-            dpr,
-            0,
-            0
-        ]
-
-    };
+}
 
 
-    await page.render(
-        renderContext
-    ).promise;
+
+/* =========================================================
+   CRÉER LES CONTENEURS DE PAGES
+========================================================= */
+
+function createPDFPageContainers(){
+
+    pdfPages.innerHTML =
+        "";
 
 
-    pdfPage.textContent =
+    if(
+        !currentPDF
+    ){
 
-        `${currentPage}
+        return;
+
+    }
+
+
+    for(
+        let i = 1;
+        i <= currentPDF.numPages;
+        i++
+    ){
+
+        const container =
+            document.createElement(
+                "div"
+            );
+
+
+        container.className =
+            "pdf-page-container";
+
+
+        container.dataset.page =
+            i;
+
+
+        const placeholder =
+            document.createElement(
+                "div"
+            );
+
+
+        placeholder.className =
+            "pdf-placeholder";
+
+
+        placeholder.textContent =
+            "Chargement de la page " +
+            i +
+            "…";
+
+
+        container.appendChild(
+            placeholder
+        );
+
+
+        pdfPages.appendChild(
+            container
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDU PROGRESSIF
+========================================================= */
+
+let pdfObserver =
+    null;
+
+
+
+function setupPDFLazyRendering(){
+
+    if(
+        pdfObserver
+    ){
+
+        pdfObserver.disconnect();
+
+    }
+
+
+    pdfObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if(
+                            entry.isIntersecting
+                        ){
+
+                            const page =
+                                Number(
+                                    entry
+                                        .target
+                                        .dataset
+                                        .page
+                                );
+
+
+                            renderPDFPage(
+                                page
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                root:
+                    pdfArea,
+
+                rootMargin:
+                    "500px 0px 500px 0px",
+
+                threshold:
+                    0.01
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".pdf-page-container"
+        )
+        .forEach(
+            container => {
+
+                pdfObserver.observe(
+                    container
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   RENDRE UNE PAGE PDF
+========================================================= */
+
+async function renderPDFPage(
+    pageNumber
+){
+
+    if(
+        !currentPDF
+    ){
+
+        return;
+
+    }
+
+
+    const container =
+        document.querySelector(
+            `.pdf-page-container[data-page="${pageNumber}"]`
+        );
+
+
+    if(
+        !container
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Ne pas refaire le rendu
+       si la page est déjà rendue
+    */
+
+    if(
+        container.dataset.rendered ===
+        "true"
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        container.dataset.rendering ===
+        "true"
+    ){
+
+        return;
+
+    }
+
+
+    container.dataset.rendering =
+        "true";
+
+
+    try{
+
+        const page =
+            await currentPDF.getPage(
+                pageNumber
+            );
+
+
+        const viewport =
+            page.getViewport({
+                scale:
+                    currentPDFScale
+            });
+
+
+        const dpr =
+            Math.min(
+                window.devicePixelRatio ||
+                1,
+                2
+            );
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.className =
+            "pdf-page-canvas";
+
+
+        canvas.width =
+            Math.floor(
+                viewport.width *
+                dpr
+            );
+
+
+        canvas.height =
+            Math.floor(
+                viewport.height *
+                dpr
+            );
+
+
+        canvas.style.width =
+            viewport.width +
+            "px";
+
+
+        canvas.style.height =
+            viewport.height +
+            "px";
+
+
+        const context =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        const renderContext = {
+
+            canvasContext:
+                context,
+
+            viewport:
+                viewport,
+
+            transform:[
+                dpr,
+                0,
+                0,
+                dpr,
+                0,
+                0
+            ]
+
+        };
+
+
+        container.innerHTML =
+            "";
+
+
+        container.appendChild(
+            canvas
+        );
+
+
+        const pageNumberLabel =
+            document.createElement(
+                "div"
+            );
+
+
+        pageNumberLabel.className =
+            "pdf-page-number";
+
+
+        pageNumberLabel.textContent =
+            pageNumber;
+
+
+        container.appendChild(
+            pageNumberLabel
+        );
+
+
+        await page.render(
+            renderContext
+        ).promise;
+
+
+        container.dataset.rendered =
+            "true";
+
+
+        container.dataset.rendering =
+            "false";
+
+    }
+    catch(error){
+
+        console.error(
+            "Erreur page PDF",
+            pageNumber,
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="pdf-placeholder">
+
+                ❌ Page ${pageNumber}
+                impossible à charger
+
+            </div>
+
+        `;
+
+
+        container.dataset.rendering =
+            "false";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDRE LES PREMIÈRES PAGES
+========================================================= */
+
+async function renderVisiblePDFPages(){
+
+    if(
+        !currentPDF
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Rend d'abord les premières
+       pages afin que l'ouverture
+       soit immédiate.
+    */
+
+    const initialCount =
+        Math.min(
+            currentPDF.numPages,
+            3
+        );
+
+
+    for(
+        let i = 1;
+        i <= initialCount;
+        i++
+    ){
+
+        await renderPDFPage(
+            i
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PAGE PDF ACTUELLE
+========================================================= */
+
+function getCurrentVisiblePDFPage(){
+
+    if(
+        !currentPDF
+    ){
+
+        return 1;
+
+    }
+
+
+    const containers =
+        document.querySelectorAll(
+            ".pdf-page-container"
+        );
+
+
+    const viewerRect =
+        pdfArea.getBoundingClientRect();
+
+
+    let closestPage =
+        1;
+
+
+    let closestDistance =
+        Infinity;
+
+
+    containers.forEach(
+        container => {
+
+            const rect =
+                container.getBoundingClientRect();
+
+
+            const pageCenter =
+                rect.top +
+                rect.height /
+                2;
+
+
+            const viewerCenter =
+                viewerRect.top +
+                viewerRect.height /
+                2;
+
+
+            const distance =
+                Math.abs(
+                    pageCenter -
+                    viewerCenter
+                );
+
+
+            if(
+                distance <
+                closestDistance
+            ){
+
+                closestDistance =
+                    distance;
+
+
+                closestPage =
+                    Number(
+                        container
+                            .dataset
+                            .page
+                    );
+
+            }
+
+        }
+    );
+
+
+    return closestPage;
+
+}
+
+
+
+/* =========================================================
+   INDICATEUR PAGE
+========================================================= */
+
+function updatePDFPageIndicator(){
+
+    if(
+        !currentPDF
+    ){
+
+        pdfPageIndicator.textContent =
+            "1 / 1";
+
+        return;
+
+    }
+
+
+    currentPDFPage =
+        getCurrentVisiblePDFPage();
+
+
+    pdfPageIndicator.textContent =
+
+        `${currentPDFPage}
         / ${currentPDF.numPages}`;
+
+}
+
+
+
+/* =========================================================
+   SURVEILLANCE DU DÉFILEMENT PDF
+========================================================= */
+
+let pdfScrollTimer =
+    null;
+
+
+pdfArea.addEventListener(
+    "scroll",
+    function(){
+
+        clearTimeout(
+            pdfScrollTimer
+        );
+
+
+        /*
+           Mise à jour légère
+        */
+
+        updatePDFPageIndicator();
+
+
+        /*
+           Après arrêt du défilement,
+           on s'assure que les pages
+           proches sont rendues.
+        */
+
+        pdfScrollTimer =
+            setTimeout(
+                () => {
+
+                    renderNearbyPDFPages();
+
+                },
+                100
+            );
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+
+async function renderNearbyPDFPages(){
+
+    if(
+        !currentPDF
+    ){
+
+        return;
+
+    }
+
+
+    const page =
+        getCurrentVisiblePDFPage();
+
+
+    const start =
+        Math.max(
+            1,
+            page - 2
+        );
+
+
+    const end =
+        Math.min(
+            currentPDF.numPages,
+            page + 2
+        );
+
+
+    for(
+        let i = start;
+        i <= end;
+        i++
+    ){
+
+        await renderPDFPage(
+            i
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ALLER À UNE PAGE
+========================================================= */
+
+function scrollToPDFPage(
+    pageNumber
+){
+
+    const container =
+        document.querySelector(
+            `.pdf-page-container[data-page="${pageNumber}"]`
+        );
+
+
+    if(
+        !container
+    ){
+
+        return;
+
+    }
+
+
+    container.scrollIntoView({
+
+        behavior:
+            "smooth",
+
+        block:
+            "start"
+
+    });
+
+
+    /*
+       La page sera rendue
+       par IntersectionObserver.
+    */
 
 }
 
@@ -2752,21 +3794,31 @@ async function renderPDFPage(){
    PAGE PRÉCÉDENTE
 ========================================================= */
 
-window.previousPage =
-async function(){
+window.goPreviousPDFPage =
+function(){
 
     if(
-        !currentPDF ||
-        currentPage <= 1
-    )
+        !currentPDF
+    ){
 
         return;
 
+    }
 
-    currentPage--;
+
+    const page =
+        getCurrentVisiblePDFPage();
 
 
-    await renderPDFPage();
+    if(
+        page > 1
+    ){
+
+        scrollToPDFPage(
+            page - 1
+        );
+
+    }
 
 };
 
@@ -2776,22 +3828,32 @@ async function(){
    PAGE SUIVANTE
 ========================================================= */
 
-window.nextPage =
-async function(){
+window.goNextPDFPage =
+function(){
 
     if(
-        !currentPDF ||
-        currentPage >=
-        currentPDF.numPages
-    )
+        !currentPDF
+    ){
 
         return;
 
+    }
 
-    currentPage++;
+
+    const page =
+        getCurrentVisiblePDFPage();
 
 
-    await renderPDFPage();
+    if(
+        page <
+        currentPDF.numPages
+    ){
+
+        scrollToPDFPage(
+            page + 1
+        );
+
+    }
 
 };
 
@@ -2804,8 +3866,9 @@ async function(){
 window.zoomIn =
 async function(){
 
-
-    /* IMAGE */
+    /*
+       IMAGE
+    */
 
     if(
         imageViewer.style.display !==
@@ -2827,21 +3890,18 @@ async function(){
     }
 
 
-    /* PDF */
+    /*
+       PDF
+    */
 
     if(
         pdfArea.style.display !==
         "none"
     ){
 
-        pdfScale =
-            Math.min(
-                pdfScale * 1.25,
-                5
-            );
-
-
-        await renderPDFPage();
+        await changePDFScale(
+            1.25
+        );
 
     }
 
@@ -2849,11 +3909,16 @@ async function(){
 
 
 
+/* =========================================================
+   ZOOM OUT
+========================================================= */
+
 window.zoomOut =
 async function(){
 
-
-    /* IMAGE */
+    /*
+       IMAGE
+    */
 
     if(
         imageViewer.style.display !==
@@ -2875,25 +3940,113 @@ async function(){
     }
 
 
-    /* PDF */
+    /*
+       PDF
+    */
 
     if(
         pdfArea.style.display !==
         "none"
     ){
 
-        pdfScale =
-            Math.max(
-                pdfScale / 1.25,
-                0.5
-            );
-
-
-        await renderPDFPage();
+        await changePDFScale(
+            0.8
+        );
 
     }
 
 };
+
+
+
+/* =========================================================
+   CHANGER ÉCHELLE PDF
+========================================================= */
+
+async function changePDFScale(
+    multiplier
+){
+
+    if(
+        !currentPDF
+    ){
+
+        return;
+
+    }
+
+
+    const currentPage =
+        getCurrentVisiblePDFPage();
+
+
+    currentPDFScale =
+        Math.max(
+            0.5,
+            Math.min(
+                currentPDFScale *
+                multiplier,
+                5
+            )
+        );
+
+
+    /*
+       Les canvases existants
+       doivent être recréés.
+    */
+
+    document
+        .querySelectorAll(
+            ".pdf-page-container"
+        )
+        .forEach(
+            container => {
+
+                delete container.dataset.rendered;
+
+                delete container.dataset.rendering;
+
+                container.innerHTML = `
+
+                    <div
+                        class="pdf-placeholder">
+
+                        Chargement…
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+    /*
+       Recalcule le document
+       à la nouvelle taille.
+    */
+
+    await renderNearbyPDFPages();
+
+
+    /*
+       On retourne à la page
+       où se trouvait l'utilisateur.
+    */
+
+    setTimeout(
+        () => {
+
+            scrollToPDFPage(
+                currentPage
+            );
+
+        },
+        50
+    );
+
+}
 
 
 
@@ -2904,44 +4057,62 @@ async function(){
 window.fitPDF =
 async function(){
 
-    if(!currentPDF)
+    if(
+        !currentPDF
+    ){
 
         return;
 
+    }
 
-    const page =
-        await currentPDF.getPage(
-            currentPage
+
+    const currentPage =
+        getCurrentVisiblePDFPage();
+
+
+    currentPDFScale =
+        await calculateFitScale();
+
+
+    document
+        .querySelectorAll(
+            ".pdf-page-container"
+        )
+        .forEach(
+            container => {
+
+                delete container.dataset.rendered;
+
+                delete container.dataset.rendering;
+
+                container.innerHTML = `
+
+                    <div
+                        class="pdf-placeholder">
+
+                        Chargement…
+
+                    </div>
+
+                `;
+
+            }
         );
 
 
-    const base =
-        page.getViewport({
-            scale:1
-        });
+    await renderNearbyPDFPages();
 
 
-    const availableWidth =
-        pdfArea.clientWidth -
-        30;
+    setTimeout(
+        () => {
 
+            scrollToPDFPage(
+                currentPage
+            );
 
-    pdfScale =
-        availableWidth /
-        base.width;
-
-
-    pdfScale =
-        Math.max(
-            0.5,
-            Math.min(
-                pdfScale,
-                5
-            )
-        );
-
-
-    await renderPDFPage();
+        },
+        50
+    );
 
 };
 
@@ -2950,16 +4121,6 @@ async function(){
 /* =========================================================
    ZOOM IMAGE
 ========================================================= */
-
-let imageScale = 1;
-
-
-let imageX = 0;
-
-
-let imageY = 0;
-
-
 
 function resetImageZoom(){
 
@@ -3048,8 +4209,10 @@ imageViewer.addEventListener(
 
 
         else if(
+
             event.touches.length === 1 &&
             imageScale > 1
+
         ){
 
             imageDragStartX =
@@ -3085,8 +4248,6 @@ imageViewer.addEventListener(
 
         event.preventDefault();
 
-
-        /* PINCEMENT */
 
         if(
             event.touches.length === 2
@@ -3129,11 +4290,11 @@ imageViewer.addEventListener(
         }
 
 
-        /* DÉPLACEMENT */
-
         if(
+
             event.touches.length === 1 &&
             imageScale > 1
+
         ){
 
             const dx =
@@ -3183,7 +4344,7 @@ imageViewer.addEventListener(
 
 
 /* =========================================================
-   GESTES PDF
+   GESTES PDF : PINCEMENT À DEUX DOIGTS
 ========================================================= */
 
 let pdfTouchStartDistance =
@@ -3191,6 +4352,10 @@ let pdfTouchStartDistance =
 
 
 let pdfTouchStartScale =
+    1;
+
+
+let pdfTouchCurrentScale =
     1;
 
 
@@ -3211,7 +4376,11 @@ pdfArea.addEventListener(
 
 
             pdfTouchStartScale =
-                pdfScale;
+                currentPDFScale;
+
+
+            pdfTouchCurrentScale =
+                currentPDFScale;
 
         }
 
@@ -3229,9 +4398,11 @@ pdfArea.addEventListener(
 
         if(
             event.touches.length !== 2
-        )
+        ){
 
             return;
+
+        }
 
 
         event.preventDefault();
@@ -3253,7 +4424,7 @@ pdfArea.addEventListener(
                 pdfTouchStartDistance;
 
 
-            pdfScale =
+            pdfTouchCurrentScale =
                 Math.max(
                     0.5,
                     Math.min(
@@ -3281,11 +4452,74 @@ pdfArea.addEventListener(
             pdfTouchStartDistance
         ){
 
+            const newScale =
+                pdfTouchCurrentScale;
+
+
             pdfTouchStartDistance =
                 null;
 
 
-            await renderPDFPage();
+            if(
+                Math.abs(
+                    newScale -
+                    currentPDFScale
+                ) > 0.03
+            ){
+
+                const currentPage =
+                    getCurrentVisiblePDFPage();
+
+
+                currentPDFScale =
+                    newScale;
+
+
+                document
+                    .querySelectorAll(
+                        ".pdf-page-container"
+                    )
+                    .forEach(
+                        container => {
+
+                            delete container
+                                .dataset
+                                .rendered;
+
+                            delete container
+                                .dataset
+                                .rendering;
+
+                            container.innerHTML = `
+
+                                <div
+                                    class="pdf-placeholder">
+
+                                    Chargement…
+
+                                </div>
+
+                            `;
+
+                        }
+                    );
+
+
+                await renderNearbyPDFPages();
+
+
+                setTimeout(
+                    () => {
+
+                        scrollToPDFPage(
+                            currentPage
+                        );
+
+                    },
+                    50
+                );
+
+            }
 
         }
 
@@ -3359,7 +4593,7 @@ function(){
 
 
 /* =========================================================
-   ACTUALISATION
+   ACTUALISER
 ========================================================= */
 
 window.refreshLibrary =
@@ -3372,7 +4606,7 @@ function(){
 
 
 /* =========================================================
-   TOUCHE ESCAPE
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
@@ -3380,10 +4614,14 @@ document.addEventListener(
     function(event){
 
         if(
-            event.key === "Escape" &&
+
+            event.key ===
+            "Escape" &&
+
             viewer.classList.contains(
                 "active"
             )
+
         ){
 
             closeViewer();
