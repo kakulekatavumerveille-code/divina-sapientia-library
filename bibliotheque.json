@@ -1,9 +1,1140 @@
 {
   "bucket": "bibliotheque-divina-sapientia",
   "folders": [
+    "DOMAINE MUSICAL",
+    "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE",
+    "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios",
+    "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+    "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS",
+    "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
     "Test"
   ],
   "files": [
+    {
+      "name": "Agneau De Dieu Reconnu Par Les Bergers.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Agneau De Dieu Reconnu Par Les Bergers.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 3530107,
+      "last_modified": "2026-09-18T18:31:50.199000+00:00"
+    },
+    {
+      "name": "Agneau de Dieu Conduit nos pas.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Agneau de Dieu Conduit nos pas.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5865718,
+      "last_modified": "2026-09-18T18:31:57.344000+00:00"
+    },
+    {
+      "name": "Alléluia.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Alléluia.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 20308501,
+      "last_modified": "2026-09-18T18:32:56.867000+00:00"
+    },
+    {
+      "name": "Au Partage Du Festin.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Au Partage Du Festin.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7134240,
+      "last_modified": "2026-09-18T18:32:24.234000+00:00"
+    },
+    {
+      "name": "Au coeur de nos détresses.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Au coeur de nos détresses.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6448735,
+      "last_modified": "2026-09-18T18:32:24.378000+00:00"
+    },
+    {
+      "name": "Aujourd'hui c'est ton jour.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Aujourd'hui c'est ton jour.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 12951311,
+      "last_modified": "2026-09-18T18:32:58.599000+00:00"
+    },
+    {
+      "name": "Aujourd'hui levons-Nous.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Aujourd'hui levons-Nous.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5619700,
+      "last_modified": "2026-09-18T18:32:48.389000+00:00"
+    },
+    {
+      "name": "Avant d'aller dormir.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Avant d'aller dormir.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 14069907,
+      "last_modified": "2026-09-18T18:33:17.437000+00:00"
+    },
+    {
+      "name": "Bienheureux qui reçoit.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Bienheureux qui reçoit.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4036546,
+      "last_modified": "2026-09-18T18:32:58.812000+00:00"
+    },
+    {
+      "name": "Chants de la Tous saint.m4a",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Chants de la Tous saint.m4a",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "m4a",
+      "size": 20652376,
+      "last_modified": "2026-09-18T18:33:30.349000+00:00"
+    },
+    {
+      "name": "Comme on plante une croix.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Comme on plante une croix.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6477960,
+      "last_modified": "2026-09-18T18:33:16.953000+00:00"
+    },
+    {
+      "name": "Comment parler d'amour.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Comment parler d'amour.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 9392218,
+      "last_modified": "2026-09-18T18:33:19.978000+00:00"
+    },
+    {
+      "name": "Corps Du Seigneur Sang De L'Agneau.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Corps Du Seigneur Sang De L'Agneau.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4003825,
+      "last_modified": "2026-09-18T18:33:27.030000+00:00"
+    },
+    {
+      "name": "Crois tu qu'il reviendra.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Crois tu qu'il reviendra.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6225815,
+      "last_modified": "2026-09-18T18:33:30.070000+00:00"
+    },
+    {
+      "name": "De tout pays de toute Race.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/De tout pays de toute Race.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 3544510,
+      "last_modified": "2026-09-18T18:33:29.002000+00:00"
+    },
+    {
+      "name": "Dieu au delà de tout crée.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Dieu au delà de tout crée.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 3859400,
+      "last_modified": "2026-09-18T18:33:36.058000+00:00"
+    },
+    {
+      "name": "Dis-nous les signes de l'esprit.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Dis-nous les signes de l'esprit.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5922684,
+      "last_modified": "2026-09-18T18:33:43.702000+00:00"
+    },
+    {
+      "name": "Dites moi que je suis.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Dites moi que je suis.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8753292,
+      "last_modified": "2026-09-18T18:33:48.802000+00:00"
+    },
+    {
+      "name": "Dix de perdus.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Dix de perdus.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5850900,
+      "last_modified": "2026-09-18T18:33:45.331000+00:00"
+    },
+    {
+      "name": "Dès le matin.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Dès le matin.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 15057048,
+      "last_modified": "2026-09-18T18:33:48.709000+00:00"
+    },
+    {
+      "name": "Elle va se faner.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Elle va se faner.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 17341016,
+      "last_modified": "2026-09-18T18:34:03.440000+00:00"
+    },
+    {
+      "name": "En parabole.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/En parabole.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5464295,
+      "last_modified": "2026-09-18T18:33:55.099000+00:00"
+    },
+    {
+      "name": "En quel pays de solitude.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/En quel pays de solitude.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6096365,
+      "last_modified": "2026-09-18T18:34:01.313000+00:00"
+    },
+    {
+      "name": "En vous l'amour a pris Racine.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/En vous l'amour a pris Racine.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4322628,
+      "last_modified": "2026-09-18T18:34:01.489000+00:00"
+    },
+    {
+      "name": "Entents-tu seigneur.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Entents-tu seigneur.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 13414265,
+      "last_modified": "2026-09-18T18:34:16.786000+00:00"
+    },
+    {
+      "name": "Entre chien et loup.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Entre chien et loup.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 21954906,
+      "last_modified": "2026-09-18T18:34:35.527000+00:00"
+    },
+    {
+      "name": "Espere En Dieu.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Espere En Dieu.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6496782,
+      "last_modified": "2026-09-18T18:34:19.896000+00:00"
+    },
+    {
+      "name": "Et moi et toi.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Et moi et toi.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4216805,
+      "last_modified": "2026-09-18T18:34:16.114000+00:00"
+    },
+    {
+      "name": "Fais nous marcher à ta lumière.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Fais nous marcher à ta lumière.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4916076,
+      "last_modified": "2026-09-18T18:34:19.229000+00:00"
+    },
+    {
+      "name": "Garde moi sous ton regard.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Garde moi sous ton regard.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 20871894,
+      "last_modified": "2026-09-18T18:35:15.344000+00:00"
+    },
+    {
+      "name": "Gloire A Dieu.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Gloire A Dieu.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5939224,
+      "last_modified": "2026-09-18T18:34:38.973000+00:00"
+    },
+    {
+      "name": "Guetteurs D'Aurore.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Guetteurs D'Aurore.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5855632,
+      "last_modified": "2026-09-18T18:34:39.640000+00:00"
+    },
+    {
+      "name": "Heureux Les Misericordieux.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Heureux Les Misericordieux.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8278245,
+      "last_modified": "2026-09-18T18:35:05.044000+00:00"
+    },
+    {
+      "name": "Heureux les miséricordieux.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Heureux les miséricordieux.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8278245,
+      "last_modified": "2026-09-18T18:35:09.561000+00:00"
+    },
+    {
+      "name": "Il disait heureux Les pauvres.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Il disait heureux Les pauvres.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4385228,
+      "last_modified": "2026-09-18T18:35:01.644000+00:00"
+    },
+    {
+      "name": "Il nous manque.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Il nous manque.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 10380609,
+      "last_modified": "2026-09-18T18:35:15.254000+00:00"
+    },
+    {
+      "name": "Ils te disent merci.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Ils te disent merci.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 14712890,
+      "last_modified": "2026-09-18T18:35:42.913000+00:00"
+    },
+    {
+      "name": "J'irai au coin dans les rues.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/J'irai au coin dans les rues.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7317995,
+      "last_modified": "2026-09-18T18:35:26.011000+00:00"
+    },
+    {
+      "name": "Je Crois En Dieu Qui Donne Vie.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Je Crois En Dieu Qui Donne Vie.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5203720,
+      "last_modified": "2026-09-18T18:35:43.130000+00:00"
+    },
+    {
+      "name": "Je chanterai Sans Fin.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Je chanterai Sans Fin.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6993075,
+      "last_modified": "2026-09-18T18:35:33.732000+00:00"
+    },
+    {
+      "name": "Je suis rentrée.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Je suis rentrée.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 13911664,
+      "last_modified": "2026-09-18T18:36:01.129000+00:00"
+    },
+    {
+      "name": "Je suis solitaire.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Je suis solitaire.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6364400,
+      "last_modified": "2026-09-18T18:35:54.773000+00:00"
+    },
+    {
+      "name": "Je voudrais m'émerveiller.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Je voudrais m'émerveiller.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 8440095,
+      "last_modified": "2026-09-18T18:36:03.179000+00:00"
+    },
+    {
+      "name": "Jésus Christ Roi fidèle.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Jésus Christ Roi fidèle.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 2999264,
+      "last_modified": "2026-09-18T18:36:04.374000+00:00"
+    },
+    {
+      "name": "L'amour a fait le premier pas.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/L'amour a fait le premier pas.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7216100,
+      "last_modified": "2026-09-18T18:36:09.617000+00:00"
+    },
+    {
+      "name": "La perle rare.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/La perle rare.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6732660,
+      "last_modified": "2026-09-18T18:36:26.070000+00:00"
+    },
+    {
+      "name": "Le Chemin du Serviteur.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Le Chemin du Serviteur.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4924025,
+      "last_modified": "2026-09-18T18:36:28.897000+00:00"
+    },
+    {
+      "name": "Le bon Samaritain.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Le bon Samaritain.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 2404488,
+      "last_modified": "2026-09-18T18:36:18.057000+00:00"
+    },
+    {
+      "name": "Les soldats ont enchaîné tes mains.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Les soldats ont enchaîné tes mains.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7358050,
+      "last_modified": "2026-09-18T18:37:20.755000+00:00"
+    },
+    {
+      "name": "Litanie Au Dieu Fait Homme.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Litanie Au Dieu Fait Homme.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7315982,
+      "last_modified": "2026-09-18T18:45:58.279000+00:00"
+    },
+    {
+      "name": "Ma famille.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Ma famille.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 15990898,
+      "last_modified": "2026-09-18T18:46:40.880000+00:00"
+    },
+    {
+      "name": "Ma vie.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Ma vie.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7886630,
+      "last_modified": "2026-09-18T18:45:59.706000+00:00"
+    },
+    {
+      "name": "Mais qui est mon prochain.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Mais qui est mon prochain.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8264050,
+      "last_modified": "2026-09-18T18:46:01.438000+00:00"
+    },
+    {
+      "name": "Merveille Merveille Dieu S'Est Fait Homme.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Merveille Merveille Dieu S'Est Fait Homme.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5547178,
+      "last_modified": "2026-09-18T18:45:53.939000+00:00"
+    },
+    {
+      "name": "Mon Dieu je te dis merci.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Mon Dieu je te dis merci.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 20964301,
+      "last_modified": "2026-09-18T18:48:13.699000+00:00"
+    },
+    {
+      "name": "Mon corps est merveilleux.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Mon corps est merveilleux.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 18864582,
+      "last_modified": "2026-09-18T18:48:11.741000+00:00"
+    },
+    {
+      "name": "N'Oublie Pas La Memoire De Ton Peuple.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/N'Oublie Pas La Memoire De Ton Peuple.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8095893,
+      "last_modified": "2026-09-18T18:46:46.569000+00:00"
+    },
+    {
+      "name": "N'ayons pas peur de vivre.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/N'ayons pas peur de vivre.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6870410,
+      "last_modified": "2026-09-18T18:46:43.186000+00:00"
+    },
+    {
+      "name": "Ne craignez pas.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Ne craignez pas.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5019215,
+      "last_modified": "2026-09-18T18:47:42.727000+00:00"
+    },
+    {
+      "name": "On a bien mangé.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/On a bien mangé.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 4832703,
+      "last_modified": "2026-09-18T18:47:43.571000+00:00"
+    },
+    {
+      "name": "On attendait ce jour là.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/On attendait ce jour là.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8563790,
+      "last_modified": "2026-09-18T18:48:06.122000+00:00"
+    },
+    {
+      "name": "On part en vacances.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/On part en vacances.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 15525873,
+      "last_modified": "2026-09-18T18:48:54.028000+00:00"
+    },
+    {
+      "name": "On s'en va.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/On s'en va.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 23194894,
+      "last_modified": "2026-09-18T18:49:18.792000+00:00"
+    },
+    {
+      "name": "On s'est disputé.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/On s'est disputé.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 5340214,
+      "last_modified": "2026-09-18T18:48:32.254000+00:00"
+    },
+    {
+      "name": "Ouvre mes yeux.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Ouvre mes yeux.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4068150,
+      "last_modified": "2026-09-18T18:48:39.337000+00:00"
+    },
+    {
+      "name": "Pain D'Humanite.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pain D'Humanite.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5258830,
+      "last_modified": "2026-09-18T18:48:45.492000+00:00"
+    },
+    {
+      "name": "Pain De Dieu Pain De Vie.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pain De Dieu Pain De Vie.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6277530,
+      "last_modified": "2026-09-18T18:48:57.147000+00:00"
+    },
+    {
+      "name": "Par ta Croix plantée.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Par ta Croix plantée.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5278900,
+      "last_modified": "2026-09-18T18:48:57.782000+00:00"
+    },
+    {
+      "name": "Partage nous le pain de ton repas.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Partage nous le pain de ton repas.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4030286,
+      "last_modified": "2026-09-18T18:48:59.369000+00:00"
+    },
+    {
+      "name": "Peuple Beni De Dieu.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Peuple Beni De Dieu.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5468602,
+      "last_modified": "2026-09-18T18:49:12.438000+00:00"
+    },
+    {
+      "name": "Pitié seigneur.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pitié seigneur.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 7012360,
+      "last_modified": "2026-09-18T18:49:20.169000+00:00"
+    },
+    {
+      "name": "Pour inventer d'autres espaces.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pour inventer d'autres espaces.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4704420,
+      "last_modified": "2026-09-18T18:49:14.005000+00:00"
+    },
+    {
+      "name": "Pour les trésors que tu nous donnes.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pour les trésors que tu nous donnes.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 17737736,
+      "last_modified": "2026-09-18T18:49:57.277000+00:00"
+    },
+    {
+      "name": "Pourquoi l'homme.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pourquoi l'homme.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5078210,
+      "last_modified": "2026-09-18T18:49:29.260000+00:00"
+    },
+    {
+      "name": "Pourtant je t'aime.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Pourtant je t'aime.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 14715515,
+      "last_modified": "2026-09-18T18:50:02.363000+00:00"
+    },
+    {
+      "name": "Prière litanique.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Prière litanique.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 15103671,
+      "last_modified": "2026-09-18T18:50:06.971000+00:00"
+    },
+    {
+      "name": "Proclamez Les Merveilles De Dieu.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Proclamez Les Merveilles De Dieu.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6745049,
+      "last_modified": "2026-09-18T18:49:42.727000+00:00"
+    },
+    {
+      "name": "Qu'il est grand ton Nom.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Qu'il est grand ton Nom.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 12429978,
+      "last_modified": "2026-09-18T18:50:09.558000+00:00"
+    },
+    {
+      "name": "Quand je vais à ta rencontre.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Quand je vais à ta rencontre.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 10145249,
+      "last_modified": "2026-09-18T18:50:16.310000+00:00"
+    },
+    {
+      "name": "Quand se lèvera-t-il.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Quand se lèvera-t-il.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5307326,
+      "last_modified": "2026-09-18T18:50:15.793000+00:00"
+    },
+    {
+      "name": "Quand vient le jour.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Quand vient le jour.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 5927695,
+      "last_modified": "2026-09-18T18:50:34.222000+00:00"
+    },
+    {
+      "name": "Que puis-je annoncer à mes frères.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Que puis-je annoncer à mes frères.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6320194,
+      "last_modified": "2026-09-18T18:51:34.664000+00:00"
+    },
+    {
+      "name": "Rien Presque.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Rien Presque.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 9275235,
+      "last_modified": "2026-09-18T18:51:42.497000+00:00"
+    },
+    {
+      "name": "Rien ne changera.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Rien ne changera.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6321815,
+      "last_modified": "2026-09-18T18:51:41.198000+00:00"
+    },
+    {
+      "name": "Réveilles-toi.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Réveilles-toi.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4735788,
+      "last_modified": "2026-09-18T18:51:38.122000+00:00"
+    },
+    {
+      "name": "Saint Saint Saint Le Seigneur.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/Saint Saint Saint Le Seigneur.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 2203505,
+      "last_modified": "2026-09-18T18:51:36.157000+00:00"
+    },
+    {
+      "name": "c'est avec toi que je grandis.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/c'est avec toi que je grandis.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 19330368,
+      "last_modified": "2026-09-18T18:33:24.110000+00:00"
+    },
+    {
+      "name": "heureux Les hommes au coeur de chaire.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/heureux Les hommes au coeur de chaire.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4778982,
+      "last_modified": "2026-09-18T18:34:39.284000+00:00"
+    },
+    {
+      "name": "je remplis mon cœur de ta musique.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/je remplis mon cœur de ta musique.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 13152644,
+      "last_modified": "2026-09-18T18:35:55.581000+00:00"
+    },
+    {
+      "name": "je voulais t'aimer.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/je voulais t'aimer.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 6752700,
+      "last_modified": "2026-09-18T18:36:00.014000+00:00"
+    },
+    {
+      "name": "À chaque instant de ma vie.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/À chaque instant de ma vie.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 16433551,
+      "last_modified": "2026-09-18T18:32:46.541000+00:00"
+    },
+    {
+      "name": "À quoi sert la lumière.mp3",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/À quoi sert la lumière.mp3",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 4796510,
+      "last_modified": "2026-09-18T18:31:55.267000+00:00"
+    },
+    {
+      "name": "À tous les animaux.flac",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas/À tous les animaux.flac",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/Audios/Mannick et Jo Ackepsimas",
+      "type": "audio",
+      "extension": "flac",
+      "size": 18084163,
+      "last_modified": "2026-09-18T18:32:49.491000+00:00"
+    },
+    {
+      "name": "01_Recueil_Partitions_Chants_d'Entrée_Lingala_&_en_langues_2020.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/01_Recueil_Partitions_Chants_d'Entrée_Lingala_&_en_langues_2020.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 8301483,
+      "last_modified": "2026-09-18T17:51:12.075000+00:00"
+    },
+    {
+      "name": "34. Recuei Partitions Chants de Mariage.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/34. Recuei Partitions Chants de Mariage.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7570948,
+      "last_modified": "2026-09-18T17:51:12.596000+00:00"
+    },
+    {
+      "name": "Bach johann sebastian magnificat.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Bach johann sebastian magnificat.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 6450693,
+      "last_modified": "2026-09-18T17:52:05.951000+00:00"
+    },
+    {
+      "name": "CHANTS NOTÉS Tome 1.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/CHANTS NOTÉS Tome 1.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7541570,
+      "last_modified": "2026-09-18T17:51:36.107000+00:00"
+    },
+    {
+      "name": "CHANTS NOTÉS Tome 3 Sélection pour assemblées Chrétiennes.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/CHANTS NOTÉS Tome 3 Sélection pour assemblées Chrétiennes.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 5174190,
+      "last_modified": "2026-09-18T17:52:25.218000+00:00"
+    },
+    {
+      "name": "CHANTS NOTÉS Tome 5 Sélection pour assemblées Chrétiennes_1_2.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/CHANTS NOTÉS Tome 5 Sélection pour assemblées Chrétiennes_1_2.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 5528242,
+      "last_modified": "2026-09-18T17:52:25.571000+00:00"
+    },
+    {
+      "name": "CHANTS_NOTÉS_Tome 2 Sélection pour assemblées Chrétiennes.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/CHANTS_NOTÉS_Tome 2 Sélection pour assemblées Chrétiennes.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 5288991,
+      "last_modified": "2026-09-18T17:52:24.811000+00:00"
+    },
+    {
+      "name": "Cantiques catholiques.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Cantiques catholiques.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 35178707,
+      "last_modified": "2026-09-18T17:49:53.981000+00:00"
+    },
+    {
+      "name": "Chants notés tome 6.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Chants notés tome 6.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 34078650,
+      "last_modified": "2026-09-18T17:49:51.111000+00:00"
+    },
+    {
+      "name": "Communauté de l'Emmanuel.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Communauté de l'Emmanuel.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 35342721,
+      "last_modified": "2026-09-18T17:49:52.318000+00:00"
+    },
+    {
+      "name": "Judas maccabeus Georges Frédéric Haende.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Judas maccabeus Georges Frédéric Haende.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 30477143,
+      "last_modified": "2026-09-18T17:49:33.339000+00:00"
+    },
+    {
+      "name": "Le temps du Royaume Année A .pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Le temps du Royaume Année A .pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 2410713,
+      "last_modified": "2026-09-18T17:52:21.801000+00:00"
+    },
+    {
+      "name": "Le temps du Royaume Année C.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Le temps du Royaume Année C.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 3943957,
+      "last_modified": "2026-09-18T17:52:23.029000+00:00"
+    },
+    {
+      "name": "N.D.A PROGRAMME 22e D.T.O.B.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/N.D.A PROGRAMME 22e D.T.O.B.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 8862866,
+      "last_modified": "2026-09-18T17:51:09.345000+00:00"
+    },
+    {
+      "name": "NDA PROGRAMME 21e D-T-O B.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/NDA PROGRAMME 21e D-T-O B.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7809322,
+      "last_modified": "2026-09-18T17:51:13.444000+00:00"
+    },
+    {
+      "name": "NYENZE 1.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/NYENZE 1.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 10547130,
+      "last_modified": "2026-09-18T17:50:38.243000+00:00"
+    },
+    {
+      "name": "NYINYI_NYOTE_MMEGEUKA_MUMOJA_KATIKA_KRISTU_YESU-2.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/NYINYI_NYOTE_MMEGEUKA_MUMOJA_KATIKA_KRISTU_YESU-2.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 5587868,
+      "last_modified": "2026-09-18T17:52:11.202000+00:00"
+    },
+    {
+      "name": "PROGRAMME COLONIE DE VACANCE UCPC.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME COLONIE DE VACANCE UCPC.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 16140748,
+      "last_modified": "2026-09-18T17:48:07.630000+00:00"
+    },
+    {
+      "name": "PROGRAMME DE LA MESSE DE PRISE D'AUBE DES PETITS CHANTEURS STELLA.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME DE LA MESSE DE PRISE D'AUBE DES PETITS CHANTEURS STELLA.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 15649686,
+      "last_modified": "2026-09-18T17:49:44.180000+00:00"
+    },
+    {
+      "name": "PROGRAMME DE PRISE D'AUBE CHOEUR DIVIN MESSIE.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME DE PRISE D'AUBE CHOEUR DIVIN MESSIE.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7088652,
+      "last_modified": "2026-09-18T17:51:41.951000+00:00"
+    },
+    {
+      "name": "PROGRAMME KYAVINYONGE.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME KYAVINYONGE.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 11039157,
+      "last_modified": "2026-09-18T17:50:37.857000+00:00"
+    },
+    {
+      "name": "PROGRAMME MESSE FRANÇAIS COLONIE UCPC2-1.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME MESSE FRANÇAIS COLONIE UCPC2-1.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 5671030,
+      "last_modified": "2026-09-18T17:52:06.690000+00:00"
+    },
+    {
+      "name": "PROGRAMME PRISE D'AUBE CARACCIOLO.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/PROGRAMME PRISE D'AUBE CARACCIOLO.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 11960312,
+      "last_modified": "2026-09-18T17:50:36.692000+00:00"
+    },
+    {
+      "name": "Programme mariage Heldo.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Programme mariage Heldo.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 6040843,
+      "last_modified": "2026-09-18T17:52:06.665000+00:00"
+    },
+    {
+      "name": "Programme prise d'Aube chœur de la pentecôte.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Programme prise d'Aube chœur de la pentecôte.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 11800017,
+      "last_modified": "2026-09-18T17:50:38.744000+00:00"
+    },
+    {
+      "name": "Recueil Partitions Chants Initiatiques 2020.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Recueil Partitions Chants Initiatiques 2020.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7504247,
+      "last_modified": "2026-09-18T17:51:41.765000+00:00"
+    },
+    {
+      "name": "Recueil Partitions Chants d'Entrée Lingala & en langues 2020.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Recueil Partitions Chants d'Entrée Lingala & en langues 2020.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 8301483,
+      "last_modified": "2026-09-18T17:51:13.899000+00:00"
+    },
+    {
+      "name": "Recueil Partitions Chants de Vendredi Saint Fin-1.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Recueil Partitions Chants de Vendredi Saint Fin-1.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 14562836,
+      "last_modified": "2026-09-18T17:50:37.072000+00:00"
+    },
+    {
+      "name": "Requiem Mozart-1.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/Requiem Mozart-1.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 6125437,
+      "last_modified": "2026-09-18T17:52:07.242000+00:00"
+    },
+    {
+      "name": "YA KANZA PDF.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/YA KANZA PDF.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 6704266,
+      "last_modified": "2026-09-18T17:51:55.282000+00:00"
+    },
+    {
+      "name": "fichier mariage.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/fichier mariage.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 7012599,
+      "last_modified": "2026-09-18T17:51:41.827000+00:00"
+    },
+    {
+      "name": "livret de partitions JMJ -St Malo 2013.pdf",
+      "key": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux/livret de partitions JMJ -St Malo 2013.pdf",
+      "folder": "DOMAINE MUSICAL/MUSIQUE CHRÉTIENNE/PARTITIONS/Gros livres musicaux",
+      "type": "pdf",
+      "extension": "pdf",
+      "size": 6823251,
+      "last_modified": "2026-09-18T17:51:40.687000+00:00"
+    },
     {
       "name": "15_06_2026_24h.pdf",
       "key": "Test/15_06_2026_24h.pdf",
