@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -9,11 +12,16 @@
 
 <style>
 
+/* =========================================================
+   BASE
+========================================================= */
+
 *{
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     margin:0;
     padding:0;
     font-family:Arial,Helvetica,sans-serif;
@@ -21,9 +29,15 @@ html,body{
     color:#172033;
 }
 
-/* =========================
-   EN-TÊTE
-========================= */
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header{
     background:#172b4d;
@@ -43,7 +57,7 @@ header{
 .title{
     font-size:24px;
     font-weight:bold;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .subtitle{
@@ -51,9 +65,10 @@ header{
     opacity:.85;
 }
 
-/* =========================
-   BARRE DE RECHERCHE
-========================= */
+
+/* =========================================================
+   RECHERCHE
+========================================================= */
 
 .search-area{
     max-width:1200px;
@@ -85,9 +100,10 @@ header{
     background:white;
 }
 
-/* =========================
+
+/* =========================================================
    OUTILS
-========================= */
+========================================================= */
 
 .tools{
     max-width:1200px;
@@ -106,23 +122,36 @@ header{
     padding:9px 12px;
     font-size:14px;
     cursor:pointer;
+    white-space:nowrap;
 }
 
 .tool:hover{
     background:#eef3fa;
 }
 
+.tool.active{
+    background:#172b4d;
+    color:white;
+    border-color:#172b4d;
+}
+
+
+/* =========================================================
+   INFORMATIONS
+========================================================= */
+
 #resultInfo{
     max-width:1200px;
     margin:auto;
-    padding:0 12px 10px;
+    padding:0 12px 8px;
     font-size:13px;
     color:#657084;
 }
 
-/* =========================
+
+/* =========================================================
    BREADCRUMB
-========================= */
+========================================================= */
 
 .breadcrumb{
     max-width:1200px;
@@ -150,14 +179,15 @@ header{
     color:#8791a2;
 }
 
-/* =========================
+
+/* =========================================================
    CONTENU
-========================= */
+========================================================= */
 
 .container{
     max-width:1200px;
     margin:auto;
-    padding:0 12px 30px;
+    padding:0 12px 40px;
 }
 
 .section-title{
@@ -166,9 +196,10 @@ header{
     margin:8px 0 12px;
 }
 
-/* =========================
-   GRILLE
-========================= */
+
+/* =========================================================
+   MODE GRILLE
+========================================================= */
 
 .grid{
     display:grid;
@@ -176,9 +207,10 @@ header{
     gap:12px;
 }
 
-/* =========================
-   CARTES
-========================= */
+
+/* =========================================================
+   CARTE GRILLE
+========================================================= */
 
 .card{
     background:white;
@@ -199,6 +231,7 @@ header{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     text-align:center;
 
     overflow:hidden;
@@ -227,17 +260,112 @@ header{
     color:#7c8797;
 }
 
-/* =========================
+
+/* =========================================================
    DOSSIER
-========================= */
+========================================================= */
 
 .folder .icon{
     font-size:44px;
 }
 
-/* =========================
+
+/* =========================================================
+   MODE LISTE
+========================================================= */
+
+.grid.list-view{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+
+/* =========================================================
+   CARTE EN MODE LISTE
+========================================================= */
+
+.grid.list-view .card{
+
+    width:100%;
+    min-height:64px;
+
+    padding:9px 12px;
+
+    border-radius:10px;
+
+    display:grid;
+
+    grid-template-columns:48px minmax(0,1fr) auto;
+
+    align-items:center;
+
+    text-align:left;
+
+    gap:10px;
+
+    transform:none;
+}
+
+
+.grid.list-view .card:hover{
+    transform:none;
+}
+
+
+.grid.list-view .icon{
+
+    font-size:30px;
+
+    margin:0;
+
+    text-align:center;
+
+}
+
+
+.grid.list-view .card-name{
+
+    font-size:14px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+
+.grid.list-view .card-info{
+
+    margin:0;
+
+    font-size:12px;
+
+    color:#7c8797;
+
+    text-align:right;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   RECHERCHE EN LISTE
+========================================================= */
+
+.grid.list-view .folder .card-info{
+
+    display:block;
+
+}
+
+
+/* =========================================================
    EMPTY
-========================= */
+========================================================= */
 
 .empty{
     text-align:center;
@@ -245,12 +373,15 @@ header{
     color:#7c8797;
 }
 
-/* =========================
-   VIEWER
-========================= */
+
+/* =========================================================
+   VIEWER PLEIN ÉCRAN
+========================================================= */
 
 #viewer{
+
     position:fixed;
+
     inset:0;
 
     background:#11151c;
@@ -260,44 +391,64 @@ header{
     display:none;
 
     flex-direction:column;
+
 }
 
 #viewer.active{
     display:flex;
 }
 
+
+/* =========================================================
+   HEADER VIEWER
+========================================================= */
+
 .viewer-header{
+
     height:58px;
+
     flex-shrink:0;
 
     background:#171c25;
+
     color:white;
 
     display:flex;
+
     align-items:center;
 
     padding:0 10px;
 
-    gap:10px;
+    gap:8px;
+
 }
 
 .viewer-title{
+
     flex:1;
+
     min-width:0;
 
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
 
     font-size:14px;
+
 }
 
 .viewer-btn{
+
     border:0;
+
     background:#2a313d;
+
     color:white;
 
     min-width:40px;
+
     height:40px;
 
     border-radius:8px;
@@ -305,36 +456,49 @@ header{
     font-size:20px;
 
     cursor:pointer;
+
 }
 
 .viewer-btn:hover{
     background:#394251;
 }
 
-/* =========================
-   ZONE DU LECTEUR
-========================= */
+
+/* =========================================================
+   CORPS VIEWER
+========================================================= */
 
 .viewer-body{
+
     flex:1;
+
     position:relative;
 
     overflow:hidden;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
 
-/* IMAGE */
+
+/* =========================================================
+   IMAGE
+========================================================= */
 
 #imageViewer{
+
     max-width:100%;
+
     max-height:100%;
 
     object-fit:contain;
 
     user-select:none;
+
     -webkit-user-drag:none;
 
     transform-origin:center center;
@@ -342,36 +506,52 @@ header{
     touch-action:none;
 
     cursor:grab;
+
 }
 
 #imageViewer.dragging{
     cursor:grabbing;
 }
 
-/* AUDIO */
+
+/* =========================================================
+   AUDIO
+========================================================= */
 
 #audioViewer{
+
     width:min(700px,90%);
+
 }
 
-/* VIDEO */
+
+/* =========================================================
+   VIDEO
+========================================================= */
 
 #videoViewer{
+
     max-width:100%;
+
     max-height:100%;
 
     width:auto;
+
     height:auto;
 
     outline:none;
+
 }
 
-/* =========================
+
+/* =========================================================
    PDF
-========================= */
+========================================================= */
 
 #pdfArea{
+
     position:absolute;
+
     inset:0;
 
     overflow:auto;
@@ -381,9 +561,11 @@ header{
     touch-action:none;
 
     background:#525252;
+
 }
 
 #pdfCanvas{
+
     display:block;
 
     margin:20px auto;
@@ -393,27 +575,36 @@ header{
     box-shadow:0 3px 15px rgba(0,0,0,.4);
 
     transform-origin:top center;
+
 }
 
 .pdf-message{
+
     color:white;
+
     text-align:center;
+
     padding:40px;
+
 }
 
-/* =========================
+
+/* =========================================================
    CONTRÔLES PDF
-========================= */
+========================================================= */
 
 .pdf-controls{
+
     position:absolute;
 
     left:50%;
+
     bottom:15px;
 
     transform:translateX(-50%);
 
     display:flex;
+
     align-items:center;
 
     gap:6px;
@@ -425,42 +616,58 @@ header{
     border-radius:12px;
 
     z-index:10;
+
 }
 
 .pdf-controls button{
+
     width:38px;
+
     height:38px;
 
     border:0;
+
     border-radius:7px;
 
     background:#343c49;
+
     color:white;
 
     font-size:18px;
 
     cursor:pointer;
+
 }
 
 .pdf-page{
+
     color:white;
+
     font-size:13px;
+
     padding:0 6px;
+
     white-space:nowrap;
+
 }
 
-/* =========================
-   LOADING
-========================= */
+
+/* =========================================================
+   CHARGEMENT
+========================================================= */
 
 .loading{
+
     color:white;
+
     font-size:15px;
+
 }
 
-/* =========================
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
@@ -504,12 +711,54 @@ header{
         bottom:8px;
     }
 
+    .grid.list-view .card{
+        grid-template-columns:42px minmax(0,1fr) auto;
+        min-height:60px;
+        padding:8px;
+    }
+
+    .grid.list-view .icon{
+        font-size:27px;
+    }
+
+    .grid.list-view .card-name{
+        font-size:13px;
+    }
+
+    .grid.list-view .card-info{
+        font-size:11px;
+    }
+
+}
+
+
+/* =========================================================
+   TRÈS PETITS ÉCRANS
+========================================================= */
+
+@media(max-width:380px){
+
+    .grid.list-view .card-info{
+        display:none;
+    }
+
+    .grid.list-view .card{
+        grid-template-columns:40px minmax(0,1fr);
+    }
+
 }
 
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header>
 
@@ -528,11 +777,17 @@ header{
 </header>
 
 
+<!-- =======================================================
+     RECHERCHE
+======================================================= -->
+
 <div class="search-area">
 
     <div class="search-box">
 
-        <div class="search-icon">🔎</div>
+        <div class="search-icon">
+            🔎
+        </div>
 
         <input
             id="search"
@@ -546,109 +801,214 @@ header{
 </div>
 
 
+<!-- =======================================================
+     OUTILS
+======================================================= -->
+
 <div class="tools">
 
-    <button class="tool" onclick="setSort('nameAsc')">
+    <!-- TRI -->
+
+    <button
+        class="tool"
+        onclick="setSort('nameAsc')">
+
         🔤 A → Z
+
     </button>
 
-    <button class="tool" onclick="setSort('nameDesc')">
+
+    <button
+        class="tool"
+        onclick="setSort('nameDesc')">
+
         🔤 Z → A
+
     </button>
 
-    <button class="tool" onclick="setSort('sizeAsc')">
+
+    <button
+        class="tool"
+        onclick="setSort('sizeAsc')">
+
         📦 Petite → Grande
+
     </button>
 
-    <button class="tool" onclick="setSort('sizeDesc')">
+
+    <button
+        class="tool"
+        onclick="setSort('sizeDesc')">
+
         📦 Grande → Petite
+
     </button>
 
-    <button class="tool" onclick="refreshLibrary()">
+
+    <!-- AFFICHAGE -->
+
+    <button
+        id="gridButton"
+        class="tool active"
+        onclick="setView('grid')">
+
+        ▦ Carrés
+
+    </button>
+
+
+    <button
+        id="listButton"
+        class="tool"
+        onclick="setView('list')">
+
+        ☰ Liste
+
+    </button>
+
+
+    <!-- ACTUALISATION -->
+
+    <button
+        class="tool"
+        onclick="refreshLibrary()">
+
         🔄 Actualiser
+
     </button>
 
 </div>
 
 
+<!-- =======================================================
+     INFORMATIONS
+======================================================= -->
+
 <div id="resultInfo"></div>
 
 
-<div id="breadcrumb" class="breadcrumb"></div>
+<!-- =======================================================
+     BREADCRUMB
+======================================================= -->
 
+<div
+    id="breadcrumb"
+    class="breadcrumb">
+</div>
+
+
+<!-- =======================================================
+     CONTENU
+======================================================= -->
 
 <main class="container">
 
-    <div class="section-title" id="sectionTitle">
+    <div
+        class="section-title"
+        id="sectionTitle">
+
         Bibliothèque
+
     </div>
 
-    <div id="grid" class="grid"></div>
+
+    <div
+        id="grid"
+        class="grid">
+
+    </div>
 
 </main>
 
 
-<!-- =========================
+<!-- =======================================================
      VIEWER
-========================= -->
+======================================================= -->
 
-<div id="viewer">
+<div
+    id="viewer">
+
+
+    <!-- HEADER VIEWER -->
 
     <div class="viewer-header">
+
 
         <button
             class="viewer-btn"
             onclick="closeViewer()"
-            title="Fermer"
-        >
+            title="Fermer">
+
             ✕
+
         </button>
 
-        <div id="viewerTitle" class="viewer-title"></div>
+
+        <div
+            id="viewerTitle"
+            class="viewer-title">
+        </div>
+
 
         <button
             id="viewerZoomOut"
             class="viewer-btn"
             onclick="zoomOut()"
-            title="Zoom arrière"
-        >
+            title="Zoom arrière">
+
             −
+
         </button>
+
 
         <button
             id="viewerZoomIn"
             class="viewer-btn"
             onclick="zoomIn()"
-            title="Zoom"
-        >
+            title="Zoom">
+
             +
+
         </button>
+
 
     </div>
 
 
+    <!-- CORPS -->
+
     <div class="viewer-body">
 
-        <div id="loading" class="loading">
+
+        <div
+            id="loading"
+            class="loading">
+
             Chargement...
+
         </div>
 
+
+        <!-- IMAGE -->
 
         <img
             id="imageViewer"
             style="display:none"
             draggable="false"
-            alt=""
-        >
+            alt="">
 
+
+        <!-- AUDIO -->
 
         <audio
             id="audioViewer"
             controls
             controlsList="nodownload"
-            style="display:none"
-        ></audio>
+            style="display:none">
+        </audio>
 
+
+        <!-- VIDEO -->
 
         <video
             id="videoViewer"
@@ -656,137 +1016,310 @@ header{
             controlsList="nodownload noplaybackrate"
             disablePictureInPicture
             playsinline
-            style="display:none"
-        ></video>
+            style="display:none">
+        </video>
 
 
-        <div id="pdfArea">
+        <!-- PDF -->
 
-            <canvas id="pdfCanvas"></canvas>
+        <div
+            id="pdfArea">
+
+
+            <canvas
+                id="pdfCanvas">
+            </canvas>
+
 
             <div class="pdf-controls">
 
-                <button onclick="previousPage()">
+
+                <button
+                    onclick="previousPage()">
+
                     ‹
+
                 </button>
 
-                <div id="pdfPage" class="pdf-page">
+
+                <div
+                    id="pdfPage"
+                    class="pdf-page">
+
                     1 / 1
+
                 </div>
 
-                <button onclick="nextPage()">
+
+                <button
+                    onclick="nextPage()">
+
                     ›
+
                 </button>
 
-                <button onclick="zoomOut()">
+
+                <button
+                    onclick="zoomOut()">
+
                     −
+
                 </button>
 
-                <button onclick="zoomIn()">
+
+                <button
+                    onclick="zoomIn()">
+
                     +
+
                 </button>
 
-                <button onclick="fitPDF()">
+
+                <button
+                    onclick="fitPDF()">
+
                     ↔
+
                 </button>
+
 
             </div>
 
+
         </div>
 
+
     </div>
+
 
 </div>
 
 
+
 <script type="module">
+
+
+/* =========================================================
+   PDF.JS
+========================================================= */
 
 import * as pdfjsLib from
 "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
 "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
 
-/* =========================
+
+/* =========================================================
    CONFIGURATION
-========================= */
+========================================================= */
 
 const JSON_URL =
     "bibliotheque.json";
+
 
 const R2_BASE =
     "https://pub-03b759d4e4db40a1a34ad5132b30b4ed.r2.dev/";
 
 
-/* =========================
+
+/* =========================================================
    VARIABLES
-========================= */
+========================================================= */
 
 let library = {
+
     folders: [],
+
     files: []
+
 };
+
 
 let currentFolder = "";
 
-let sortMode = "nameAsc";
+
+let sortMode =
+    localStorage.getItem(
+        "divinaSort"
+    ) || "nameAsc";
+
+
+let viewMode =
+    localStorage.getItem(
+        "divinaView"
+    ) || "grid";
+
 
 let currentPDF = null;
+
+
 let currentPage = 1;
+
+
 let pdfScale = 1;
 
 
-/* =========================
+
+/* =========================================================
    ÉLÉMENTS
-========================= */
+========================================================= */
 
 const grid =
-    document.getElementById("grid");
+    document.getElementById(
+        "grid"
+    );
+
 
 const search =
-    document.getElementById("search");
+    document.getElementById(
+        "search"
+    );
+
 
 const breadcrumb =
-    document.getElementById("breadcrumb");
+    document.getElementById(
+        "breadcrumb"
+    );
+
 
 const sectionTitle =
-    document.getElementById("sectionTitle");
+    document.getElementById(
+        "sectionTitle"
+    );
+
 
 const resultInfo =
-    document.getElementById("resultInfo");
+    document.getElementById(
+        "resultInfo"
+    );
+
 
 const viewer =
-    document.getElementById("viewer");
+    document.getElementById(
+        "viewer"
+    );
+
 
 const viewerTitle =
-    document.getElementById("viewerTitle");
+    document.getElementById(
+        "viewerTitle"
+    );
+
 
 const loading =
-    document.getElementById("loading");
+    document.getElementById(
+        "loading"
+    );
+
 
 const imageViewer =
-    document.getElementById("imageViewer");
+    document.getElementById(
+        "imageViewer"
+    );
+
 
 const audioViewer =
-    document.getElementById("audioViewer");
+    document.getElementById(
+        "audioViewer"
+    );
+
 
 const videoViewer =
-    document.getElementById("videoViewer");
+    document.getElementById(
+        "videoViewer"
+    );
+
 
 const pdfArea =
-    document.getElementById("pdfArea");
+    document.getElementById(
+        "pdfArea"
+    );
+
 
 const pdfCanvas =
-    document.getElementById("pdfCanvas");
+    document.getElementById(
+        "pdfCanvas"
+    );
+
 
 const pdfPage =
-    document.getElementById("pdfPage");
+    document.getElementById(
+        "pdfPage"
+    );
 
 
-/* =========================
+const gridButton =
+    document.getElementById(
+        "gridButton"
+    );
+
+
+const listButton =
+    document.getElementById(
+        "listButton"
+    );
+
+
+
+/* =========================================================
+   MODE D'AFFICHAGE
+========================================================= */
+
+window.setView =
+function(mode){
+
+    viewMode = mode;
+
+
+    localStorage.setItem(
+        "divinaView",
+        mode
+    );
+
+
+    updateViewButtons();
+
+
+    render();
+
+};
+
+
+
+function updateViewButtons(){
+
+    if(viewMode === "grid"){
+
+        gridButton.classList.add(
+            "active"
+        );
+
+        listButton.classList.remove(
+            "active"
+        );
+
+    }else{
+
+        gridButton.classList.remove(
+            "active"
+        );
+
+        listButton.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
    CHARGER LA BIBLIOTHÈQUE
-========================= */
+========================================================= */
 
 async function loadLibrary(){
 
@@ -794,31 +1327,48 @@ async function loadLibrary(){
 
         const response =
             await fetch(
-                JSON_URL + "?v=" + Date.now(),
+                JSON_URL +
+                "?v=" +
+                Date.now(),
                 {
                     cache:"no-store"
                 }
             );
 
+
         if(!response.ok){
+
             throw new Error(
                 "Impossible de charger bibliotheque.json"
             );
+
         }
+
 
         library =
             await response.json();
 
+
+        updateViewButtons();
+
+
         render();
+
 
     }catch(error){
 
         console.error(error);
 
+
         grid.innerHTML = `
+
             <div class="empty">
-                ❌ Impossible de charger la bibliothèque.
+
+                ❌ Impossible de charger
+                la bibliothèque.
+
             </div>
+
         `;
 
     }
@@ -826,48 +1376,68 @@ async function loadLibrary(){
 }
 
 
-/* =========================
+
+/* =========================================================
    URL R2
-========================= */
+========================================================= */
 
 function getURL(key){
 
     return R2_BASE +
+
         key
         .split("/")
         .map(
-            part => encodeURIComponent(part)
+            part =>
+                encodeURIComponent(part)
         )
         .join("/");
 
 }
 
 
-/* =========================
-   TAILLE
-========================= */
+
+/* =========================================================
+   FORMAT TAILLE
+========================================================= */
 
 function formatSize(bytes){
 
     if(bytes < 1024)
+
         return bytes + " o";
 
+
     if(bytes < 1024 * 1024)
-        return (bytes / 1024).toFixed(1) + " Ko";
+
+        return (
+            bytes / 1024
+        ).toFixed(1) + " Ko";
+
 
     if(bytes < 1024 * 1024 * 1024)
-        return (bytes / 1024 / 1024).toFixed(1) + " Mo";
+
+        return (
+            bytes /
+            1024 /
+            1024
+        ).toFixed(1) + " Mo";
+
 
     return (
-        bytes / 1024 / 1024 / 1024
+        bytes /
+        1024 /
+        1024 /
+        1024
     ).toFixed(2) + " Go";
 
 }
 
 
-/* =========================
+
+/* =========================================================
    ICÔNES
-========================= */
+========================================================= */
 
 function getIcon(type){
 
@@ -899,31 +1469,45 @@ function getIcon(type){
 
         default:
             return "📎";
+
     }
 
 }
 
 
-/* =========================
-   TRI
-========================= */
 
-window.setSort = function(mode){
+/* =========================================================
+   TRI
+========================================================= */
+
+window.setSort =
+function(mode){
 
     sortMode = mode;
+
+
+    localStorage.setItem(
+        "divinaSort",
+        mode
+    );
+
 
     render();
 
 };
 
 
-/* =========================
+
+/* =========================================================
    COMPARATEUR
-========================= */
+========================================================= */
 
 function compareItems(a,b){
 
-    if(sortMode === "nameAsc"){
+    if(
+        sortMode ===
+        "nameAsc"
+    ){
 
         return a.name.localeCompare(
             b.name,
@@ -936,7 +1520,11 @@ function compareItems(a,b){
 
     }
 
-    if(sortMode === "nameDesc"){
+
+    if(
+        sortMode ===
+        "nameDesc"
+    ){
 
         return b.name.localeCompare(
             a.name,
@@ -949,94 +1537,138 @@ function compareItems(a,b){
 
     }
 
-    if(sortMode === "sizeAsc"){
 
-        return (a.size || 0) -
-               (b.size || 0);
+    if(
+        sortMode ===
+        "sizeAsc"
+    ){
+
+        return (
+            a.size || 0
+        ) -
+        (
+            b.size || 0
+        );
 
     }
 
-    if(sortMode === "sizeDesc"){
 
-        return (b.size || 0) -
-               (a.size || 0);
+    if(
+        sortMode ===
+        "sizeDesc"
+    ){
+
+        return (
+            b.size || 0
+        ) -
+        (
+            a.size || 0
+        );
 
     }
+
 
     return 0;
 
 }
 
 
-/* =========================
+
+/* =========================================================
    RECHERCHE GLOBALE
-========================= */
+========================================================= */
 
 function globalSearch(term){
 
     term =
-        term.trim().toLowerCase();
+        term
+        .trim()
+        .toLowerCase();
+
 
     if(!term)
+
         return null;
 
+
     const files =
-        library.files.filter(file => {
+        library.files.filter(
+            file => {
 
-            const text = (
-                file.name +
-                " " +
-                file.key +
-                " " +
-                file.folder +
-                " " +
-                file.type +
-                " " +
-                file.extension
-            ).toLowerCase();
+                const text = (
 
-            return text.includes(term);
+                    file.name +
+                    " " +
+                    file.key +
+                    " " +
+                    file.folder +
+                    " " +
+                    file.type +
+                    " " +
+                    file.extension
 
-        });
+                ).toLowerCase();
 
-    const folders =
-        library.folders.filter(folder =>
-            folder.toLowerCase().includes(term)
+
+                return text.includes(
+                    term
+                );
+
+            }
         );
 
+
+    const folders =
+        library.folders.filter(
+            folder =>
+
+                folder
+                .toLowerCase()
+                .includes(term)
+        );
+
+
     return {
+
         files,
+
         folders
+
     };
 
 }
 
 
-/* =========================
-   AFFICHAGE
-========================= */
+
+/* =========================================================
+   AFFICHAGE PRINCIPAL
+========================================================= */
 
 function render(){
 
     const term =
         search.value.trim();
 
-    /* RECHERCHE GLOBALE */
+
+    /* RECHERCHE */
 
     if(term){
 
-        renderGlobalSearch(term);
+        renderGlobalSearch(
+            term
+        );
 
         return;
+
     }
 
 
-    /* AFFICHAGE NORMAL */
-
     renderBreadcrumb();
+
 
     const folders =
         getCurrentFolders();
+
 
     const files =
         getCurrentFiles();
@@ -1044,24 +1676,36 @@ function render(){
 
     const sortedFolders =
         [...folders].sort(
-            (a,b) => compareItems(
-                {
-                    name:getFolderName(a),
-                    size:0
-                },
-                {
-                    name:getFolderName(b),
-                    size:0
-                }
-            )
+            (a,b) =>
+                compareItems(
+                    {
+                        name:
+                            getFolderName(a),
+                        size:0
+                    },
+                    {
+                        name:
+                            getFolderName(b),
+                        size:0
+                    }
+                )
         );
 
 
     const sortedFiles =
-        [...files].sort(compareItems);
+        [...files].sort(
+            compareItems
+        );
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+        "";
+
+
+    grid.classList.toggle(
+        "list-view",
+        viewMode === "list"
+    );
 
 
     /* DOSSIERS */
@@ -1070,32 +1714,54 @@ function render(){
         folder => {
 
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             card.className =
                 "card folder";
 
+
             card.innerHTML = `
-                <div class="icon">📁</div>
+
+                <div class="icon">
+                    📁
+                </div>
+
                 <div class="card-name">
+
                     ${escapeHTML(
-                        getFolderName(folder)
+                        getFolderName(
+                            folder
+                        )
                     )}
+
                 </div>
+
                 <div class="card-info">
+
                     Dossier
+
                 </div>
+
             `;
 
-            card.onclick = () => {
 
-                currentFolder = folder;
+            card.onclick =
+                () => {
 
-                render();
+                    currentFolder =
+                        folder;
 
-            };
+                    render();
 
-            grid.appendChild(card);
+                };
+
+
+            grid.appendChild(
+                card
+            );
 
         }
     );
@@ -1107,32 +1773,59 @@ function render(){
         file => {
 
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             card.className =
                 "card";
 
+
             card.innerHTML = `
+
                 <div class="icon">
-                    ${getIcon(file.type)}
+
+                    ${getIcon(
+                        file.type
+                    )}
+
                 </div>
+
 
                 <div class="card-name">
-                    ${escapeHTML(file.name)}
+
+                    ${escapeHTML(
+                        file.name
+                    )}
+
                 </div>
+
 
                 <div class="card-info">
-                    ${formatSize(file.size)}
+
+                    ${formatSize(
+                        file.size
+                    )}
+
                 </div>
+
             `;
 
-            card.onclick = () => {
 
-                openViewer(file);
+            card.onclick =
+                () => {
 
-            };
+                    openViewer(
+                        file
+                    );
 
-            grid.appendChild(card);
+                };
+
+
+            grid.appendChild(
+                card
+            );
 
         }
     );
@@ -1144,143 +1837,244 @@ function render(){
     ){
 
         grid.innerHTML = `
+
             <div class="empty">
+
                 📂 Ce dossier est vide.
+
             </div>
+
         `;
 
     }
 
 
     sectionTitle.textContent =
+
         currentFolder
-            ? getFolderName(currentFolder)
-            : "Bibliothèque";
+        ?
+        getFolderName(
+            currentFolder
+        )
+        :
+        "Bibliothèque";
 
 
     resultInfo.textContent =
-        `${sortedFolders.length} dossier(s) • ${sortedFiles.length} fichier(s)`;
+
+        `${sortedFolders.length}
+        dossier(s) •
+        ${sortedFiles.length}
+        fichier(s)`;
 
 }
 
 
-/* =========================
-   RECHERCHE GLOBALE
-========================= */
 
-function renderGlobalSearch(term){
+/* =========================================================
+   RECHERCHE
+========================================================= */
+
+function renderGlobalSearch(
+    term
+){
 
     const results =
-        globalSearch(term);
+        globalSearch(
+            term
+        );
+
 
     breadcrumb.innerHTML = `
-        <button onclick="goHome()">
+
+        <button
+            onclick="goHome()">
+
             🏠 Bibliothèque
+
         </button>
+
         <span>›</span>
-        <strong>Recherche</strong>
+
+        <strong>
+            Recherche
+        </strong>
+
     `;
 
 
     sectionTitle.textContent =
+
         `Résultats pour « ${term} »`;
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+        "";
 
 
-    /* DOSSIERS TROUVÉS */
+    grid.classList.toggle(
+        "list-view",
+        viewMode === "list"
+    );
+
+
+    /* DOSSIERS */
 
     results.folders
-        .sort((a,b) =>
-            a.localeCompare(
-                b,
-                "fr",
-                {
-                    sensitivity:"base"
-                }
-            )
+        .sort(
+            (a,b) =>
+                a.localeCompare(
+                    b,
+                    "fr",
+                    {
+                        sensitivity:"base"
+                    }
+                )
         )
-        .forEach(folder => {
+        .forEach(
+            folder => {
 
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "card folder";
-
-            card.innerHTML = `
-                <div class="icon">📁</div>
-
-                <div class="card-name">
-                    ${escapeHTML(
-                        getFolderName(folder)
-                    )}
-                </div>
-
-                <div class="card-info">
-                    ${escapeHTML(folder)}
-                </div>
-            `;
-
-            card.onclick = () => {
-
-                search.value = "";
-
-                currentFolder =
-                    folder;
-
-                render();
-
-            };
-
-            grid.appendChild(card);
-
-        });
+                const card =
+                    document.createElement(
+                        "div"
+                    );
 
 
-    /* FICHIERS TROUVÉS */
+                card.className =
+                    "card folder";
+
+
+                card.innerHTML = `
+
+                    <div class="icon">
+                        📁
+                    </div>
+
+                    <div class="card-name">
+
+                        ${escapeHTML(
+                            getFolderName(
+                                folder
+                            )
+                        )}
+
+                    </div>
+
+                    <div class="card-info">
+
+                        ${escapeHTML(
+                            folder
+                        )}
+
+                    </div>
+
+                `;
+
+
+                card.onclick =
+                    () => {
+
+                        search.value =
+                            "";
+
+                        currentFolder =
+                            folder;
+
+                        render();
+
+                    };
+
+
+                grid.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    /* FICHIERS */
 
     results.files
-        .sort(compareItems)
-        .forEach(file => {
+        .sort(
+            compareItems
+        )
+        .forEach(
+            file => {
 
-            const card =
-                document.createElement("div");
+                const card =
+                    document.createElement(
+                        "div"
+                    );
 
-            card.className =
-                "card";
 
-            card.innerHTML = `
-                <div class="icon">
-                    ${getIcon(file.type)}
-                </div>
+                card.className =
+                    "card";
 
-                <div class="card-name">
-                    ${escapeHTML(file.name)}
-                </div>
 
-                <div class="card-info">
-                    📁 ${escapeHTML(file.folder || "Racine")}
-                    <br>
-                    ${formatSize(file.size)}
-                </div>
-            `;
+                card.innerHTML = `
 
-            card.onclick = () => {
+                    <div class="icon">
 
-                openViewer(file);
+                        ${getIcon(
+                            file.type
+                        )}
 
-            };
+                    </div>
 
-            grid.appendChild(card);
 
-        });
+                    <div class="card-name">
+
+                        ${escapeHTML(
+                            file.name
+                        )}
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        📁
+                        ${escapeHTML(
+                            file.folder ||
+                            "Racine"
+                        )}
+
+                        <br>
+
+                        ${formatSize(
+                            file.size
+                        )}
+
+                    </div>
+
+                `;
+
+
+                card.onclick =
+                    () => {
+
+                        openViewer(
+                            file
+                        );
+
+                    };
+
+
+                grid.appendChild(
+                    card
+                );
+
+            }
+        );
 
 
     resultInfo.textContent =
-        `${results.files.length} fichier(s) trouvé(s) • ` +
-        `${results.folders.length} dossier(s) trouvé(s)`;
+
+        `${results.files.length}
+        fichier(s) trouvé(s) •
+        ${results.folders.length}
+        dossier(s) trouvé(s)`;
 
 
     if(
@@ -1289,10 +2083,14 @@ function renderGlobalSearch(term){
     ){
 
         grid.innerHTML = `
+
             <div class="empty">
+
                 🔎 Aucun résultat pour
                 « ${escapeHTML(term)} »
+
             </div>
+
         `;
 
     }
@@ -1300,113 +2098,165 @@ function renderGlobalSearch(term){
 }
 
 
-/* =========================
+
+/* =========================================================
    DOSSIERS DU NIVEAU ACTUEL
-========================= */
+========================================================= */
 
 function getCurrentFolders(){
 
     const prefix =
+
         currentFolder
-            ? currentFolder + "/"
-            : "";
+        ?
+        currentFolder + "/"
+        :
+        "";
+
 
     const folders = [];
 
+
     for(
-        const folder of library.folders
+        const folder of
+        library.folders
     ){
 
-        if(!folder.startsWith(prefix))
+        if(
+            !folder.startsWith(
+                prefix
+            )
+        )
+
             continue;
 
+
         const rest =
-            folder.slice(prefix.length);
+            folder.slice(
+                prefix.length
+            );
+
 
         if(
             rest &&
             !rest.includes("/")
         ){
 
-            folders.push(folder);
+            folders.push(
+                folder
+            );
 
         }
 
     }
+
 
     return folders;
 
 }
 
 
-/* =========================
+
+/* =========================================================
    FICHIERS DU NIVEAU ACTUEL
-========================= */
+========================================================= */
 
 function getCurrentFiles(){
 
     return library.files.filter(
         file =>
-            (file.folder || "") ===
+
+            (
+                file.folder || ""
+            ) ===
             currentFolder
     );
 
 }
 
 
-/* =========================
+
+/* =========================================================
    NOM DOSSIER
-========================= */
+========================================================= */
 
-function getFolderName(path){
+function getFolderName(
+    path
+){
 
-    return path.split("/").pop();
+    return path
+        .split("/")
+        .pop();
 
 }
 
 
-/* =========================
+
+/* =========================================================
    BREADCRUMB
-========================= */
+========================================================= */
 
 function renderBreadcrumb(){
 
-    breadcrumb.innerHTML = "";
+    breadcrumb.innerHTML =
+        "";
+
 
     const home =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
+
 
     home.textContent =
         "🏠 Bibliothèque";
 
+
     home.onclick =
         () => {
 
-            currentFolder = "";
+            currentFolder =
+                "";
 
             render();
 
         };
 
-    breadcrumb.appendChild(home);
+
+    breadcrumb.appendChild(
+        home
+    );
 
 
     if(!currentFolder)
+
         return;
 
 
     const parts =
-        currentFolder.split("/");
+        currentFolder.split(
+            "/"
+        );
+
 
     let path = "";
 
+
     parts.forEach(
-        (part,index) => {
+        (
+            part,
+            index
+        ) => {
 
             const separator =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
-            separator.textContent = "›";
+
+            separator.textContent =
+                "›";
+
 
             breadcrumb.appendChild(
                 separator
@@ -1414,19 +2264,27 @@ function renderBreadcrumb(){
 
 
             path =
+
                 path
-                    ? path + "/" + part
-                    : part;
+                ?
+                path + "/" + part
+                :
+                part;
 
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             button.textContent =
                 part;
 
+
             const target =
                 path;
+
 
             button.onclick =
                 () => {
@@ -1438,6 +2296,7 @@ function renderBreadcrumb(){
 
                 };
 
+
             breadcrumb.appendChild(
                 button
             );
@@ -1448,117 +2307,202 @@ function renderBreadcrumb(){
 }
 
 
-/* =========================
-   ÉCHAPPEMENT HTML
-========================= */
 
-function escapeHTML(value){
+/* =========================================================
+   PROTECTION HTML
+========================================================= */
+
+function escapeHTML(
+    value
+){
 
     return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
 
-/* =========================
-   VIEWER
-========================= */
 
-async function openViewer(file){
+/* =========================================================
+   OUVRIR UN FICHIER
+========================================================= */
 
-    viewer.classList.add("active");
+async function openViewer(
+    file
+){
+
+    viewer.classList.add(
+        "active"
+    );
+
 
     viewerTitle.textContent =
         file.name;
 
+
     resetViewer();
+
 
     loading.style.display =
         "block";
 
 
     const url =
-        getURL(file.key);
+        getURL(
+            file.key
+        );
 
 
     try{
 
-        if(file.type === "image"){
+
+        /* IMAGE */
+
+        if(
+            file.type ===
+            "image"
+        ){
 
             imageViewer.src =
                 url;
 
+
             imageViewer.style.display =
                 "block";
+
 
             loading.style.display =
                 "none";
 
+
             resetImageZoom();
 
+
             return;
+
         }
 
 
-        if(file.type === "audio"){
+        /* AUDIO */
+
+        if(
+            file.type ===
+            "audio"
+        ){
 
             audioViewer.src =
                 url;
 
+
             audioViewer.style.display =
                 "block";
+
 
             loading.style.display =
                 "none";
 
+
             audioViewer.load();
 
+
             return;
+
         }
 
 
-        if(file.type === "video"){
+        /* VIDEO */
+
+        if(
+            file.type ===
+            "video"
+        ){
 
             videoViewer.src =
                 url;
 
+
             videoViewer.style.display =
                 "block";
+
 
             loading.style.display =
                 "none";
 
+
             videoViewer.load();
 
+
             return;
+
         }
 
 
-        if(file.type === "pdf"){
+        /* PDF */
 
-            await openPDF(url);
+        if(
+            file.type ===
+            "pdf"
+        ){
+
+            await openPDF(
+                url
+            );
+
 
             return;
+
         }
 
 
-        /* AUTRES TYPES */
+        /* AUTRES */
 
         loading.innerHTML = `
-            Ce type de fichier ne possède
-            pas encore de lecteur intégré.
+
+            Ce type de fichier
+            ne possède pas encore
+            de lecteur intégré.
+
         `;
 
-    }catch(error){
+    }
 
-        console.error(error);
+
+    catch(error){
+
+        console.error(
+            error
+        );
+
 
         loading.innerHTML = `
-            ❌ Impossible d'afficher ce fichier.
+
+            ❌ Impossible
+            d'afficher ce fichier.
+
         `;
 
     }
@@ -1566,68 +2510,93 @@ async function openViewer(file){
 }
 
 
-/* =========================
+
+/* =========================================================
    RESET VIEWER
-========================= */
+========================================================= */
 
 function resetViewer(){
 
     loading.innerHTML =
         "Chargement...";
 
+
     loading.style.display =
         "block";
+
 
     imageViewer.style.display =
         "none";
 
+
     audioViewer.style.display =
         "none";
+
 
     videoViewer.style.display =
         "none";
 
+
     pdfArea.style.display =
         "none";
 
 
-    imageViewer.src = "";
+    imageViewer.src =
+        "";
+
 
     audioViewer.pause();
-    audioViewer.removeAttribute("src");
+
+
+    audioViewer.removeAttribute(
+        "src"
+    );
+
 
     videoViewer.pause();
-    videoViewer.removeAttribute("src");
+
+
+    videoViewer.removeAttribute(
+        "src"
+    );
 
 }
 
 
-/* =========================
-   FERMER
-========================= */
+
+/* =========================================================
+   FERMER VIEWER
+========================================================= */
 
 window.closeViewer =
-    function(){
+function(){
 
-        viewer.classList.remove(
-            "active"
-        );
-
-        resetViewer();
-
-        currentPDF = null;
-
-    };
+    viewer.classList.remove(
+        "active"
+    );
 
 
-/* =========================
-   PDF
-========================= */
+    resetViewer();
 
-async function openPDF(url){
+
+    currentPDF =
+        null;
+
+};
+
+
+
+/* =========================================================
+   OUVRIR PDF
+========================================================= */
+
+async function openPDF(
+    url
+){
 
     pdfArea.style.display =
         "block";
+
 
     loading.style.display =
         "block";
@@ -1642,28 +2611,47 @@ async function openPDF(url){
                 })
                 .promise;
 
-        currentPage = 1;
 
-        pdfScale = 1;
+        currentPage =
+            1;
+
+
+        pdfScale =
+            1;
+
 
         loading.style.display =
             "none";
 
+
         await renderPDFPage();
 
-    }catch(error){
+    }
+
+
+    catch(error){
 
         console.error(
             "Erreur PDF :",
             error
         );
 
+
         pdfArea.innerHTML = `
+
             <div class="pdf-message">
-                ❌ Impossible d'afficher ce PDF.
+
+                ❌ Impossible
+                d'afficher ce PDF.
+
                 <br><br>
-                Le lecteur PDF n'a pas pu charger le fichier.
+
+                Le lecteur PDF
+                n'a pas pu charger
+                le fichier.
+
             </div>
+
         `;
 
     }
@@ -1671,13 +2659,15 @@ async function openPDF(url){
 }
 
 
-/* =========================
+
+/* =========================================================
    RENDRE PAGE PDF
-========================= */
+========================================================= */
 
 async function renderPDFPage(){
 
     if(!currentPDF)
+
         return;
 
 
@@ -1694,32 +2684,43 @@ async function renderPDFPage(){
 
 
     const dpr =
-        window.devicePixelRatio || 1;
+        window.devicePixelRatio ||
+        1;
 
 
     pdfCanvas.width =
-        viewport.width * dpr;
+        viewport.width *
+        dpr;
+
 
     pdfCanvas.height =
-        viewport.height * dpr;
+        viewport.height *
+        dpr;
 
 
     pdfCanvas.style.width =
-        viewport.width + "px";
+        viewport.width +
+        "px";
+
 
     pdfCanvas.style.height =
-        viewport.height + "px";
+        viewport.height +
+        "px";
 
 
     const context =
-        pdfCanvas.getContext("2d");
+        pdfCanvas.getContext(
+            "2d"
+        );
 
 
     const renderContext = {
 
-        canvasContext:context,
+        canvasContext:
+            context,
 
-        viewport:viewport,
+        viewport:
+            viewport,
 
         transform:[
             dpr,
@@ -1739,222 +2740,290 @@ async function renderPDFPage(){
 
 
     pdfPage.textContent =
-        `${currentPage} / ${currentPDF.numPages}`;
+
+        `${currentPage}
+        / ${currentPDF.numPages}`;
 
 }
 
 
-/* =========================
+
+/* =========================================================
    PAGE PRÉCÉDENTE
-========================= */
+========================================================= */
 
 window.previousPage =
-    async function(){
+async function(){
 
-        if(
-            !currentPDF ||
-            currentPage <= 1
-        )
-            return;
+    if(
+        !currentPDF ||
+        currentPage <= 1
+    )
 
-        currentPage--;
-
-        await renderPDFPage();
-
-    };
+        return;
 
 
-/* =========================
+    currentPage--;
+
+
+    await renderPDFPage();
+
+};
+
+
+
+/* =========================================================
    PAGE SUIVANTE
-========================= */
+========================================================= */
 
 window.nextPage =
-    async function(){
+async function(){
 
-        if(
-            !currentPDF ||
-            currentPage >=
-                currentPDF.numPages
-        )
-            return;
+    if(
+        !currentPDF ||
+        currentPage >=
+        currentPDF.numPages
+    )
 
-        currentPage++;
+        return;
+
+
+    currentPage++;
+
+
+    await renderPDFPage();
+
+};
+
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+window.zoomIn =
+async function(){
+
+
+    /* IMAGE */
+
+    if(
+        imageViewer.style.display !==
+        "none"
+    ){
+
+        imageScale =
+            Math.min(
+                imageScale * 1.25,
+                6
+            );
+
+
+        applyImageTransform();
+
+
+        return;
+
+    }
+
+
+    /* PDF */
+
+    if(
+        pdfArea.style.display !==
+        "none"
+    ){
+
+        pdfScale =
+            Math.min(
+                pdfScale * 1.25,
+                5
+            );
+
 
         await renderPDFPage();
 
-    };
+    }
 
+};
 
-/* =========================
-   ZOOM
-========================= */
-
-window.zoomIn =
-    async function(){
-
-        if(
-            imageViewer.style.display !==
-            "none"
-        ){
-
-            imageScale =
-                Math.min(
-                    imageScale * 1.25,
-                    6
-                );
-
-            applyImageTransform();
-
-            return;
-        }
-
-
-        if(
-            pdfArea.style.display !==
-            "none"
-        ){
-
-            pdfScale =
-                Math.min(
-                    pdfScale * 1.25,
-                    5
-                );
-
-            await renderPDFPage();
-
-        }
-
-    };
 
 
 window.zoomOut =
-    async function(){
-
-        if(
-            imageViewer.style.display !==
-            "none"
-        ){
-
-            imageScale =
-                Math.max(
-                    imageScale / 1.25,
-                    0.5
-                );
-
-            applyImageTransform();
-
-            return;
-        }
+async function(){
 
 
-        if(
-            pdfArea.style.display !==
-            "none"
-        ){
+    /* IMAGE */
 
-            pdfScale =
-                Math.max(
-                    pdfScale / 1.25,
-                    0.5
-                );
+    if(
+        imageViewer.style.display !==
+        "none"
+    ){
 
-            await renderPDFPage();
-
-        }
-
-    };
-
-
-/* =========================
-   AJUSTEMENT PDF
-========================= */
-
-window.fitPDF =
-    async function(){
-
-        if(!currentPDF)
-            return;
-
-
-        const page =
-            await currentPDF.getPage(
-                currentPage
+        imageScale =
+            Math.max(
+                imageScale / 1.25,
+                0.5
             );
 
 
-        const base =
-            page.getViewport({
-                scale:1
-            });
+        applyImageTransform();
 
 
-        const availableWidth =
-            pdfArea.clientWidth - 30;
+        return;
+
+    }
 
 
-        pdfScale =
-            availableWidth /
-            base.width;
+    /* PDF */
 
+    if(
+        pdfArea.style.display !==
+        "none"
+    ){
 
         pdfScale =
             Math.max(
-                0.5,
-                Math.min(
-                    pdfScale,
-                    5
-                )
+                pdfScale / 1.25,
+                0.5
             );
 
 
         await renderPDFPage();
 
-    };
+    }
+
+};
 
 
-/* =========================
+
+/* =========================================================
+   ADAPTER PDF À LA LARGEUR
+========================================================= */
+
+window.fitPDF =
+async function(){
+
+    if(!currentPDF)
+
+        return;
+
+
+    const page =
+        await currentPDF.getPage(
+            currentPage
+        );
+
+
+    const base =
+        page.getViewport({
+            scale:1
+        });
+
+
+    const availableWidth =
+        pdfArea.clientWidth -
+        30;
+
+
+    pdfScale =
+        availableWidth /
+        base.width;
+
+
+    pdfScale =
+        Math.max(
+            0.5,
+            Math.min(
+                pdfScale,
+                5
+            )
+        );
+
+
+    await renderPDFPage();
+
+};
+
+
+
+/* =========================================================
    ZOOM IMAGE
-========================= */
+========================================================= */
 
 let imageScale = 1;
 
+
 let imageX = 0;
+
+
 let imageY = 0;
+
 
 
 function resetImageZoom(){
 
-    imageScale = 1;
+    imageScale =
+        1;
 
-    imageX = 0;
-    imageY = 0;
+
+    imageX =
+        0;
+
+
+    imageY =
+        0;
+
 
     applyImageTransform();
 
 }
 
 
+
 function applyImageTransform(){
 
     imageViewer.style.transform =
-        `translate(${imageX}px, ${imageY}px) scale(${imageScale})`;
+
+        `translate(
+            ${imageX}px,
+            ${imageY}px
+        )
+        scale(
+            ${imageScale}
+        )`;
 
 }
 
 
-/* =========================
-   GESTES TACTILES IMAGE
-========================= */
 
-let imageTouchStartDistance = null;
+/* =========================================================
+   GESTES IMAGE
+========================================================= */
 
-let imageTouchStartScale = 1;
+let imageTouchStartDistance =
+    null;
 
-let imageDragStartX = 0;
-let imageDragStartY = 0;
 
-let imageStartX = 0;
-let imageStartY = 0;
+let imageTouchStartScale =
+    1;
+
+
+let imageDragStartX =
+    0;
+
+
+let imageDragStartY =
+    0;
+
+
+let imageStartX =
+    0;
+
+
+let imageStartY =
+    0;
+
 
 
 imageViewer.addEventListener(
@@ -1971,22 +3040,31 @@ imageViewer.addEventListener(
                     event.touches[1]
                 );
 
+
             imageTouchStartScale =
                 imageScale;
 
-        }else if(
+        }
+
+
+        else if(
             event.touches.length === 1 &&
             imageScale > 1
         ){
 
             imageDragStartX =
-                event.touches[0].clientX;
+                event.touches[0]
+                    .clientX;
+
 
             imageDragStartY =
-                event.touches[0].clientY;
+                event.touches[0]
+                    .clientY;
+
 
             imageStartX =
                 imageX;
+
 
             imageStartY =
                 imageY;
@@ -1998,6 +3076,7 @@ imageViewer.addEventListener(
         passive:false
     }
 );
+
 
 
 imageViewer.addEventListener(
@@ -2044,7 +3123,9 @@ imageViewer.addEventListener(
 
             }
 
+
             return;
+
         }
 
 
@@ -2056,19 +3137,25 @@ imageViewer.addEventListener(
         ){
 
             const dx =
-                event.touches[0].clientX -
+                event.touches[0]
+                    .clientX -
                 imageDragStartX;
 
+
             const dy =
-                event.touches[0].clientY -
+                event.touches[0]
+                    .clientY -
                 imageDragStartY;
 
 
             imageX =
-                imageStartX + dx;
+                imageStartX +
+                dx;
+
 
             imageY =
-                imageStartY + dy;
+                imageStartY +
+                dy;
 
 
             applyImageTransform();
@@ -2082,6 +3169,7 @@ imageViewer.addEventListener(
 );
 
 
+
 imageViewer.addEventListener(
     "touchend",
     function(){
@@ -2093,13 +3181,18 @@ imageViewer.addEventListener(
 );
 
 
-/* =========================
-   GESTES TACTILES PDF
-========================= */
 
-let pdfTouchStartDistance = null;
+/* =========================================================
+   GESTES PDF
+========================================================= */
 
-let pdfTouchStartScale = 1;
+let pdfTouchStartDistance =
+    null;
+
+
+let pdfTouchStartScale =
+    1;
+
 
 
 pdfArea.addEventListener(
@@ -2116,6 +3209,7 @@ pdfArea.addEventListener(
                     event.touches[1]
                 );
 
+
             pdfTouchStartScale =
                 pdfScale;
 
@@ -2128,6 +3222,7 @@ pdfArea.addEventListener(
 );
 
 
+
 pdfArea.addEventListener(
     "touchmove",
     function(event){
@@ -2135,6 +3230,7 @@ pdfArea.addEventListener(
         if(
             event.touches.length !== 2
         )
+
             return;
 
 
@@ -2167,12 +3263,6 @@ pdfArea.addEventListener(
                     )
                 );
 
-
-            /* On ne rerend pas à chaque
-               micro-mouvement immédiatement.
-               Le zoom final sera rendu
-               au relâchement. */
-
         }
 
     },
@@ -2180,6 +3270,7 @@ pdfArea.addEventListener(
         passive:false
     }
 );
+
 
 
 pdfArea.addEventListener(
@@ -2193,6 +3284,7 @@ pdfArea.addEventListener(
             pdfTouchStartDistance =
                 null;
 
+
             await renderPDFPage();
 
         }
@@ -2201,17 +3293,25 @@ pdfArea.addEventListener(
 );
 
 
-/* =========================
-   DISTANCE ENTRE 2 DOIGTS
-========================= */
 
-function getTouchDistance(a,b){
+/* =========================================================
+   DISTANCE ENTRE DEUX DOIGTS
+========================================================= */
+
+function getTouchDistance(
+    a,
+    b
+){
 
     const dx =
-        a.clientX - b.clientX;
+        a.clientX -
+        b.clientX;
+
 
     const dy =
-        a.clientY - b.clientY;
+        a.clientY -
+        b.clientY;
+
 
     return Math.sqrt(
         dx * dx +
@@ -2221,9 +3321,10 @@ function getTouchDistance(a,b){
 }
 
 
-/* =========================
+
+/* =========================================================
    RECHERCHE
-========================= */
+========================================================= */
 
 search.addEventListener(
     "input",
@@ -2235,37 +3336,44 @@ search.addEventListener(
 );
 
 
-/* =========================
+
+/* =========================================================
    ACCUEIL
-========================= */
+========================================================= */
 
 window.goHome =
-    function(){
+function(){
 
-        search.value = "";
-
-        currentFolder = "";
-
-        render();
-
-    };
+    search.value =
+        "";
 
 
-/* =========================
-   ACTUALISER
-========================= */
+    currentFolder =
+        "";
+
+
+    render();
+
+};
+
+
+
+/* =========================================================
+   ACTUALISATION
+========================================================= */
 
 window.refreshLibrary =
-    function(){
+function(){
 
-        loadLibrary();
+    loadLibrary();
 
-    };
+};
 
 
-/* =========================
-   TOUCHE ÉCHAP
-========================= */
+
+/* =========================================================
+   TOUCHE ESCAPE
+========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -2286,13 +3394,20 @@ document.addEventListener(
 );
 
 
-/* =========================
+
+/* =========================================================
    INITIALISATION
-========================= */
+========================================================= */
+
+updateViewButtons();
+
 
 loadLibrary();
 
+
 </script>
 
+
 </body>
+
 </html>
