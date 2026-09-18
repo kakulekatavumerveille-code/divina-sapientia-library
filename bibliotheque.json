@@ -12,6 +12,33 @@
       "extension": "pdf",
       "size": 65679,
       "last_modified": "2026-09-17T18:17:38.945000+00:00"
+    },
+    {
+      "name": "Dites moi que je suis.mp3",
+      "key": "Test/Dites moi que je suis.mp3",
+      "folder": "Test",
+      "type": "audio",
+      "extension": "mp3",
+      "size": 8753292,
+      "last_modified": "2026-09-18T04:04:30.088000+00:00"
+    },
+    {
+      "name": "Screenshot_20260902-182843.png",
+      "key": "Test/Screenshot_20260902-182843.png",
+      "folder": "Test",
+      "type": "image",
+      "extension": "png",
+      "size": 1282320,
+      "last_modified": "2026-09-18T04:03:06.080000+00:00"
+    },
+    {
+      "name": "VID_20260904_220730_030.mp4",
+      "key": "Test/VID_20260904_220730_030.mp4",
+      "folder": "Test",
+      "type": "video",
+      "extension": "mp4",
+      "size": 1066933,
+      "last_modified": "2026-09-18T04:05:43.453000+00:00"
     }
   ]
 }
