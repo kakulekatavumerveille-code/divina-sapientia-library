@@ -4965,6 +4965,7 @@ const pdfPageTotal = document.getElementById("pdfPageTotal");
 let pdfPinch = null;
 let pdfPinchRaf = 0;
 let pdfPan = null;
+let pdfPanOffsetX = 0;
 
 function syncPDFPageField(page = currentPDFPage){
     if (!pdfPageInput || !pdfPageTotal) return;
@@ -5014,6 +5015,7 @@ resetViewer = function(){
     }
     pdfPinch = null;
     pdfPan = null;
+    pdfPanOffsetX = 0;
     if (pdfArea) pdfArea.classList.remove("is-panning");
     if (pdfControls) pdfControls.classList.remove("is-hidden");
     if (pdfArea) pdfArea.classList.remove("toolbar-hidden");
@@ -5077,8 +5079,7 @@ pdfArea.addEventListener("touchstart", event => {
     pdfPan = {
         startX: touch.clientX,
         startY: touch.clientY,
-        startScrollLeft: pdfArea.scrollLeft,
-        startScrollTop: pdfArea.scrollTop,
+        startOffsetX: pdfPanOffsetX,
         lockedAxis: null
     };
 }, {passive:true, capture:true});
@@ -5097,18 +5098,27 @@ pdfArea.addEventListener("touchmove", event => {
 
     if (pdfPan.lockedAxis !== "x") return;
 
-    const maxScrollLeft = Math.max(
+    const canvas = pdfPages.querySelector(".pdf-page-canvas");
+    if (!canvas) return;
+
+    // PDFium agrandit parfois le canvas visuellement sans modifier scrollWidth.
+    // On utilise donc la largeur réelle affichée du canvas.
+    const canvasWidth = canvas.getBoundingClientRect().width;
+    const maxOffsetX = Math.max(
         0,
-        pdfArea.scrollWidth - pdfArea.clientWidth
+        (canvasWidth - pdfArea.clientWidth) / 2
     );
-    if (maxScrollLeft <= 0) return;
+    if (maxOffsetX <= 1) return;
 
     event.preventDefault();
+    event.stopImmediatePropagation();
     pdfArea.classList.add("is-panning");
-    pdfArea.scrollLeft = Math.max(
-        0,
-        Math.min(maxScrollLeft, pdfPan.startScrollLeft - dx)
+    pdfPanOffsetX = Math.max(
+        -maxOffsetX,
+        Math.min(maxOffsetX, pdfPan.startOffsetX + dx)
     );
+    pdfPages.style.transform =
+        `translate3d(${pdfPanOffsetX}px, 0, 0)`;
 }, {passive:false, capture:true});
 
 function stopPDFPan(){
