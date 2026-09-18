@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bibliothèque Divina Sapientia</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.library{
+    width:100%;
+    max-width:1250px;
+    margin:auto;
+    padding:18px;
+}
+
+/* =========================
+   EN-TÊTE
+========================= */
+
+.header{
+    background:linear-gradient(135deg,#102a56,#174b8c);
+    color:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.header h1{
+    margin:0;
+    font-size:clamp(22px,4vw,36px);
+}
+
+.header p{
+    margin:8px 0 0;
+    opacity:.9;
+    font-size:clamp(13px,2vw,16px);
+}
+
+/* =========================
+   RECHERCHE
+========================= */
+
+.search-box{
+    margin-bottom:16px;
+}
+
+.search{
+    width:100%;
+    padding:15px 18px;
+    border:1px solid #d8e0eb;
+    border-radius:14px;
+    outline:none;
+    background:white;
+    font-size:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.search:focus{
+    border-color:#2b6cb0;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+}
+
+.back-btn{
+    border:none;
+    background:#173f75;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.back-btn:hover{
+    background:#102f5c;
+}
+
+.path{
+    color:#5b6678;
+    font-size:14px;
+    word-break:break-word;
+}
+
+/* =========================
+   STATISTIQUES
+========================= */
+
+.stats{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:13px;
+    color:#5b6678;
+}
+
+/* =========================
+   ELEMENTS
+========================= */
+
+.items{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));
+    gap:14px;
+}
+
+.item{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:18px;
+    cursor:pointer;
+    transition:transform .15s ease,box-shadow .15s ease;
+    min-width:0;
+}
+
+.item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.name{
+    font-weight:bold;
+    font-size:15px;
+    overflow-wrap:anywhere;
+}
+
+.type{
+    margin-top:7px;
+    color:#718096;
+    font-size:12px;
+}
+
+/* =========================
+   CHARGEMENT / ERREUR
+========================= */
+
+.status{
+    text-align:center;
+    padding:40px 15px;
+    color:#667085;
+}
+
+.error{
+    background:#fff1f2;
+    color:#b42318;
+    border-radius:12px;
+    padding:16px;
+}
+
+/* =========================
+   LECTEUR
+========================= */
+
+.viewer{
+    display:none;
+    background:white;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+    margin-top:20px;
+}
+
+.viewer.active{
+    display:block;
+}
+
+.viewer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.viewer-title{
+    font-weight:bold;
+    overflow-wrap:anywhere;
+    font-size:16px;
+}
+
+.close-viewer{
+    border:none;
+    background:#e8edf5;
+    padding:9px 13px;
+    border-radius:9px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.close-viewer:hover{
+    background:#dce3ee;
+}
+
+.pdf-frame{
+    width:100%;
+    height:min(78vh,900px);
+    border:none;
+    border-radius:10px;
+    background:#eee;
+}
+
+.media-image{
+    display:block;
+    max-width:100%;
+    max-height:78vh;
+    margin:auto;
+    object-fit:contain;
+    border-radius:10px;
+}
+
+.media-audio{
+    width:100%;
+}
+
+.media-video{
+    width:100%;
+    max-height:78vh;
+    background:#000;
+    border-radius:10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .library{
+        padding:10px;
+    }
+
+    .header{
+        padding:19px;
+        border-radius:15px;
+    }
+
+    .items{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .item{
+        padding:14px;
+        border-radius:12px;
+    }
+
+    .icon{
+        font-size:30px;
+    }
+
+    .name{
+        font-size:13px;
+    }
+
+    .pdf-frame{
+        height:72vh;
+    }
+
+    .viewer{
+        padding:9px;
+    }
+
+}
+
+@media(max-width:360px){
+
+    .items{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="library">
+
+    <!-- EN-TÊTE -->
+
+    <div class="header">
+
+        <h1>📚 Bibliothèque Divina Sapientia</h1>
+
+        <p>
+            Partitions, documents, audios, images et vidéos
+        </p>
+
+    </div>
+
+
+    <!-- RECHERCHE -->
+
+    <div class="search-box">
+
+        <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="🔎 Rechercher un fichier..."
+        >
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+
+        <button
+            id="back"
+            class="back-btn"
+            style="display:none;"
+        >
+            ← Retour
+        </button>
+
+        <div id="path" class="path">
+            📚 Bibliothèque
+        </div>
+
+    </div>
+
+
+    <!-- STATISTIQUES -->
+
+    <div
+        id="stats"
+        class="stats"
+        style="display:none;"
+    ></div>
+
+
+    <!-- CHARGEMENT -->
+
+    <div
+        id="status"
+        class="status"
+    >
+        Chargement de la bibliothèque...
+    </div>
+
+
+    <!-- FICHIERS ET DOSSIERS -->
+
+    <div
+        id="items"
+        class="items"
+    ></div>
+
+
+    <!-- LECTEUR -->
+
+    <div
+        id="viewer"
+        class="viewer"
+    >
+
+        <div class="viewer-top">
+
+            <div
+                id="viewerTitle"
+                class="viewer-title"
+            ></div>
+
+            <button
+                id="closeViewer"
+                class="close-viewer"
+            >
+                ✕ Fermer
+            </button>
+
+        </div>
+
+        <div id="viewerContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   CONFIGURATION
+========================================================== */
+
+const R2_BASE =
+"https://pub-03b759d4e4db40a1a34ad5132b30b4ed.r2.dev/";
+
+const JSON_URL =
+"https://kakulekatavumerveille-code.github.io/divina-sapientia-library/bibliotheque.json";
+
+
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+let library = {
+    folders: [],
+    files: []
+};
+
+let currentFolder = "";
+
+
+/* ==========================================================
+   ELEMENTS HTML
+========================================================== */
+
+const items =
+document.getElementById("items");
+
+const status =
+document.getElementById("status");
+
+const search =
+document.getElementById("search");
+
+const back =
+document.getElementById("back");
+
+const path =
+document.getElementById("path");
+
+const viewer =
+document.getElementById("viewer");
+
+const viewerTitle =
+document.getElementById("viewerTitle");
+
+const viewerContent =
+document.getElementById("viewerContent");
+
+const closeViewer =
+document.getElementById("closeViewer");
+
+const stats =
+document.getElementById("stats");
+
+
+/* ==========================================================
+   CHARGER LA BIBLIOTHÈQUE
+========================================================== */
+
+async function loadLibrary(){
+
+    try{
+
+        const response =
+        await fetch(
+            JSON_URL + "?t=" + Date.now()
+        );
+
+        if(!response.ok){
+
+            throw new Error(
+                "Impossible de charger bibliotheque.json"
+            );
+
+        }
+
+        library =
+        await response.json();
+
+        status.style.display = "none";
+
+        updateStats();
+
+        render();
+
+    }
+    catch(error){
+
+        status.innerHTML = `
+            <div class="error">
+                <strong>
+                    Impossible de charger la bibliothèque.
+                </strong>
+                <br><br>
+                Vérifiez que bibliotheque.json est accessible.
+            </div>
+        `;
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* ==========================================================
+   STATISTIQUES
+========================================================== */
+
+function updateStats(){
+
+    stats.style.display = "flex";
+
+    stats.innerHTML = `
+
+        <div class="stat">
+            📁 ${library.folders.length} dossier(s)
+        </div>
+
+        <div class="stat">
+            📄 ${library.files.length} fichier(s)
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================
+   URL R2
+========================================================== */
+
+function getFileURL(key){
+
+    return R2_BASE +
+        key
+        .split("/")
+        .map(
+            part => encodeURIComponent(part)
+        )
+        .join("/");
+
+}
+
+
+/* ==========================================================
+   ICÔNES
+========================================================== */
+
+function getIcon(type){
+
+    switch(type){
+
+        case "pdf":
+            return "📄";
+
+        case "image":
+            return "🖼️";
+
+        case "audio":
+            return "🎵";
+
+        case "video":
+            return "🎬";
+
+        case "document":
+            return "📝";
+
+        case "spreadsheet":
+            return "📊";
+
+        case "presentation":
+            return "📽️";
+
+        case "archive":
+            return "📦";
+
+        default:
+            return "📎";
+
+    }
+
+}
+
+
+/* ==========================================================
+   DOSSIERS DU DOSSIER ACTUEL
+========================================================== */
+
+function getCurrentFolders(){
+
+    const prefix =
+        currentFolder === ""
+        ? ""
+        : currentFolder + "/";
+
+    return library.folders
+        .filter(folder => {
+
+            if(!folder.startsWith(prefix)){
+                return false;
+            }
+
+            const rest =
+                folder.substring(prefix.length);
+
+            return rest &&
+                   !rest.includes("/");
+
+        })
+        .sort();
+
+}
+
+
+/* ==========================================================
+   FICHIERS DU DOSSIER ACTUEL
+========================================================== */
+
+function getCurrentFiles(){
+
+    return library.files
+        .filter(
+            file =>
+                file.folder === currentFolder
+        )
+        .sort(
+            (a,b) =>
+                a.name.localeCompare(
+                    b.name,
+                    "fr",
+                    {
+                        numeric:true
+                    }
+                )
+        );
+
+}
+
+
+/* ==========================================================
+   AFFICHER LA BIBLIOTHÈQUE
+========================================================== */
+
+function render(){
+
+    items.innerHTML = "";
+
+    path.textContent =
+        currentFolder === ""
+        ? "📚 Bibliothèque"
+        : "📁 " + currentFolder;
+
+    back.style.display =
+        currentFolder === ""
+        ? "none"
+        : "inline-block";
+
+
+    const folders =
+        getCurrentFolders();
+
+    folders.forEach(folder => {
+
+        const card =
+        document.createElement("div");
+
+        card.className = "item";
+
+
+        const folderName =
+        folder.split("/").pop();
+
+
+        card.innerHTML = `
+
+            <div class="icon">
+                📁
+            </div>
+
+            <div class="name">
+                ${escapeHTML(folderName)}
+            </div>
+
+            <div class="type">
+                Dossier
+            </div>
+
+        `;
+
+
+        card.onclick = () => {
+
+            currentFolder = folder;
+
+            search.value = "";
+
+            render();
+
+        };
+
+
+        items.appendChild(card);
+
+    });
+
+
+    const files =
+    getCurrentFiles();
+
+
+    files.forEach(file => {
+
+        const card =
+        document.createElement("div");
+
+        card.className = "item";
+
+
+        card.innerHTML = `
+
+            <div class="icon">
+                ${getIcon(file.type)}
+            </div>
+
+            <div class="name">
+                ${escapeHTML(file.name)}
+            </div>
+
+            <div class="type">
+                ${escapeHTML(file.type)}
+            </div>
+
+        `;
+
+
+        card.onclick = () => {
+
+            openFile(file);
+
+        };
+
+
+        items.appendChild(card);
+
+    });
+
+
+    if(
+        folders.length === 0 &&
+        files.length === 0
+    ){
+
+        items.innerHTML = `
+
+            <div
+                class="status"
+                style="grid-column:1/-1;"
+            >
+                Ce dossier est vide.
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==========================================================
+   OUVRIR UN FICHIER
+========================================================== */
+
+function openFile(file){
+
+    const url =
+        getFileURL(file.key);
+
+
+    viewerTitle.textContent =
+        file.name;
+
+
+    viewerContent.innerHTML = "";
+
+
+    /* PDF */
+
+    if(file.type === "pdf"){
+
+        const frame =
+        document.createElement("iframe");
+
+        frame.className =
+            "pdf-frame";
+
+        frame.src =
+            url;
+
+        frame.setAttribute(
+            "loading",
+            "lazy"
+        );
+
+        viewerContent.appendChild(
+            frame
+        );
+
+    }
+
+
+    /* IMAGE */
+
+    else if(file.type === "image"){
+
+        const img =
+        document.createElement("img");
+
+        img.className =
+            "media-image";
+
+        img.src =
+            url;
+
+        img.alt =
+            file.name;
+
+        viewerContent.appendChild(
+            img
+        );
+
+    }
+
+
+    /* AUDIO */
+
+    else if(file.type === "audio"){
+
+        const audio =
+        document.createElement("audio");
+
+        audio.className =
+            "media-audio";
+
+        audio.controls =
+            true;
+
+        audio.preload =
+            "metadata";
+
+        audio.src =
+            url;
+
+        viewerContent.appendChild(
+            audio
+        );
+
+    }
+
+
+    /* VIDÉO */
+
+    else if(file.type === "video"){
+
+        const video =
+        document.createElement("video");
+
+        video.className =
+            "media-video";
+
+        video.controls =
+            true;
+
+        video.preload =
+            "metadata";
+
+        video.playsInline =
+            true;
+
+        video.src =
+            url;
+
+        viewerContent.appendChild(
+            video
+        );
+
+    }
+
+
+    /* AUTRES TYPES */
+
+    else{
+
+        viewerContent.innerHTML = `
+
+            <div class="status">
+
+                <p>
+                    Ce type de fichier ne peut pas
+                    être affiché directement.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    viewer.classList.add(
+        "active"
+    );
+
+
+    viewer.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* ==========================================================
+   FERMER LE LECTEUR
+========================================================== */
+
+closeViewer.onclick = () => {
+
+    viewerContent.innerHTML = "";
+
+    viewer.classList.remove(
+        "active"
+    );
+
+};
+
+
+/* ==========================================================
+   RETOUR
+========================================================== */
+
+back.onclick = () => {
+
+    if(currentFolder === ""){
+        return;
+    }
+
+    const parts =
+        currentFolder.split("/");
+
+    parts.pop();
+
+    currentFolder =
+        parts.join("/");
+
+    search.value = "";
+
+    render();
+
+};
+
+
+/* ==========================================================
+   RECHERCHE
+========================================================== */
+
+search.addEventListener(
+    "input",
+    function(){
+
+        const query =
+            this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!query){
+
+            render();
+
+            return;
+
+        }
+
+
+        items.innerHTML = "";
+
+
+        const results =
+        library.files.filter(file =>
+
+            file.name
+            .toLowerCase()
+            .includes(query)
+
+            ||
+
+            file.key
+            .toLowerCase()
+            .includes(query)
+
+        );
+
+
+        results.forEach(file => {
+
+            const card =
+            document.createElement("div");
+
+            card.className =
+                "item";
+
+
+            card.innerHTML = `
+
+                <div class="icon">
+                    ${getIcon(file.type)}
+                </div>
+
+                <div class="name">
+                    ${escapeHTML(file.name)}
+                </div>
+
+                <div class="type">
+                    📁
+                    ${escapeHTML(
+                        file.folder || "Racine"
+                    )}
+                </div>
+
+            `;
+
+
+            card.onclick = () => {
+
+                openFile(file);
+
+            };
+
+
+            items.appendChild(card);
+
+        });
+
+
+        if(results.length === 0){
+
+            items.innerHTML = `
+
+                <div
+                    class="status"
+                    style="grid-column:1/-1;"
+                >
+                    Aucun résultat.
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   PROTECTION DU TEXTE HTML
+========================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==========================================================
+   DÉMARRAGE
+========================================================== */
+
+loadLibrary();
+
+</script>
+
+</body>
+</html>
