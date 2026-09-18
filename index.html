@@ -1342,7 +1342,7 @@ header{
             controlsList="nodownload noplaybackrate"
             disablePictureInPicture
             playsinline
-            style="display:none">
+            style="display:none" draggable="false">
 
         </video>
 
@@ -1452,12 +1452,154 @@ header{
    PDF.JS
 ========================================================= */
 
-import * as pdfjsLib from
-"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+import { init as initPDFium } from
+"https://cdn.jsdelivr.net/npm/@embedpdf/pdfium@2.15.1/dist/index.js";
 
+/* =========================================================
+   PDFIUM WASM : MOTEUR PDF NATIF DE TYPE CHROME
+========================================================= */
+let pdfiumInstance = null;
+let pdfiumInitPromise = null;
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+async function getPDFium(){
+    if (pdfiumInstance) return pdfiumInstance;
+    if (!pdfiumInitPromise){
+        pdfiumInitPromise = (async () => {
+            const wasmResponse = await fetch(
+                "https://cdn.jsdelivr.net/npm/@embedpdf/pdfium@2.15.1/dist/pdfium.wasm",
+                { cache:"force-cache" }
+            );
+            if (!wasmResponse.ok){
+                throw new Error("PDFium WASM inaccessible");
+            }
+            const wasmBinary = await wasmResponse.arrayBuffer();
+            const instance = await initPDFium({ wasmBinary });
+            instance.PDFiumExt_Init();
+            instance.FPDF_InitLibrary();
+            pdfiumInstance = instance;
+            return instance;
+        })();
+    }
+    return pdfiumInitPromise;
+}
+
+/* Adaptateur minimal compatible avec l’architecture de pages existante. */
+const pdfiumAdapter = {
+    async getDocument({url}){
+        const engine = await getPDFium();
+        const response = await fetch(url, {
+            cache:"no-store",
+            credentials:"omit"
+        });
+        if (!response.ok) throw new Error("PDF inaccessible");
+        const bytes = new Uint8Array(await response.arrayBuffer());
+        const module = engine.pdfium;
+        const memory = module.HEAPU8;
+        if (!memory) throw new Error("Mémoire PDFium indisponible");
+
+        const dataPtr = engine.pdfium.wasmExports.malloc(bytes.byteLength);
+        memory.set(bytes, dataPtr);
+        const documentHandle = engine.FPDF_LoadMemDocument(
+            dataPtr,
+            bytes.byteLength,
+            ""
+        );
+        if (!documentHandle){
+            engine.pdfium.wasmExports.free(dataPtr);
+            throw new Error("PDFium ne peut pas ouvrir ce PDF");
+        }
+
+        const pageCount = engine.FPDF_GetPageCount(documentHandle);
+        const document = {
+            numPages: pageCount,
+            async getPage(pageNumber){
+                const pageHandle = engine.FPDF_LoadPage(
+                    documentHandle,
+                    pageNumber - 1
+                );
+                if (!pageHandle) throw new Error("Page PDF impossible à charger");
+
+                const width = engine.FPDF_GetPageWidthF(pageHandle);
+                const height = engine.FPDF_GetPageHeightF(pageHandle);
+
+                return {
+                    getViewport({scale=1}={}){
+                        return {
+                            width: width * scale,
+                            height: height * scale,
+                            scale
+                        };
+                    },
+                    render({canvasContext, viewport, transform}){
+                        const cssWidth = Math.max(1, Math.ceil(viewport.width));
+                        const cssHeight = Math.max(1, Math.ceil(viewport.height));
+                        const dpr = transform?.[0] || 1;
+                        const pixelWidth = Math.max(1, Math.ceil(cssWidth * dpr));
+                        const pixelHeight = Math.max(1, Math.ceil(cssHeight * dpr));
+                        const stride = pixelWidth * 4;
+                        const pixelBytes = stride * pixelHeight;
+                        const pixelPtr = engine.pdfium.wasmExports.malloc(pixelBytes);
+                        const bitmap = engine.FPDFBitmap_CreateEx(
+                            pixelWidth,
+                            pixelHeight,
+                            4,
+                            pixelPtr,
+                            stride
+                        );
+                        if (!bitmap){
+                            engine.pdfium.wasmExports.free(pixelPtr);
+                            throw new Error("Bitmap PDFium impossible à créer");
+                        }
+                        engine.FPDFBitmap_FillRect(
+                            bitmap, 0, 0, pixelWidth, pixelHeight, 0xFFFFFFFF
+                        );
+                        engine.FPDF_RenderPageBitmap(
+                            bitmap,
+                            pageHandle,
+                            0, 0,
+                            pixelWidth,
+                            pixelHeight,
+                            0,
+                            0
+                        );
+
+                        const source = engine.pdfium.HEAPU8.subarray(
+                            pixelPtr,
+                            pixelPtr + pixelBytes
+                        );
+                        const rgba = new Uint8ClampedArray(pixelBytes);
+                        // PDFium renvoie du BGRA prémultiplié : conversion exacte pour Canvas.
+                        for (let i=0; i<pixelBytes; i+=4){
+                            rgba[i] = source[i+2];
+                            rgba[i+1] = source[i+1];
+                            rgba[i+2] = source[i];
+                            rgba[i+3] = source[i+3];
+                        }
+                        canvasContext.canvas.width = pixelWidth;
+                        canvasContext.canvas.height = pixelHeight;
+                        canvasContext.canvas.style.width = cssWidth + "px";
+                        canvasContext.canvas.style.height = cssHeight + "px";
+                        canvasContext.putImageData(
+                            new ImageData(rgba, pixelWidth, pixelHeight),
+                            0, 0
+                        );
+                        engine.FPDFBitmap_Destroy(bitmap);
+                        engine.pdfium.wasmExports.free(pixelPtr);
+                        return { promise: Promise.resolve() };
+                    },
+                    cleanup(){
+                        engine.FPDF_ClosePage(pageHandle);
+                    }
+                };
+            },
+            cleanup(){
+                engine.FPDF_CloseDocument(documentHandle);
+                engine.pdfium.wasmExports.free(dataPtr);
+            }
+        };
+        return { promise: Promise.resolve(document) };
+    }
+};
 
 
 
@@ -3109,12 +3251,14 @@ async function openPDF(
 
     try{
 
-        currentPDF =
-            await pdfjsLib
+        const pdfiumDocumentResult =
+            await pdfiumAdapter
                 .getDocument({
                     url:url
-                })
-                .promise;
+                });
+
+        currentPDF =
+            await pdfiumDocumentResult.promise;
 
 
         currentPDFPage =
@@ -3586,6 +3730,7 @@ async function renderPDFPage(
         await page.render(
             renderContext
         ).promise;
+        if (page.cleanup) page.cleanup();
 
 
         container.dataset.rendered =
@@ -5044,6 +5189,21 @@ document.addEventListener("keydown", event => {
 
 </script>
 
+
+
+<script>
+/* Protection d’interface : aucun bouton de téléchargement ni menu contextuel. */
+document.addEventListener("contextmenu", event => {
+    if (event.target.closest("#viewer, audio, video, canvas, img")) {
+        event.preventDefault();
+    }
+});
+document.addEventListener("dragstart", event => {
+    if (event.target.closest("#viewer, audio, video, canvas, img")) {
+        event.preventDefault();
+    }
+});
+</script>
 
 </body>
 
