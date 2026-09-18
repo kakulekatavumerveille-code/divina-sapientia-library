@@ -2,555 +2,680 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Bibliothèque Divina Sapientia</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+
+*{
+    box-sizing:border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    color: #172033;
-    overflow-x: hidden;
-}
-
-button,
-input {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
+html,body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f6f9;
+    color:#172033;
 }
 
 /* =========================
-   BIBLIOTHÈQUE
+   EN-TÊTE
 ========================= */
 
-#library {
-    min-height: 100vh;
-    width: 100%;
+header{
+    background:#172b4d;
+    color:white;
+    padding:18px 16px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
 
-.header {
-    background: linear-gradient(135deg, #0b2d5c, #164d91);
-    color: white;
-    padding: 22px 18px;
-    text-align: center;
+.header-inner{
+    max-width:1200px;
+    margin:auto;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: clamp(22px, 5vw, 34px);
+.title{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:4px;
 }
 
-.header p {
-    margin: 8px 0 0;
-    opacity: 0.9;
-    font-size: clamp(13px, 3.5vw, 16px);
-}
-
-.container {
-    width: min(1100px, 94%);
-    margin: auto;
-    padding: 18px 0 40px;
-}
-
-.search-box {
-    width: 100%;
-    margin-bottom: 18px;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid #d6dce5;
-    border-radius: 12px;
-    background: white;
-    outline: none;
-    font-size: 16px;
-}
-
-.search-box input:focus {
-    border-color: #164d91;
-}
-
-.path-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-}
-
-.back-button {
-    border: none;
-    background: #0b2d5c;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 15px;
-}
-
-.current-path {
-    font-size: 14px;
-    color: #5b6472;
-    overflow-wrap: anywhere;
-}
-
-.items {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 14px;
-}
-
-.item {
-    background: white;
-    border: 1px solid #e0e5ec;
-    border-radius: 15px;
-    padding: 20px 14px;
-    min-height: 145px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: transform .15s, box-shadow .15s;
-}
-
-.item:active {
-    transform: scale(.97);
-}
-
-.item:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,.08);
-}
-
-.icon {
-    font-size: 46px;
-    margin-bottom: 10px;
-}
-
-.name {
-    width: 100%;
-    font-size: 15px;
-    font-weight: 600;
-    overflow-wrap: anywhere;
-}
-
-.info {
-    margin-top: 7px;
-    color: #7a8493;
-    font-size: 12px;
-}
-
-.empty {
-    text-align: center;
-    padding: 50px 20px;
-    color: #707987;
+.subtitle{
+    font-size:13px;
+    opacity:.85;
 }
 
 /* =========================
-   LECTEUR
+   BARRE DE RECHERCHE
 ========================= */
 
-#viewer {
-    display: none;
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100dvh;
-    background: #0b0e14;
-    z-index: 999999;
-    color: white;
+.search-area{
+    max-width:1200px;
+    margin:16px auto 10px;
+    padding:0 12px;
 }
 
-.viewer-header {
-    height: 58px;
-    min-height: 58px;
-    background: #111722;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
+.search-box{
+    display:flex;
+    align-items:center;
+    background:white;
+    border-radius:12px;
+    border:1px solid #dce2ea;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
-.viewer-title {
-    flex: 1;
-    min-width: 0;
-    font-size: 14px;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.search-icon{
+    padding:0 12px;
+    font-size:20px;
 }
 
-.close-button,
-.viewer-button {
-    border: none;
-    color: white;
-    background: #263142;
-    border-radius: 9px;
-    padding: 9px 13px;
-    font-size: 14px;
-}
-
-.close-button {
-    background: #a92525;
-}
-
-.viewer-content {
-    position: absolute;
-    top: 58px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+#search{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px 8px;
+    font-size:16px;
+    background:white;
 }
 
 /* =========================
-   IMAGE
+   OUTILS
 ========================= */
 
-#imageViewer {
-    display: none;
-    width: 100%;
-    height: 100%;
-    padding: 12px;
-    overflow: auto;
-    justify-content: center;
-    align-items: center;
+.tools{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 12px 12px;
+
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
-#imageViewer img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+.tool{
+    background:white;
+    border:1px solid #dce2ea;
+    border-radius:9px;
+    padding:9px 12px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.tool:hover{
+    background:#eef3fa;
+}
+
+#resultInfo{
+    max-width:1200px;
+    margin:auto;
+    padding:0 12px 10px;
+    font-size:13px;
+    color:#657084;
 }
 
 /* =========================
-   AUDIO
+   BREADCRUMB
 ========================= */
 
-#audioViewer {
-    display: none;
-    width: min(700px, 92%);
-    padding: 25px;
-    text-align: center;
+.breadcrumb{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 12px;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+
+    font-size:14px;
 }
 
-.audio-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
+.breadcrumb button{
+    border:0;
+    background:none;
+    color:#1769aa;
+    cursor:pointer;
+    padding:3px;
+    font-size:14px;
 }
 
-#audioViewer audio {
-    width: 100%;
+.breadcrumb span{
+    color:#8791a2;
 }
 
 /* =========================
-   VIDEO
+   CONTENU
 ========================= */
 
-#videoViewer {
-    display: none;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 12px 30px;
 }
 
-#videoViewer video {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin:8px 0 12px;
+}
+
+/* =========================
+   GRILLE
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:12px;
+}
+
+/* =========================
+   CARTES
+========================= */
+
+.card{
+    background:white;
+    border:1px solid #e0e5ec;
+    border-radius:13px;
+    padding:15px;
+
+    min-height:125px;
+
+    cursor:pointer;
+
+    transition:
+        transform .15s,
+        box-shadow .15s,
+        border-color .15s;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    border-color:#b8c7db;
+}
+
+.icon{
+    font-size:42px;
+    margin-bottom:9px;
+}
+
+.card-name{
+    font-size:14px;
+    font-weight:600;
+    word-break:break-word;
+}
+
+.card-info{
+    margin-top:6px;
+    font-size:11px;
+    color:#7c8797;
+}
+
+/* =========================
+   DOSSIER
+========================= */
+
+.folder .icon{
+    font-size:44px;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    padding:50px 15px;
+    color:#7c8797;
+}
+
+/* =========================
+   VIEWER
+========================= */
+
+#viewer{
+    position:fixed;
+    inset:0;
+
+    background:#11151c;
+
+    z-index:1000;
+
+    display:none;
+
+    flex-direction:column;
+}
+
+#viewer.active{
+    display:flex;
+}
+
+.viewer-header{
+    height:58px;
+    flex-shrink:0;
+
+    background:#171c25;
+    color:white;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 10px;
+
+    gap:10px;
+}
+
+.viewer-title{
+    flex:1;
+    min-width:0;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    font-size:14px;
+}
+
+.viewer-btn{
+    border:0;
+    background:#2a313d;
+    color:white;
+
+    min-width:40px;
+    height:40px;
+
+    border-radius:8px;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.viewer-btn:hover{
+    background:#394251;
+}
+
+/* =========================
+   ZONE DU LECTEUR
+========================= */
+
+.viewer-body{
+    flex:1;
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* IMAGE */
+
+#imageViewer{
+    max-width:100%;
+    max-height:100%;
+
+    object-fit:contain;
+
+    user-select:none;
+    -webkit-user-drag:none;
+
+    transform-origin:center center;
+
+    touch-action:none;
+
+    cursor:grab;
+}
+
+#imageViewer.dragging{
+    cursor:grabbing;
+}
+
+/* AUDIO */
+
+#audioViewer{
+    width:min(700px,90%);
+}
+
+/* VIDEO */
+
+#videoViewer{
+    max-width:100%;
+    max-height:100%;
+
+    width:auto;
+    height:auto;
+
+    outline:none;
 }
 
 /* =========================
    PDF
 ========================= */
 
-#pdfViewer {
-    display: none;
-    position: absolute;
-    inset: 0;
-    flex-direction: column;
-    background: #222;
+#pdfArea{
+    position:absolute;
+    inset:0;
+
+    overflow:auto;
+
+    display:none;
+
+    touch-action:none;
+
+    background:#525252;
 }
 
-.pdf-toolbar {
-    min-height: 52px;
-    background: #151a22;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 7px;
-    flex-wrap: wrap;
-    z-index: 5;
+#pdfCanvas{
+    display:block;
+
+    margin:20px auto;
+
+    background:white;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.4);
+
+    transform-origin:top center;
 }
 
-.pdf-toolbar button {
-    border: none;
-    background: #303947;
-    color: white;
-    border-radius: 8px;
-    padding: 8px 12px;
-}
-
-.pdf-page-info {
-    font-size: 13px;
-    min-width: 90px;
-    text-align: center;
-}
-
-.pdf-area {
-    flex: 1;
-    overflow: auto;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 15px;
-    background: #343434;
-}
-
-#pdfCanvas {
-    display: block;
-    background: white;
-    box-shadow: 0 3px 18px rgba(0,0,0,.45);
-    max-width: none;
+.pdf-message{
+    color:white;
+    text-align:center;
+    padding:40px;
 }
 
 /* =========================
-   AUTRES FICHIERS
+   CONTRÔLES PDF
 ========================= */
 
-#otherViewer {
-    display: none;
-    text-align: center;
-    padding: 30px;
+.pdf-controls{
+    position:absolute;
+
+    left:50%;
+    bottom:15px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:center;
+
+    gap:6px;
+
+    background:rgba(20,25,32,.92);
+
+    padding:7px;
+
+    border-radius:12px;
+
+    z-index:10;
 }
 
-#otherViewer .big-icon {
-    font-size: 70px;
-    margin-bottom: 15px;
+.pdf-controls button{
+    width:38px;
+    height:38px;
+
+    border:0;
+    border-radius:7px;
+
+    background:#343c49;
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.pdf-page{
+    color:white;
+    font-size:13px;
+    padding:0 6px;
+    white-space:nowrap;
 }
 
 /* =========================
-   CHARGEMENT
+   LOADING
 ========================= */
 
-.loading {
-    position: fixed;
-    inset: 0;
-    background: rgba(11,14,20,.92);
-    color: white;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 1000000;
-}
-
-.spinner {
-    width: 42px;
-    height: 42px;
-    border: 4px solid rgba(255,255,255,.25);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
-    margin-bottom: 15px;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.loading{
+    color:white;
+    font-size:15px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    .container {
-        width: 94%;
-        padding-top: 14px;
+    header{
+        padding:14px 12px;
     }
 
-    .items {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .title{
+        font-size:20px;
     }
 
-    .item {
-        min-height: 125px;
-        padding: 15px 8px;
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
     }
 
-    .icon {
-        font-size: 38px;
+    .card{
+        min-height:115px;
+        padding:11px;
     }
 
-    .name {
-        font-size: 13px;
+    .icon{
+        font-size:36px;
     }
 
-    .viewer-header {
-        height: 54px;
-        min-height: 54px;
+    .card-name{
+        font-size:13px;
     }
 
-    .viewer-content {
-        top: 54px;
+    .tools{
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:9px;
     }
 
-    .close-button,
-    .viewer-button {
-        padding: 8px 10px;
+    .tool{
+        flex-shrink:0;
     }
 
-    .pdf-toolbar {
-        min-height: 48px;
+    .pdf-controls{
+        bottom:8px;
     }
 
-    .pdf-toolbar button {
-        padding: 7px 9px;
-        font-size: 13px;
-    }
-
-    .pdf-area {
-        padding: 8px;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     BIBLIOTHÈQUE
-========================= -->
+<header>
 
-<div id="library">
+    <div class="header-inner">
 
-    <header class="header">
-        <h1>📚 Divina Sapientia</h1>
-        <p>Bibliothèque des partitions et ressources</p>
-    </header>
-
-    <main class="container">
-
-        <div class="search-box">
-            <input
-                id="search"
-                type="search"
-                placeholder="🔎 Rechercher un fichier..."
-                autocomplete="off"
-            >
+        <div class="title">
+            📚 Bibliothèque Divina Sapientia
         </div>
 
-        <div class="path-bar">
-            <button id="backButton" class="back-button">
-                ← Retour
-            </button>
-
-            <div id="currentPath" class="current-path">
-                Bibliothèque
-            </div>
+        <div class="subtitle">
+            Partitions, documents, images, audios et vidéos
         </div>
 
-        <div id="items" class="items"></div>
+    </div>
 
-    </main>
+</header>
+
+
+<div class="search-area">
+
+    <div class="search-box">
+
+        <div class="search-icon">🔎</div>
+
+        <input
+            id="search"
+            type="search"
+            placeholder="Rechercher dans toute la bibliothèque..."
+            autocomplete="off"
+        >
+
+    </div>
+
 </div>
 
 
+<div class="tools">
+
+    <button class="tool" onclick="setSort('nameAsc')">
+        🔤 A → Z
+    </button>
+
+    <button class="tool" onclick="setSort('nameDesc')">
+        🔤 Z → A
+    </button>
+
+    <button class="tool" onclick="setSort('sizeAsc')">
+        📦 Petite → Grande
+    </button>
+
+    <button class="tool" onclick="setSort('sizeDesc')">
+        📦 Grande → Petite
+    </button>
+
+    <button class="tool" onclick="refreshLibrary()">
+        🔄 Actualiser
+    </button>
+
+</div>
+
+
+<div id="resultInfo"></div>
+
+
+<div id="breadcrumb" class="breadcrumb"></div>
+
+
+<main class="container">
+
+    <div class="section-title" id="sectionTitle">
+        Bibliothèque
+    </div>
+
+    <div id="grid" class="grid"></div>
+
+</main>
+
+
 <!-- =========================
-     LECTEUR PLEIN ÉCRAN
+     VIEWER
 ========================= -->
 
 <div id="viewer">
 
     <div class="viewer-header">
 
-        <button class="close-button" onclick="closeViewer()">
-            ✕ Fermer
+        <button
+            class="viewer-btn"
+            onclick="closeViewer()"
+            title="Fermer"
+        >
+            ✕
         </button>
 
-        <div id="viewerTitle" class="viewer-title">
-            Lecteur
-        </div>
+        <div id="viewerTitle" class="viewer-title"></div>
+
+        <button
+            id="viewerZoomOut"
+            class="viewer-btn"
+            onclick="zoomOut()"
+            title="Zoom arrière"
+        >
+            −
+        </button>
+
+        <button
+            id="viewerZoomIn"
+            class="viewer-btn"
+            onclick="zoomIn()"
+            title="Zoom"
+        >
+            +
+        </button>
 
     </div>
 
-    <div class="viewer-content">
 
-        <!-- IMAGE -->
-        <div id="imageViewer">
-            <img id="imageElement" alt="">
+    <div class="viewer-body">
+
+        <div id="loading" class="loading">
+            Chargement...
         </div>
 
-        <!-- AUDIO -->
-        <div id="audioViewer">
-            <div class="audio-icon">🎵</div>
-            <h2 id="audioTitle">Audio</h2>
 
-            <audio
-                id="audioElement"
-                controls
-                controlsList="nodownload"
-                preload="metadata"
-            ></audio>
-        </div>
+        <img
+            id="imageViewer"
+            style="display:none"
+            draggable="false"
+            alt=""
+        >
 
-        <!-- VIDEO -->
-        <div id="videoViewer">
 
-            <video
-                id="videoElement"
-                controls
-                controlsList="nodownload noplaybackrate"
-                disablePictureInPicture
-                playsinline
-                preload="metadata"
-            ></video>
+        <audio
+            id="audioViewer"
+            controls
+            controlsList="nodownload"
+            style="display:none"
+        ></audio>
 
-        </div>
 
-        <!-- PDF -->
-        <div id="pdfViewer">
+        <video
+            id="videoViewer"
+            controls
+            controlsList="nodownload noplaybackrate"
+            disablePictureInPicture
+            playsinline
+            style="display:none"
+        ></video>
 
-            <div class="pdf-toolbar">
+
+        <div id="pdfArea">
+
+            <canvas id="pdfCanvas"></canvas>
+
+            <div class="pdf-controls">
 
                 <button onclick="previousPage()">
-                    ◀
+                    ‹
                 </button>
 
-                <div id="pdfPageInfo" class="pdf-page-info">
-                    Page 1 / 1
+                <div id="pdfPage" class="pdf-page">
+                    1 / 1
                 </div>
 
                 <button onclick="nextPage()">
-                    ▶
+                    ›
                 </button>
 
                 <button onclick="zoomOut()">
@@ -561,52 +686,18 @@ button {
                     +
                 </button>
 
-                <button onclick="fitWidth()">
+                <button onclick="fitPDF()">
                     ↔
                 </button>
 
             </div>
 
-            <div id="pdfArea" class="pdf-area">
-                <canvas id="pdfCanvas"></canvas>
-            </div>
-
         </div>
 
-        <!-- AUTRES -->
-        <div id="otherViewer">
-
-            <div class="big-icon">📁</div>
-
-            <h2>Fichier</h2>
-
-            <p>
-                Ce type de fichier ne possède pas encore
-                de lecteur intégré.
-            </p>
-
-        </div>
-
-    </div>
-</div>
-
-
-<!-- CHARGEMENT -->
-
-<div id="loading" class="loading">
-
-    <div class="spinner"></div>
-
-    <div id="loadingText">
-        Chargement...
     </div>
 
 </div>
 
-
-<!-- =========================
-     PDF.JS
-========================= -->
 
 <script type="module">
 
@@ -621,118 +712,169 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
    CONFIGURATION
 ========================= */
 
-const R2_BASE =
-"https://pub-03b759d4e4db40a1a34ad5132b30b4ed.r2.dev/";
-
 const JSON_URL =
-"https://kakulekatavumerveille-code.github.io/divina-sapientia-library/bibliotheque.json";
+    "bibliotheque.json";
+
+const R2_BASE =
+    "https://pub-03b759d4e4db40a1a34ad5132b30b4ed.r2.dev/";
 
 
 /* =========================
    VARIABLES
 ========================= */
 
-let libraryData = null;
+let library = {
+    folders: [],
+    files: []
+};
+
 let currentFolder = "";
-let searchText = "";
+
+let sortMode = "nameAsc";
 
 let currentPDF = null;
-let currentPDFPage = 1;
-let currentPDFScale = 1;
-
-let currentPDFRendering = false;
-let currentPDFPendingPage = null;
+let currentPage = 1;
+let pdfScale = 1;
 
 
 /* =========================
-   ELEMENTS
+   ÉLÉMENTS
 ========================= */
 
-const items = document.getElementById("items");
-const search = document.getElementById("search");
-const currentPath = document.getElementById("currentPath");
-const backButton = document.getElementById("backButton");
+const grid =
+    document.getElementById("grid");
 
-const viewer = document.getElementById("viewer");
-const viewerTitle = document.getElementById("viewerTitle");
+const search =
+    document.getElementById("search");
 
-const imageViewer = document.getElementById("imageViewer");
-const imageElement = document.getElementById("imageElement");
+const breadcrumb =
+    document.getElementById("breadcrumb");
 
-const audioViewer = document.getElementById("audioViewer");
-const audioElement = document.getElementById("audioElement");
-const audioTitle = document.getElementById("audioTitle");
+const sectionTitle =
+    document.getElementById("sectionTitle");
 
-const videoViewer = document.getElementById("videoViewer");
-const videoElement = document.getElementById("videoElement");
+const resultInfo =
+    document.getElementById("resultInfo");
 
-const pdfViewer = document.getElementById("pdfViewer");
-const pdfCanvas = document.getElementById("pdfCanvas");
-const pdfArea = document.getElementById("pdfArea");
-const pdfPageInfo = document.getElementById("pdfPageInfo");
+const viewer =
+    document.getElementById("viewer");
 
-const otherViewer = document.getElementById("otherViewer");
+const viewerTitle =
+    document.getElementById("viewerTitle");
 
-const loading = document.getElementById("loading");
-const loadingText = document.getElementById("loadingText");
+const loading =
+    document.getElementById("loading");
+
+const imageViewer =
+    document.getElementById("imageViewer");
+
+const audioViewer =
+    document.getElementById("audioViewer");
+
+const videoViewer =
+    document.getElementById("videoViewer");
+
+const pdfArea =
+    document.getElementById("pdfArea");
+
+const pdfCanvas =
+    document.getElementById("pdfCanvas");
+
+const pdfPage =
+    document.getElementById("pdfPage");
 
 
 /* =========================
-   OUTILS
+   CHARGER LA BIBLIOTHÈQUE
 ========================= */
 
-function showLoading(message = "Chargement...") {
-    loadingText.textContent = message;
-    loading.style.display = "flex";
-}
+async function loadLibrary(){
 
-function hideLoading() {
-    loading.style.display = "none";
-}
+    try{
 
-function escapeHTML(text) {
+        const response =
+            await fetch(
+                JSON_URL + "?v=" + Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
 
-    return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
+        if(!response.ok){
+            throw new Error(
+                "Impossible de charger bibliotheque.json"
+            );
+        }
 
-function formatSize(bytes) {
+        library =
+            await response.json();
 
-    if (!bytes) return "0 octet";
+        render();
 
-    const units = ["octets", "Ko", "Mo", "Go"];
+    }catch(error){
 
-    let i = 0;
-    let size = bytes;
+        console.error(error);
 
-    while (size >= 1024 && i < units.length - 1) {
-        size /= 1024;
-        i++;
+        grid.innerHTML = `
+            <div class="empty">
+                ❌ Impossible de charger la bibliothèque.
+            </div>
+        `;
+
     }
 
-    return size.toFixed(size >= 10 || i === 0 ? 0 : 1) +
-        " " + units[i];
 }
 
-function getURL(file) {
+
+/* =========================
+   URL R2
+========================= */
+
+function getURL(key){
 
     return R2_BASE +
-        file.key
+        key
         .split("/")
-        .map(part => encodeURIComponent(part))
+        .map(
+            part => encodeURIComponent(part)
+        )
         .join("/");
+
 }
 
-function getIcon(type) {
 
-    switch (type) {
+/* =========================
+   TAILLE
+========================= */
+
+function formatSize(bytes){
+
+    if(bytes < 1024)
+        return bytes + " o";
+
+    if(bytes < 1024 * 1024)
+        return (bytes / 1024).toFixed(1) + " Ko";
+
+    if(bytes < 1024 * 1024 * 1024)
+        return (bytes / 1024 / 1024).toFixed(1) + " Mo";
+
+    return (
+        bytes / 1024 / 1024 / 1024
+    ).toFixed(2) + " Go";
+
+}
+
+
+/* =========================
+   ICÔNES
+========================= */
+
+function getIcon(type){
+
+    switch(type){
 
         case "pdf":
-            return "📄";
+            return "📕";
 
         case "image":
             return "🖼️";
@@ -744,7 +886,7 @@ function getIcon(type) {
             return "🎬";
 
         case "document":
-            return "📝";
+            return "📄";
 
         case "spreadsheet":
             return "📊";
@@ -756,391 +898,776 @@ function getIcon(type) {
             return "🗜️";
 
         default:
-            return "📁";
+            return "📎";
     }
+
 }
 
 
 /* =========================
-   CHARGER JSON
+   TRI
 ========================= */
 
-async function loadLibrary() {
+window.setSort = function(mode){
 
-    try {
+    sortMode = mode;
 
-        /*
-         * Paramètre anti-cache.
-         * Il oblige le navigateur à demander
-         * la version actuelle du JSON.
-         */
+    render();
 
-        const url =
-            JSON_URL +
-            "?v=" +
-            Date.now();
-
-        const response = await fetch(
-            url,
-            {
-                cache: "no-store"
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error("Erreur JSON");
-        }
-
-        libraryData = await response.json();
-
-        renderLibrary();
-
-    } catch (error) {
-
-        console.error(error);
-
-        items.innerHTML = `
-            <div class="empty">
-                ❌ Impossible de charger la bibliothèque.
-                <br><br>
-                Vérifiez votre connexion Internet.
-            </div>
-        `;
-    }
-}
-
-
-/* =========================
-   AFFICHER BIBLIOTHÈQUE
-========================= */
-
-function renderLibrary() {
-
-    if (!libraryData) return;
-
-    items.innerHTML = "";
-
-    currentPath.textContent =
-        currentFolder
-            ? "Bibliothèque / " + currentFolder
-            : "Bibliothèque";
-
-
-    /* Recherche globale */
-
-    if (searchText.trim() !== "") {
-
-        const query =
-            searchText
-                .trim()
-                .toLowerCase();
-
-        const results =
-            libraryData.files.filter(file =>
-                file.name.toLowerCase().includes(query) ||
-                file.key.toLowerCase().includes(query)
-            );
-
-        if (results.length === 0) {
-
-            items.innerHTML = `
-                <div class="empty">
-                    Aucun fichier trouvé.
-                </div>
-            `;
-
-            return;
-        }
-
-        results.forEach(file => {
-            createFileItem(file);
-        });
-
-        return;
-    }
-
-
-    /* =========================
-       DOSSIERS
-    ========================= */
-
-    const folders = new Set();
-
-    libraryData.files.forEach(file => {
-
-        const folder = file.folder || "";
-
-        if (!folder.startsWith(currentFolder)) {
-            return;
-        }
-
-        const remaining =
-            currentFolder
-                ? folder
-                    .replace(currentFolder, "")
-                    .replace(/^\/+/, "")
-                : folder;
-
-        if (!remaining) return;
-
-        const nextFolder =
-            remaining.split("/")[0];
-
-        const fullPath =
-            currentFolder
-                ? currentFolder + "/" + nextFolder
-                : nextFolder;
-
-        folders.add(fullPath);
-    });
-
-
-    folders.forEach(folder => {
-
-        const name =
-            folder.split("/").pop();
-
-        const div =
-            document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
-            <div class="icon">📁</div>
-            <div class="name">
-                ${escapeHTML(name)}
-            </div>
-            <div class="info">
-                Dossier
-            </div>
-        `;
-
-        div.onclick = () => {
-
-            currentFolder = folder;
-
-            renderLibrary();
-        };
-
-        items.appendChild(div);
-    });
-
-
-    /* =========================
-       FICHIERS
-    ========================= */
-
-    const files =
-        libraryData.files.filter(file =>
-            (file.folder || "") === currentFolder
-        );
-
-    files.forEach(file => {
-        createFileItem(file);
-    });
-
-
-    if (
-        folders.size === 0 &&
-        files.length === 0
-    ) {
-
-        items.innerHTML = `
-            <div class="empty">
-                Ce dossier est vide.
-            </div>
-        `;
-    }
-}
-
-
-/* =========================
-   CRÉER FICHIER
-========================= */
-
-function createFileItem(file) {
-
-    const div =
-        document.createElement("div");
-
-    div.className = "item";
-
-    div.innerHTML = `
-        <div class="icon">
-            ${getIcon(file.type)}
-        </div>
-
-        <div class="name">
-            ${escapeHTML(file.name)}
-        </div>
-
-        <div class="info">
-            ${formatSize(file.size)}
-        </div>
-    `;
-
-    div.onclick = () => {
-        openFile(file);
-    };
-
-    items.appendChild(div);
-}
-
-
-/* =========================
-   OUVRIR FICHIER
-========================= */
-
-async function openFile(file) {
-
-    closeAllPlayers();
-
-    viewerTitle.textContent = file.name;
-
-    viewer.style.display = "block";
-
-    document.body.style.overflow = "hidden";
-
-    const url = getURL(file);
-
-
-    /* PDF */
-
-    if (file.type === "pdf") {
-
-        pdfViewer.style.display = "flex";
-
-        await openPDF(url);
-
-        return;
-    }
-
-
-    /* IMAGE */
-
-    if (file.type === "image") {
-
-        imageViewer.style.display = "flex";
-
-        imageElement.src = url;
-
-        return;
-    }
-
-
-    /* AUDIO */
-
-    if (file.type === "audio") {
-
-        audioViewer.style.display = "block";
-
-        audioTitle.textContent =
-            file.name;
-
-        audioElement.src = url;
-
-        return;
-    }
-
-
-    /* VIDEO */
-
-    if (file.type === "video") {
-
-        videoViewer.style.display = "flex";
-
-        videoElement.src = url;
-
-        return;
-    }
-
-
-    /* AUTRES */
-
-    otherViewer.style.display = "block";
-}
-
-
-/* =========================
-   FERMER LES LECTEURS
-========================= */
-
-function closeAllPlayers() {
-
-    imageViewer.style.display = "none";
-    audioViewer.style.display = "none";
-    videoViewer.style.display = "none";
-    pdfViewer.style.display = "none";
-    otherViewer.style.display = "none";
-
-    imageElement.src = "";
-
-    audioElement.pause();
-    audioElement.removeAttribute("src");
-    audioElement.load();
-
-    videoElement.pause();
-    videoElement.removeAttribute("src");
-    videoElement.load();
-}
-
-
-window.closeViewer = function() {
-
-    closeAllPlayers();
-
-    viewer.style.display = "none";
-
-    document.body.style.overflow = "";
-
-    currentPDF = null;
 };
 
 
 /* =========================
-   PDF.JS
+   COMPARATEUR
 ========================= */
 
-async function openPDF(url) {
+function compareItems(a,b){
 
-    try {
+    if(sortMode === "nameAsc"){
 
-        showLoading("Chargement du PDF...");
+        return a.name.localeCompare(
+            b.name,
+            "fr",
+            {
+                sensitivity:"base",
+                numeric:true
+            }
+        );
 
-        currentPDF = await pdfjsLib.getDocument({
-            url: url
-        }).promise;
+    }
 
-        currentPDFPage = 1;
+    if(sortMode === "nameDesc"){
 
-        currentPDFScale = 1;
+        return b.name.localeCompare(
+            a.name,
+            "fr",
+            {
+                sensitivity:"base",
+                numeric:true
+            }
+        );
 
-        await renderPDFPage(currentPDFPage);
+    }
 
-        hideLoading();
+    if(sortMode === "sizeAsc"){
 
-    } catch (error) {
+        return (a.size || 0) -
+               (b.size || 0);
 
-        hideLoading();
+    }
+
+    if(sortMode === "sizeDesc"){
+
+        return (b.size || 0) -
+               (a.size || 0);
+
+    }
+
+    return 0;
+
+}
+
+
+/* =========================
+   RECHERCHE GLOBALE
+========================= */
+
+function globalSearch(term){
+
+    term =
+        term.trim().toLowerCase();
+
+    if(!term)
+        return null;
+
+    const files =
+        library.files.filter(file => {
+
+            const text = (
+                file.name +
+                " " +
+                file.key +
+                " " +
+                file.folder +
+                " " +
+                file.type +
+                " " +
+                file.extension
+            ).toLowerCase();
+
+            return text.includes(term);
+
+        });
+
+    const folders =
+        library.folders.filter(folder =>
+            folder.toLowerCase().includes(term)
+        );
+
+    return {
+        files,
+        folders
+    };
+
+}
+
+
+/* =========================
+   AFFICHAGE
+========================= */
+
+function render(){
+
+    const term =
+        search.value.trim();
+
+    /* RECHERCHE GLOBALE */
+
+    if(term){
+
+        renderGlobalSearch(term);
+
+        return;
+    }
+
+
+    /* AFFICHAGE NORMAL */
+
+    renderBreadcrumb();
+
+    const folders =
+        getCurrentFolders();
+
+    const files =
+        getCurrentFiles();
+
+
+    const sortedFolders =
+        [...folders].sort(
+            (a,b) => compareItems(
+                {
+                    name:getFolderName(a),
+                    size:0
+                },
+                {
+                    name:getFolderName(b),
+                    size:0
+                }
+            )
+        );
+
+
+    const sortedFiles =
+        [...files].sort(compareItems);
+
+
+    grid.innerHTML = "";
+
+
+    /* DOSSIERS */
+
+    sortedFolders.forEach(
+        folder => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card folder";
+
+            card.innerHTML = `
+                <div class="icon">📁</div>
+                <div class="card-name">
+                    ${escapeHTML(
+                        getFolderName(folder)
+                    )}
+                </div>
+                <div class="card-info">
+                    Dossier
+                </div>
+            `;
+
+            card.onclick = () => {
+
+                currentFolder = folder;
+
+                render();
+
+            };
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    /* FICHIERS */
+
+    sortedFiles.forEach(
+        file => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card";
+
+            card.innerHTML = `
+                <div class="icon">
+                    ${getIcon(file.type)}
+                </div>
+
+                <div class="card-name">
+                    ${escapeHTML(file.name)}
+                </div>
+
+                <div class="card-info">
+                    ${formatSize(file.size)}
+                </div>
+            `;
+
+            card.onclick = () => {
+
+                openViewer(file);
+
+            };
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    if(
+        sortedFolders.length === 0 &&
+        sortedFiles.length === 0
+    ){
+
+        grid.innerHTML = `
+            <div class="empty">
+                📂 Ce dossier est vide.
+            </div>
+        `;
+
+    }
+
+
+    sectionTitle.textContent =
+        currentFolder
+            ? getFolderName(currentFolder)
+            : "Bibliothèque";
+
+
+    resultInfo.textContent =
+        `${sortedFolders.length} dossier(s) • ${sortedFiles.length} fichier(s)`;
+
+}
+
+
+/* =========================
+   RECHERCHE GLOBALE
+========================= */
+
+function renderGlobalSearch(term){
+
+    const results =
+        globalSearch(term);
+
+    breadcrumb.innerHTML = `
+        <button onclick="goHome()">
+            🏠 Bibliothèque
+        </button>
+        <span>›</span>
+        <strong>Recherche</strong>
+    `;
+
+
+    sectionTitle.textContent =
+        `Résultats pour « ${term} »`;
+
+
+    grid.innerHTML = "";
+
+
+    /* DOSSIERS TROUVÉS */
+
+    results.folders
+        .sort((a,b) =>
+            a.localeCompare(
+                b,
+                "fr",
+                {
+                    sensitivity:"base"
+                }
+            )
+        )
+        .forEach(folder => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card folder";
+
+            card.innerHTML = `
+                <div class="icon">📁</div>
+
+                <div class="card-name">
+                    ${escapeHTML(
+                        getFolderName(folder)
+                    )}
+                </div>
+
+                <div class="card-info">
+                    ${escapeHTML(folder)}
+                </div>
+            `;
+
+            card.onclick = () => {
+
+                search.value = "";
+
+                currentFolder =
+                    folder;
+
+                render();
+
+            };
+
+            grid.appendChild(card);
+
+        });
+
+
+    /* FICHIERS TROUVÉS */
+
+    results.files
+        .sort(compareItems)
+        .forEach(file => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card";
+
+            card.innerHTML = `
+                <div class="icon">
+                    ${getIcon(file.type)}
+                </div>
+
+                <div class="card-name">
+                    ${escapeHTML(file.name)}
+                </div>
+
+                <div class="card-info">
+                    📁 ${escapeHTML(file.folder || "Racine")}
+                    <br>
+                    ${formatSize(file.size)}
+                </div>
+            `;
+
+            card.onclick = () => {
+
+                openViewer(file);
+
+            };
+
+            grid.appendChild(card);
+
+        });
+
+
+    resultInfo.textContent =
+        `${results.files.length} fichier(s) trouvé(s) • ` +
+        `${results.folders.length} dossier(s) trouvé(s)`;
+
+
+    if(
+        results.files.length === 0 &&
+        results.folders.length === 0
+    ){
+
+        grid.innerHTML = `
+            <div class="empty">
+                🔎 Aucun résultat pour
+                « ${escapeHTML(term)} »
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   DOSSIERS DU NIVEAU ACTUEL
+========================= */
+
+function getCurrentFolders(){
+
+    const prefix =
+        currentFolder
+            ? currentFolder + "/"
+            : "";
+
+    const folders = [];
+
+    for(
+        const folder of library.folders
+    ){
+
+        if(!folder.startsWith(prefix))
+            continue;
+
+        const rest =
+            folder.slice(prefix.length);
+
+        if(
+            rest &&
+            !rest.includes("/")
+        ){
+
+            folders.push(folder);
+
+        }
+
+    }
+
+    return folders;
+
+}
+
+
+/* =========================
+   FICHIERS DU NIVEAU ACTUEL
+========================= */
+
+function getCurrentFiles(){
+
+    return library.files.filter(
+        file =>
+            (file.folder || "") ===
+            currentFolder
+    );
+
+}
+
+
+/* =========================
+   NOM DOSSIER
+========================= */
+
+function getFolderName(path){
+
+    return path.split("/").pop();
+
+}
+
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+function renderBreadcrumb(){
+
+    breadcrumb.innerHTML = "";
+
+    const home =
+        document.createElement("button");
+
+    home.textContent =
+        "🏠 Bibliothèque";
+
+    home.onclick =
+        () => {
+
+            currentFolder = "";
+
+            render();
+
+        };
+
+    breadcrumb.appendChild(home);
+
+
+    if(!currentFolder)
+        return;
+
+
+    const parts =
+        currentFolder.split("/");
+
+    let path = "";
+
+    parts.forEach(
+        (part,index) => {
+
+            const separator =
+                document.createElement("span");
+
+            separator.textContent = "›";
+
+            breadcrumb.appendChild(
+                separator
+            );
+
+
+            path =
+                path
+                    ? path + "/" + part
+                    : part;
+
+
+            const button =
+                document.createElement("button");
+
+            button.textContent =
+                part;
+
+            const target =
+                path;
+
+            button.onclick =
+                () => {
+
+                    currentFolder =
+                        target;
+
+                    render();
+
+                };
+
+            breadcrumb.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   ÉCHAPPEMENT HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   VIEWER
+========================= */
+
+async function openViewer(file){
+
+    viewer.classList.add("active");
+
+    viewerTitle.textContent =
+        file.name;
+
+    resetViewer();
+
+    loading.style.display =
+        "block";
+
+
+    const url =
+        getURL(file.key);
+
+
+    try{
+
+        if(file.type === "image"){
+
+            imageViewer.src =
+                url;
+
+            imageViewer.style.display =
+                "block";
+
+            loading.style.display =
+                "none";
+
+            resetImageZoom();
+
+            return;
+        }
+
+
+        if(file.type === "audio"){
+
+            audioViewer.src =
+                url;
+
+            audioViewer.style.display =
+                "block";
+
+            loading.style.display =
+                "none";
+
+            audioViewer.load();
+
+            return;
+        }
+
+
+        if(file.type === "video"){
+
+            videoViewer.src =
+                url;
+
+            videoViewer.style.display =
+                "block";
+
+            loading.style.display =
+                "none";
+
+            videoViewer.load();
+
+            return;
+        }
+
+
+        if(file.type === "pdf"){
+
+            await openPDF(url);
+
+            return;
+        }
+
+
+        /* AUTRES TYPES */
+
+        loading.innerHTML = `
+            Ce type de fichier ne possède
+            pas encore de lecteur intégré.
+        `;
+
+    }catch(error){
 
         console.error(error);
 
-        pdfViewer.innerHTML = `
-            <div style="
-                padding:30px;
-                text-align:center;
-                color:white;
-                margin:auto;
-            ">
-                <h2>Impossible d'afficher ce PDF</h2>
+        loading.innerHTML = `
+            ❌ Impossible d'afficher ce fichier.
+        `;
 
-                <p>
-                    Le lecteur PDF n'a pas pu charger
-                    le fichier.
-                </p>
+    }
+
+}
+
+
+/* =========================
+   RESET VIEWER
+========================= */
+
+function resetViewer(){
+
+    loading.innerHTML =
+        "Chargement...";
+
+    loading.style.display =
+        "block";
+
+    imageViewer.style.display =
+        "none";
+
+    audioViewer.style.display =
+        "none";
+
+    videoViewer.style.display =
+        "none";
+
+    pdfArea.style.display =
+        "none";
+
+
+    imageViewer.src = "";
+
+    audioViewer.pause();
+    audioViewer.removeAttribute("src");
+
+    videoViewer.pause();
+    videoViewer.removeAttribute("src");
+
+}
+
+
+/* =========================
+   FERMER
+========================= */
+
+window.closeViewer =
+    function(){
+
+        viewer.classList.remove(
+            "active"
+        );
+
+        resetViewer();
+
+        currentPDF = null;
+
+    };
+
+
+/* =========================
+   PDF
+========================= */
+
+async function openPDF(url){
+
+    pdfArea.style.display =
+        "block";
+
+    loading.style.display =
+        "block";
+
+
+    try{
+
+        currentPDF =
+            await pdfjsLib
+                .getDocument({
+                    url:url
+                })
+                .promise;
+
+        currentPage = 1;
+
+        pdfScale = 1;
+
+        loading.style.display =
+            "none";
+
+        await renderPDFPage();
+
+    }catch(error){
+
+        console.error(
+            "Erreur PDF :",
+            error
+        );
+
+        pdfArea.innerHTML = `
+            <div class="pdf-message">
+                ❌ Impossible d'afficher ce PDF.
+                <br><br>
+                Le lecteur PDF n'a pas pu charger le fichier.
             </div>
         `;
+
     }
+
 }
 
 
@@ -1148,255 +1675,550 @@ async function openPDF(url) {
    RENDRE PAGE PDF
 ========================= */
 
-async function renderPDFPage(pageNumber) {
+async function renderPDFPage(){
 
-    if (!currentPDF) return;
-
-    if (currentPDFRendering) {
-
-        currentPDFPendingPage =
-            pageNumber;
-
+    if(!currentPDF)
         return;
-    }
-
-    currentPDFRendering = true;
-
-    try {
-
-        const page =
-            await currentPDF.getPage(pageNumber);
 
 
-        /*
-         * Largeur disponible.
-         * Le PDF s'adapte automatiquement
-         * à l'écran.
-         */
-
-        const availableWidth =
-            Math.max(
-                pdfArea.clientWidth - 30,
-                250
-            );
+    const page =
+        await currentPDF.getPage(
+            currentPage
+        );
 
 
-        const baseViewport =
-            page.getViewport({
-                scale: 1
-            });
+    const viewport =
+        page.getViewport({
+            scale:pdfScale
+        });
 
 
-        let scale =
-            availableWidth /
-            baseViewport.width;
+    const dpr =
+        window.devicePixelRatio || 1;
 
 
-        scale =
-            scale * currentPDFScale;
+    pdfCanvas.width =
+        viewport.width * dpr;
+
+    pdfCanvas.height =
+        viewport.height * dpr;
 
 
-        /*
-         * Sur ordinateur, éviter une page
-         * excessivement petite.
-         */
+    pdfCanvas.style.width =
+        viewport.width + "px";
 
-        if (window.innerWidth > 700) {
-
-            scale =
-                Math.max(scale, .8);
-        }
+    pdfCanvas.style.height =
+        viewport.height + "px";
 
 
-        const viewport =
-            page.getViewport({
-                scale: scale
-            });
+    const context =
+        pdfCanvas.getContext("2d");
 
 
-        const outputScale =
-            window.devicePixelRatio || 1;
+    const renderContext = {
+
+        canvasContext:context,
+
+        viewport:viewport,
+
+        transform:[
+            dpr,
+            0,
+            0,
+            dpr,
+            0,
+            0
+        ]
+
+    };
 
 
-        pdfCanvas.width =
-            Math.floor(
-                viewport.width *
-                outputScale
-            );
-
-        pdfCanvas.height =
-            Math.floor(
-                viewport.height *
-                outputScale
-            );
+    await page.render(
+        renderContext
+    ).promise;
 
 
-        pdfCanvas.style.width =
-            Math.floor(viewport.width) +
-            "px";
+    pdfPage.textContent =
+        `${currentPage} / ${currentPDF.numPages}`;
 
-        pdfCanvas.style.height =
-            Math.floor(viewport.height) +
-            "px";
-
-
-        const context =
-            pdfCanvas.getContext("2d");
-
-
-        const renderContext = {
-
-            canvasContext: context,
-
-            viewport: viewport,
-
-            transform:
-                outputScale !== 1
-                    ? [
-                        outputScale,
-                        0,
-                        0,
-                        outputScale,
-                        0,
-                        0
-                    ]
-                    : null
-        };
-
-
-        await page.render(
-            renderContext
-        ).promise;
-
-
-        pdfPageInfo.textContent =
-            "Page " +
-            pageNumber +
-            " / " +
-            currentPDF.numPages;
-
-
-        pdfArea.scrollTop = 0;
-
-        pdfArea.scrollLeft = 0;
-
-
-    } finally {
-
-        currentPDFRendering = false;
-
-        if (currentPDFPendingPage !== null) {
-
-            const next =
-                currentPDFPendingPage;
-
-            currentPDFPendingPage = null;
-
-            renderPDFPage(next);
-        }
-    }
 }
 
 
 /* =========================
-   PDF NAVIGATION
+   PAGE PRÉCÉDENTE
 ========================= */
 
-window.previousPage = function() {
+window.previousPage =
+    async function(){
 
-    if (!currentPDF) return;
+        if(
+            !currentPDF ||
+            currentPage <= 1
+        )
+            return;
 
-    if (currentPDFPage <= 1) return;
+        currentPage--;
 
-    currentPDFPage--;
+        await renderPDFPage();
 
-    renderPDFPage(
-        currentPDFPage
-    );
-};
+    };
 
 
-window.nextPage = function() {
+/* =========================
+   PAGE SUIVANTE
+========================= */
 
-    if (!currentPDF) return;
+window.nextPage =
+    async function(){
 
-    if (
-        currentPDFPage >=
-        currentPDF.numPages
-    ) {
-        return;
+        if(
+            !currentPDF ||
+            currentPage >=
+                currentPDF.numPages
+        )
+            return;
+
+        currentPage++;
+
+        await renderPDFPage();
+
+    };
+
+
+/* =========================
+   ZOOM
+========================= */
+
+window.zoomIn =
+    async function(){
+
+        if(
+            imageViewer.style.display !==
+            "none"
+        ){
+
+            imageScale =
+                Math.min(
+                    imageScale * 1.25,
+                    6
+                );
+
+            applyImageTransform();
+
+            return;
+        }
+
+
+        if(
+            pdfArea.style.display !==
+            "none"
+        ){
+
+            pdfScale =
+                Math.min(
+                    pdfScale * 1.25,
+                    5
+                );
+
+            await renderPDFPage();
+
+        }
+
+    };
+
+
+window.zoomOut =
+    async function(){
+
+        if(
+            imageViewer.style.display !==
+            "none"
+        ){
+
+            imageScale =
+                Math.max(
+                    imageScale / 1.25,
+                    0.5
+                );
+
+            applyImageTransform();
+
+            return;
+        }
+
+
+        if(
+            pdfArea.style.display !==
+            "none"
+        ){
+
+            pdfScale =
+                Math.max(
+                    pdfScale / 1.25,
+                    0.5
+                );
+
+            await renderPDFPage();
+
+        }
+
+    };
+
+
+/* =========================
+   AJUSTEMENT PDF
+========================= */
+
+window.fitPDF =
+    async function(){
+
+        if(!currentPDF)
+            return;
+
+
+        const page =
+            await currentPDF.getPage(
+                currentPage
+            );
+
+
+        const base =
+            page.getViewport({
+                scale:1
+            });
+
+
+        const availableWidth =
+            pdfArea.clientWidth - 30;
+
+
+        pdfScale =
+            availableWidth /
+            base.width;
+
+
+        pdfScale =
+            Math.max(
+                0.5,
+                Math.min(
+                    pdfScale,
+                    5
+                )
+            );
+
+
+        await renderPDFPage();
+
+    };
+
+
+/* =========================
+   ZOOM IMAGE
+========================= */
+
+let imageScale = 1;
+
+let imageX = 0;
+let imageY = 0;
+
+
+function resetImageZoom(){
+
+    imageScale = 1;
+
+    imageX = 0;
+    imageY = 0;
+
+    applyImageTransform();
+
+}
+
+
+function applyImageTransform(){
+
+    imageViewer.style.transform =
+        `translate(${imageX}px, ${imageY}px) scale(${imageScale})`;
+
+}
+
+
+/* =========================
+   GESTES TACTILES IMAGE
+========================= */
+
+let imageTouchStartDistance = null;
+
+let imageTouchStartScale = 1;
+
+let imageDragStartX = 0;
+let imageDragStartY = 0;
+
+let imageStartX = 0;
+let imageStartY = 0;
+
+
+imageViewer.addEventListener(
+    "touchstart",
+    function(event){
+
+        if(
+            event.touches.length === 2
+        ){
+
+            imageTouchStartDistance =
+                getTouchDistance(
+                    event.touches[0],
+                    event.touches[1]
+                );
+
+            imageTouchStartScale =
+                imageScale;
+
+        }else if(
+            event.touches.length === 1 &&
+            imageScale > 1
+        ){
+
+            imageDragStartX =
+                event.touches[0].clientX;
+
+            imageDragStartY =
+                event.touches[0].clientY;
+
+            imageStartX =
+                imageX;
+
+            imageStartY =
+                imageY;
+
+        }
+
+    },
+    {
+        passive:false
     }
+);
 
-    currentPDFPage++;
 
-    renderPDFPage(
-        currentPDFPage
-    );
-};
+imageViewer.addEventListener(
+    "touchmove",
+    function(event){
+
+        event.preventDefault();
+
+
+        /* PINCEMENT */
+
+        if(
+            event.touches.length === 2
+        ){
+
+            const distance =
+                getTouchDistance(
+                    event.touches[0],
+                    event.touches[1]
+                );
+
+
+            if(
+                imageTouchStartDistance
+            ){
+
+                const ratio =
+                    distance /
+                    imageTouchStartDistance;
+
+
+                imageScale =
+                    Math.max(
+                        0.5,
+                        Math.min(
+                            imageTouchStartScale *
+                            ratio,
+                            6
+                        )
+                    );
+
+
+                applyImageTransform();
+
+            }
+
+            return;
+        }
+
+
+        /* DÉPLACEMENT */
+
+        if(
+            event.touches.length === 1 &&
+            imageScale > 1
+        ){
+
+            const dx =
+                event.touches[0].clientX -
+                imageDragStartX;
+
+            const dy =
+                event.touches[0].clientY -
+                imageDragStartY;
+
+
+            imageX =
+                imageStartX + dx;
+
+            imageY =
+                imageStartY + dy;
+
+
+            applyImageTransform();
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+imageViewer.addEventListener(
+    "touchend",
+    function(){
+
+        imageTouchStartDistance =
+            null;
+
+    }
+);
 
 
 /* =========================
-   PDF ZOOM
+   GESTES TACTILES PDF
 ========================= */
 
-window.zoomIn = function() {
+let pdfTouchStartDistance = null;
 
-    if (!currentPDF) return;
-
-    currentPDFScale += .15;
-
-    renderPDFPage(
-        currentPDFPage
-    );
-};
+let pdfTouchStartScale = 1;
 
 
-window.zoomOut = function() {
+pdfArea.addEventListener(
+    "touchstart",
+    function(event){
 
-    if (!currentPDF) return;
+        if(
+            event.touches.length === 2
+        ){
 
-    currentPDFScale =
-        Math.max(
-            .55,
-            currentPDFScale - .15
-        );
+            pdfTouchStartDistance =
+                getTouchDistance(
+                    event.touches[0],
+                    event.touches[1]
+                );
 
-    renderPDFPage(
-        currentPDFPage
-    );
-};
+            pdfTouchStartScale =
+                pdfScale;
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
 
 
-window.fitWidth = function() {
+pdfArea.addEventListener(
+    "touchmove",
+    function(event){
 
-    if (!currentPDF) return;
+        if(
+            event.touches.length !== 2
+        )
+            return;
 
-    currentPDFScale = 1;
 
-    renderPDFPage(
-        currentPDFPage
-    );
-};
+        event.preventDefault();
+
+
+        const distance =
+            getTouchDistance(
+                event.touches[0],
+                event.touches[1]
+            );
+
+
+        if(
+            pdfTouchStartDistance
+        ){
+
+            const ratio =
+                distance /
+                pdfTouchStartDistance;
+
+
+            pdfScale =
+                Math.max(
+                    0.5,
+                    Math.min(
+                        pdfTouchStartScale *
+                        ratio,
+                        5
+                    )
+                );
+
+
+            /* On ne rerend pas à chaque
+               micro-mouvement immédiatement.
+               Le zoom final sera rendu
+               au relâchement. */
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+pdfArea.addEventListener(
+    "touchend",
+    async function(){
+
+        if(
+            pdfTouchStartDistance
+        ){
+
+            pdfTouchStartDistance =
+                null;
+
+            await renderPDFPage();
+
+        }
+
+    }
+);
 
 
 /* =========================
-   RETOUR
+   DISTANCE ENTRE 2 DOIGTS
 ========================= */
 
-backButton.onclick = () => {
+function getTouchDistance(a,b){
 
-    if (!currentFolder) return;
+    const dx =
+        a.clientX - b.clientX;
 
-    const parts =
-        currentFolder.split("/");
+    const dy =
+        a.clientY - b.clientY;
 
-    parts.pop();
+    return Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
 
-    currentFolder =
-        parts.join("/");
-
-    renderLibrary();
-};
+}
 
 
 /* =========================
@@ -1405,70 +2227,67 @@ backButton.onclick = () => {
 
 search.addEventListener(
     "input",
-    () => {
+    function(){
 
-        searchText =
-            search.value;
+        render();
 
-        renderLibrary();
     }
 );
 
 
 /* =========================
-   CLAVIER
+   ACCUEIL
+========================= */
+
+window.goHome =
+    function(){
+
+        search.value = "";
+
+        currentFolder = "";
+
+        render();
+
+    };
+
+
+/* =========================
+   ACTUALISER
+========================= */
+
+window.refreshLibrary =
+    function(){
+
+        loadLibrary();
+
+    };
+
+
+/* =========================
+   TOUCHE ÉCHAP
 ========================= */
 
 document.addEventListener(
     "keydown",
-    event => {
+    function(event){
 
-        if (
-            viewer.style.display !== "block"
-        ) {
-            return;
-        }
+        if(
+            event.key === "Escape" &&
+            viewer.classList.contains(
+                "active"
+            )
+        ){
 
-        if (event.key === "Escape") {
             closeViewer();
+
         }
 
-        if (
-            event.key === "ArrowLeft" &&
-            currentPDF
-        ) {
-            previousPage();
-        }
-
-        if (
-            event.key === "ArrowRight" &&
-            currentPDF
-        ) {
-            nextPage();
-        }
     }
 );
 
 
 /* =========================
-   EMPÊCHER LE MENU CONTEXTUEL
-========================= */
-
-document.addEventListener(
-    "contextmenu",
-    event => {
-
-        if (
-            viewer.style.display === "block"
-        ) {
-            event.preventDefault();
-        }
-    }
-);
-
-
-/* =========================
-   DÉMARRAGE
+   INITIALISATION
 ========================= */
 
 loadLibrary();
