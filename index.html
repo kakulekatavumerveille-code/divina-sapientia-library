@@ -630,7 +630,7 @@ header{
 
     overflow:auto;
 
-    background:#525252;
+    background:#fff;
 
     -webkit-overflow-scrolling:touch;
 
@@ -982,6 +982,7 @@ header{
     transform-origin:0 0;
     will-change:transform;
     backface-visibility:hidden;
+    transform:translate3d(0,0,0);
 }
 .pdf-page-container{
     contain:layout paint;
@@ -1021,6 +1022,7 @@ header{
     transform-origin:0 0;
     transform-style:flat;
     will-change:transform;
+    contain:layout style;
 }
 .pdf-page-canvas{
     /* Le canvas est affiché à sa taille PDF exacte : pas de redimensionnement CSS. */
@@ -5076,11 +5078,15 @@ pdfArea.addEventListener("touchstart", event => {
     if (event.touches.length !== 1 || !currentPDF || pdfPinch) return;
 
     const touch = event.touches[0];
+    const canvas = pdfPages.querySelector(".pdf-page-canvas");
     pdfPan = {
         startX: touch.clientX,
         startY: touch.clientY,
         startOffsetX: pdfPanOffsetX,
-        lockedAxis: null
+        lockedAxis: null,
+        maxOffsetX: canvas
+            ? Math.max(0, (canvas.getBoundingClientRect().width - pdfArea.clientWidth) / 2)
+            : 0
     };
 }, {passive:true, capture:true});
 
@@ -5091,24 +5097,15 @@ pdfArea.addEventListener("touchmove", event => {
     const dx = touch.clientX - pdfPan.startX;
     const dy = touch.clientY - pdfPan.startY;
 
-    if (!pdfPan.lockedAxis && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
-        // Verrouille le geste sur l’axe dominant pour ne pas gêner le scroll vertical.
+    if (!pdfPan.lockedAxis && (Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
+        // Verrouillage quasi immédiat : le doigt commande directement le document.
         pdfPan.lockedAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
     }
 
     if (pdfPan.lockedAxis !== "x") return;
 
-    const canvas = pdfPages.querySelector(".pdf-page-canvas");
-    if (!canvas) return;
-
-    // PDFium agrandit parfois le canvas visuellement sans modifier scrollWidth.
-    // On utilise donc la largeur réelle affichée du canvas.
-    const canvasWidth = canvas.getBoundingClientRect().width;
-    const maxOffsetX = Math.max(
-        0,
-        (canvasWidth - pdfArea.clientWidth) / 2
-    );
-    if (maxOffsetX <= 1) return;
+    const maxOffsetX = pdfPan.maxOffsetX;
+    if (maxOffsetX <= 0) return;
 
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -5139,6 +5136,7 @@ pdfArea.addEventListener("touchstart", event => {
     const a = event.touches[0];
     const b = event.touches[1];
     const center = getPDFTouchCenter(a, b);
+    pdfPanOffsetX = 0;
     const startScrollLeft = pdfArea.scrollLeft;
     const startScrollTop = pdfArea.scrollTop;
 
