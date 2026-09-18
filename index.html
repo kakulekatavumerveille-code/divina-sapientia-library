@@ -975,6 +975,9 @@ header{
     overscroll-behavior:contain;
     touch-action:pan-x pan-y;
 }
+#pdfArea.toolbar-hidden{
+    padding-bottom:18px;
+}
 #pdfPages{
     transform-origin:0 0;
     will-change:transform;
@@ -4928,6 +4931,7 @@ loadLibrary();
 function applyPDFToolbarVisibility(){
     if (!pdfControls || !pdfToolbarToggle) return;
     pdfControls.classList.toggle("is-hidden", !pdfToolbarVisible);
+    pdfArea.classList.toggle("toolbar-hidden", !pdfToolbarVisible);
     pdfToolbarToggle.style.display =
         currentPDF ? "flex" : "none";
     pdfToolbarToggle.setAttribute(
@@ -5005,6 +5009,7 @@ resetViewer = function(){
     }
     pdfPinch = null;
     if (pdfControls) pdfControls.classList.remove("is-hidden");
+    if (pdfArea) pdfArea.classList.remove("toolbar-hidden");
     if (pdfToolbarToggle) pdfToolbarToggle.style.display = "none";
     syncPDFPageField(1);
     originalResetViewer();
@@ -5123,6 +5128,9 @@ async function finishPDFPinch(event){
     const finalMidX = pinch.midX;
     const finalMidY = pinch.midY;
     const page = getCurrentVisiblePDFPage();
+    const oldScrollLeft = pdfArea.scrollLeft;
+    const oldScrollTop = pdfArea.scrollTop;
+    const oldScrollHeight = pdfArea.scrollHeight;
 
     pdfPinch = null;
     pdfArea.classList.remove("is-pinching");
@@ -5140,23 +5148,34 @@ async function finishPDFPinch(event){
         (pinch.focalY * ratio) - finalMidY);
 
     currentPDFScale = finalScale;
+
+    // Important : on ne vide jamais les pages pendant le zoom.
+    // Cela empêche le scrollHeight de tomber à zéro et supprime les sauts haut/bas.
     document.querySelectorAll(".pdf-page-container").forEach(container => {
         delete container.dataset.rendered;
         delete container.dataset.rendering;
-        container.innerHTML =
-            '<div class="pdf-placeholder">Chargement…</div>';
     });
 
-    await renderNearbyPDFPages();
+    // Le rerendu de la page courante est prioritaire et se fait sans effondrement.
+    await renderPDFPage(page);
 
-    // On applique la position après le nouveau layout, sans scrollIntoView.
     requestAnimationFrame(() => {
+        const newScrollHeight = pdfArea.scrollHeight;
+        const heightCorrection = Math.max(0, newScrollHeight - oldScrollHeight);
+        const maxTop = Math.max(0, pdfArea.scrollHeight - pdfArea.clientHeight);
+        const correctedTop = Math.min(
+            maxTop,
+            Math.max(targetScrollTop, oldScrollTop + heightCorrection * 0.02)
+        );
+        const maxLeft = Math.max(0, pdfArea.scrollWidth - pdfArea.clientWidth);
         pdfArea.scrollTo({
-            left: targetScrollLeft,
-            top: targetScrollTop,
-            behavior: "instant"
+            left: Math.min(maxLeft, Math.max(0, targetScrollLeft || oldScrollLeft)),
+            top: correctedTop,
+            behavior: "auto"
         });
         updatePDFPageIndicator();
+        // Les pages voisines sont préparées après le retour visuel immédiat.
+        setTimeout(() => renderNearbyPDFPages(), 0);
     });
 }
 
