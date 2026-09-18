@@ -648,13 +648,14 @@ header{
 
 #pdfPages{
 
-    width:100%;
+    width:max-content;
+    min-width:100%;
 
     display:flex;
 
     flex-direction:column;
 
-    align-items:center;
+    align-items:flex-start;
 
     gap:18px;
 }
@@ -672,7 +673,8 @@ header{
 
     justify-content:center;
 
-    width:100%;
+    width:max-content;
+    min-width:100%;
 
     min-height:50px;
 }
@@ -978,6 +980,14 @@ header{
 #pdfArea.toolbar-hidden{
     padding-bottom:18px;
 }
+#pdfArea{
+    scrollbar-width:none;
+}
+#pdfArea::-webkit-scrollbar{
+    width:0;
+    height:0;
+    display:none;
+}
 #pdfPages{
     transform-origin:0 0;
     will-change:transform;
@@ -985,7 +995,8 @@ header{
     transform:translate3d(0,0,0);
 }
 .pdf-page-container{
-    contain:layout paint;
+    /* contain:paint découpe les bords d’un canvas pendant le zoom. */
+    contain:layout;
 }
 .pdf-page-canvas{
     image-rendering:auto;
@@ -1022,7 +1033,7 @@ header{
     transform-origin:0 0;
     transform-style:flat;
     will-change:transform;
-    contain:layout style;
+    contain:none;
 }
 .pdf-page-canvas{
     /* Le canvas est affiché à sa taille PDF exacte : pas de redimensionnement CSS. */
