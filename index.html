@@ -3998,6 +3998,11 @@ async function renderPDFPage(
 
         };
 
+        const reservedHeight = Math.max(
+            container.getBoundingClientRect().height || 0,
+            viewport.height
+        );
+        container.style.minHeight = reservedHeight + "px";
 
         container.innerHTML =
             "";
@@ -4031,6 +4036,7 @@ async function renderPDFPage(
             renderContext
         ).promise;
         if (page.cleanup) page.cleanup();
+        container.style.minHeight = "";
 
 
         container.dataset.rendered =
@@ -4060,6 +4066,7 @@ async function renderPDFPage(
             </div>
 
         `;
+        container.style.minHeight = "";
 
 
         container.dataset.rendering =
@@ -4208,6 +4215,7 @@ function getCurrentVisiblePDFPage(){
 
 function updatePDFPageIndicator(){
 
+    if (pdfPinch) return;
     if(
         !currentPDF
     ){
@@ -4244,6 +4252,8 @@ let pdfScrollTimer =
 pdfArea.addEventListener(
     "scroll",
     function(){
+
+        if (pdfPinch) return;
 
         clearTimeout(
             pdfScrollTimer
@@ -5427,6 +5437,10 @@ pdfArea.addEventListener("touchstart", event => {
     const b = event.touches[1];
     const areaRect = pdfArea.getBoundingClientRect();
     const center = getPDFTouchCenter(a, b, areaRect);
+    const anchorPage = getCurrentVisiblePDFPage();
+    const anchorContainer = document.querySelector(
+        `.pdf-page-container[data-page="${anchorPage}"]`
+    );
     pdfPanOffsetX = 0;
     const startScrollLeft = pdfArea.scrollLeft;
     const startScrollTop = pdfArea.scrollTop;
@@ -5442,6 +5456,10 @@ pdfArea.addEventListener("touchstart", event => {
         areaRect,
         startScrollLeft,
         startScrollTop,
+        anchorPage,
+        anchorLocalY: anchorContainer
+            ? startScrollTop + center.y - anchorContainer.offsetTop
+            : 0,
         // Coordonnée dans le document rendu, sous le point de contact initial.
         focalX: center.x + startScrollLeft,
         focalY: center.y + startScrollTop
@@ -5488,7 +5506,7 @@ async function finishPDFPinch(event){
     const finalScale = pinch.scale;
     const finalMidX = pinch.midX;
     const finalMidY = pinch.midY;
-    const page = getCurrentVisiblePDFPage();
+    const page = pinch.anchorPage;
     const oldScrollLeft = pdfArea.scrollLeft;
 
     if (Math.abs(finalScale - currentPDFScale) < .005) return;
@@ -5498,8 +5516,12 @@ async function finishPDFPinch(event){
     const ratio = finalScale / pinch.startScale;
     const targetScrollLeft = Math.max(0,
         (pinch.focalX * ratio) - finalMidX);
+    const anchorContainer = document.querySelector(
+        `.pdf-page-container[data-page="${pinch.anchorPage}"]`
+    );
     const targetScrollTop = Math.max(0,
-        (pinch.focalY * ratio) - finalMidY);
+        (anchorContainer ? anchorContainer.offsetTop : 0) +
+        pinch.anchorLocalY * ratio - finalMidY);
 
     currentPDFScale = finalScale;
 
@@ -5531,7 +5553,10 @@ async function finishPDFPinch(event){
         pdfArea.classList.remove("is-pinching");
         pdfPages.style.transform = "none";
         pdfPages.style.transformOrigin = "0 0";
-        updatePDFPageIndicator();
+        currentPDFPage = pinch.anchorPage;
+        pdfPageIndicator.textContent =
+            `${currentPDFPage} / ${currentPDF.numPages}`;
+        syncPDFPageField(currentPDFPage);
         // Les pages voisines sont préparées après le retour visuel immédiat.
         setTimeout(() => renderNearbyPDFPages(), 0);
     });
