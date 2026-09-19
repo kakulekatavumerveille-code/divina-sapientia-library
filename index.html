@@ -610,6 +610,21 @@ header{
     background:rgba(255,255,255,.10);
     color:#fff;
 }
+.viewer-body.audio-mode{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:24px 12px;
+}
+.viewer-body.audio-mode #audioViewer{
+    flex:0 0 auto;
+    width:min(700px,94vw);
+}
+.viewer-body.audio-mode .audio-playlist-controls{
+    flex:0 0 auto;
+    margin:0;
+}
 .audio-playlist-controls button{
     width:40px;
     height:38px;
@@ -1164,12 +1179,14 @@ header{
 #pdfArea.is-panning{
     cursor:grabbing;
     user-select:none;
+    touch-action:none;
 }
 #pdfPages{
     transform-origin:0 0;
     transform-style:flat;
     will-change:transform;
     contain:none;
+    backface-visibility:hidden;
 }
 .pdf-page-canvas{
     /* Le canvas est affiché à sa taille PDF exacte : pas de redimensionnement CSS. */
@@ -1957,6 +1974,8 @@ const videoViewer =
     document.getElementById(
         "videoViewer"
     );
+
+const viewerBody = document.querySelector(".viewer-body");
 
 
 const pdfArea =
@@ -3291,6 +3310,7 @@ async function openViewer(
             "audio"
         ){
 
+            viewerBody?.classList.add("audio-mode");
             buildAudioQueue(file);
             playAudioTrack(audioIndex, false);
             audioViewer.loop = audioRepeat;
@@ -3396,6 +3416,8 @@ async function openViewer(
 ========================================================= */
 
 function resetViewer(){
+
+    viewerBody?.classList.remove("audio-mode");
 
     loading.innerHTML =
         "Chargement...";
@@ -5331,10 +5353,10 @@ function applyPinchPreview(){
         `translate3d(${tx}px, ${ty}px, 0) scale(${relativeScale})`;
 
     // Empêche le navigateur de modifier la référence pendant le geste.
-    if (pdfArea.scrollLeft !== pdfPinch.startScrollLeft) {
+    if (Math.abs(pdfArea.scrollLeft - pdfPinch.startScrollLeft) > 0.5) {
         pdfArea.scrollLeft = pdfPinch.startScrollLeft;
     }
-    if (pdfArea.scrollTop !== pdfPinch.startScrollTop) {
+    if (Math.abs(pdfArea.scrollTop - pdfPinch.startScrollTop) > 0.5) {
         pdfArea.scrollTop = pdfPinch.startScrollTop;
     }
 }
