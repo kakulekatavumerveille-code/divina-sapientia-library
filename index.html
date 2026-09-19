@@ -597,7 +597,37 @@ header{
     );
 }
 
-
+.audio-playlist-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    width:min(94vw,560px);
+    margin:16px auto;
+    padding:10px;
+    border-radius:16px;
+    background:rgba(255,255,255,.10);
+    color:#fff;
+}
+.audio-playlist-controls button{
+    width:40px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:11px;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+}
+.audio-playlist-controls button.active{
+    background:linear-gradient(135deg,#4169e1,#7c3aed);
+}
+#audioTrackInfo{
+    min-width:55px;
+    text-align:center;
+    font-size:13px;
+}
 /* =========================================================
    VIDEO
 ========================================================= */
@@ -1458,6 +1488,14 @@ header{
 
         </audio>
 
+        <div id="audioPlaylistControls" class="audio-playlist-controls" style="display:none">
+            <button type="button" onclick="previousAudioTrack()" title="Chant précédent">‹</button>
+            <button type="button" onclick="nextAudioTrack()" title="Chant suivant">›</button>
+            <button type="button" id="audioRepeatButton" onclick="toggleAudioRepeat()" title="Répéter ce chant">↻</button>
+            <button type="button" id="audioShuffleButton" onclick="toggleAudioShuffle()" title="Lecture aléatoire">⤨</button>
+            <span id="audioTrackInfo">1 / 1</span>
+        </div>
+
 
 
         <!-- VIDEO -->
@@ -1560,7 +1598,6 @@ header{
 
         </div>
 
-
     </div>
 
 </div>
@@ -1586,6 +1623,7 @@ import { init as initPDFium } from
 ========================================================= */
 let pdfiumInstance = null;
 let pdfiumInitPromise = null;
+let pdfjsInitPromise = null;
 
 async function getPDFium(){
     if (pdfiumInstance) return pdfiumInstance;
@@ -1609,7 +1647,33 @@ async function getPDFium(){
     return pdfiumInitPromise;
 }
 
-/* Adaptateur minimal compatible avec l’architecture de pages existante. */
+async function getPDFJS(){
+    if (!pdfjsInitPromise){
+        pdfjsInitPromise = import(
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs"
+        ).then(pdfjs => {
+            pdfjs.GlobalWorkerOptions.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+            return pdfjs;
+        });
+    }
+    return pdfjsInitPromise;
+}
+
+const pdfjsAdapter = {
+    async getDocument({url}){
+        const pdfjs = await getPDFJS();
+        return pdfjs.getDocument({
+            url,
+            disableStream:false,
+            disableAutoFetch:false,
+            isEvalSupported:true,
+            useWorkerFetch:true
+        });
+    }
+};
+
+/* Adaptateur principal compatible avec l’architecture de pages existante. */
 const pdfiumAdapter = {
     async getDocument({url}){
         const engine = await getPDFium();
@@ -1619,12 +1683,11 @@ const pdfiumAdapter = {
         });
         if (!response.ok) throw new Error("PDF inaccessible");
         const bytes = new Uint8Array(await response.arrayBuffer());
-        const module = engine.pdfium;
-        const memory = module.HEAPU8;
-        if (!memory) throw new Error("Mémoire PDFium indisponible");
-
         const dataPtr = engine.pdfium.wasmExports.malloc(bytes.byteLength);
-        memory.set(bytes, dataPtr);
+        if (!dataPtr) throw new Error("Mémoire PDFium insuffisante");
+        const inputMemory = engine.pdfium.HEAPU8;
+        if (!inputMemory) throw new Error("Mémoire PDFium indisponible");
+        inputMemory.set(bytes, dataPtr);
         const documentHandle = engine.FPDF_LoadMemDocument(
             dataPtr,
             bytes.byteLength,
@@ -1879,6 +1942,15 @@ const audioViewer =
     document.getElementById(
         "audioViewer"
     );
+
+const audioPlaylistControls = document.getElementById("audioPlaylistControls");
+const audioTrackInfo = document.getElementById("audioTrackInfo");
+const audioRepeatButton = document.getElementById("audioRepeatButton");
+const audioShuffleButton = document.getElementById("audioShuffleButton");
+let audioQueue = [];
+let audioIndex = -1;
+let audioRepeat = false;
+let audioShuffle = false;
 
 
 const videoViewer =
@@ -3088,6 +3160,66 @@ function escapeHTML(
 
 
 
+function refreshAudioControls(){
+    if (!audioPlaylistControls) return;
+    audioPlaylistControls.style.display = audioQueue.length ? "flex" : "none";
+    if (audioTrackInfo) audioTrackInfo.textContent =
+        audioQueue.length ? `${audioIndex + 1} / ${audioQueue.length}` : "0 / 0";
+    audioRepeatButton?.classList.toggle("active", audioRepeat);
+    audioShuffleButton?.classList.toggle("active", audioShuffle);
+}
+
+function buildAudioQueue(selectedFile){
+    const folder = selectedFile.folder || currentFolder || "";
+    audioQueue = library.files.filter(file =>
+        file.type === "audio" && (file.folder || "") === folder
+    );
+    audioIndex = Math.max(0, audioQueue.findIndex(file => file.key === selectedFile.key));
+    refreshAudioControls();
+}
+
+function playAudioTrack(index, autoplay = true){
+    if (!audioQueue.length) return;
+    audioIndex = (index + audioQueue.length) % audioQueue.length;
+    const file = audioQueue[audioIndex];
+    audioViewer.src = getURL(file.key);
+    audioViewer.load();
+    refreshAudioControls();
+    if (autoplay) audioViewer.play().catch(() => {});
+}
+
+window.previousAudioTrack = function(){
+    if (audioQueue.length) playAudioTrack(audioIndex - 1);
+};
+
+window.nextAudioTrack = function(){
+    if (!audioQueue.length) return;
+    if (audioShuffle && audioQueue.length > 1){
+        let next;
+        do next = Math.floor(Math.random() * audioQueue.length);
+        while (next === audioIndex);
+        playAudioTrack(next);
+        return;
+    }
+    playAudioTrack(audioIndex + 1);
+};
+
+window.toggleAudioRepeat = function(){
+    audioRepeat = !audioRepeat;
+    audioViewer.loop = audioRepeat;
+    refreshAudioControls();
+};
+
+window.toggleAudioShuffle = function(){
+    audioShuffle = !audioShuffle;
+    refreshAudioControls();
+};
+
+audioViewer.addEventListener("ended", () => {
+    if (audioRepeat) return;
+    if (audioQueue.length > 1) nextAudioTrack();
+});
+
 /* =========================================================
    OUVRIR VIEWER
 ========================================================= */
@@ -3159,8 +3291,9 @@ async function openViewer(
             "audio"
         ){
 
-            audioViewer.src =
-                url;
+            buildAudioQueue(file);
+            playAudioTrack(audioIndex, false);
+            audioViewer.loop = audioRepeat;
 
 
             audioViewer.style.display =
@@ -3169,9 +3302,6 @@ async function openViewer(
 
             loading.style.display =
                 "none";
-
-
-            audioViewer.load();
 
 
             return;
@@ -3248,7 +3378,6 @@ async function openViewer(
             error
         );
 
-
         loading.innerHTML = `
 
             ❌ Impossible
@@ -3286,6 +3415,8 @@ function resetViewer(){
 
     videoViewer.style.display =
         "none";
+
+    if (audioPlaylistControls) audioPlaylistControls.style.display = "none";
 
 
     pdfArea.style.display =
@@ -3360,7 +3491,9 @@ function(){
 ========================================================= */
 
 async function openPDF(
-    url
+    url,
+    allowFallback = true,
+    preferredEngine = "pdfium"
 ){
 
     pdfArea.style.display =
@@ -3377,14 +3510,23 @@ async function openPDF(
 
     try{
 
-        const pdfiumDocumentResult =
-            await pdfiumAdapter
-                .getDocument({
-                    url:url
-                });
-
-        currentPDF =
-            await pdfiumDocumentResult.promise;
+        let documentResult;
+        if (preferredEngine === "pdfjs"){
+            documentResult = await pdfjsAdapter.getDocument({url});
+            currentPDF = await documentResult.promise;
+            currentPDF.engine = "pdfjs";
+        }else{
+            try{
+                documentResult = await pdfiumAdapter.getDocument({url});
+                currentPDF = await documentResult.promise;
+                currentPDF.engine = "pdfium";
+            }catch(pdfiumError){
+                console.warn("PDFium a échoué, bascule interne vers PDF.js", pdfiumError);
+                documentResult = await pdfjsAdapter.getDocument({url});
+                currentPDF = await documentResult.promise;
+                currentPDF.engine = "pdfjs";
+            }
+        }
 
 
         currentPDFPage =
@@ -3421,6 +3563,10 @@ async function openPDF(
 
         await renderVisiblePDFPages();
 
+        if (!pdfPages.querySelector(".pdf-page-canvas")){
+            throw new Error("Aucune page PDF n’a pu être rendue");
+        }
+
 
         updatePDFPageIndicator();
 
@@ -3433,6 +3579,12 @@ async function openPDF(
             error
         );
 
+        if (allowFallback && preferredEngine === "pdfium"){
+            console.warn("Échec PDFium, nouvelle tentative interne avec PDF.js");
+            currentPDF = null;
+            pdfPages.innerHTML = "";
+            return openPDF(url, false, "pdfjs");
+        }
 
         pdfPages.innerHTML = `
 
