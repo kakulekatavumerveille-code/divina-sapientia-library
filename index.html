@@ -224,6 +224,29 @@ header{
     font-size:14px;
 }
 
+.breadcrumb .breadcrumb-back{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    min-height:34px;
+    padding:7px 12px;
+    border:1px solid rgba(65,105,225,.18);
+    border-radius:999px;
+    background:rgba(255,255,255,.82);
+    color:#3158b7;
+    font-weight:700;
+    box-shadow:0 5px 14px rgba(35,49,84,.07);
+}
+.breadcrumb .breadcrumb-back:hover:not(:disabled){
+    background:#fff;
+    transform:translateX(-2px);
+}
+.breadcrumb .breadcrumb-back:disabled{
+    opacity:.48;
+    cursor:default;
+    box-shadow:none;
+}
+
 .breadcrumb span{
     color:#8791a2;
 }
@@ -3109,6 +3132,22 @@ function renderBreadcrumb(){
 
     breadcrumb.innerHTML =
         "";
+
+    const back = document.createElement("button");
+    back.className = "breadcrumb-back";
+    back.type = "button";
+    back.textContent = "← Retour";
+    back.title = currentFolder ? "Revenir au dossier parent" : "Vous êtes à la racine";
+    back.disabled = !currentFolder;
+    back.onclick = () => {
+        if (!currentFolder) return;
+        const parts = currentFolder.split("/");
+        parts.pop();
+        currentFolder = parts.join("/");
+        search.value = "";
+        render();
+    };
+    breadcrumb.appendChild(back);
 
 
     const home =
